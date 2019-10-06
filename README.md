@@ -75,4 +75,4 @@ Early versions of the product may utilize some or all of the following simplific
 #
 
 ### License
-_Redistricting a Geographic Region_ by Dr. Jody Paul is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). ![CC-SA-4](https://creativecommons.org/licenses/by-sa/4.0/)
+![CC-SA-4](https://licensebuttons.net/l/by-sa/4.0/88x31.png) _Redistricting a Geographic Region_ by Dr. Jody Paul is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
