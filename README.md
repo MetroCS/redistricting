@@ -1,5 +1,3 @@
-Experimentation with redistricting a region
-
 # Redistricting a Geographic Region
 
 Objective: A computer program designed to split a given geographic region into election districts.
@@ -72,3 +70,9 @@ Early versions of the product may utilize some or all of the following simplific
 * The number of districts is a proper divisor of the number of locations in the grid.
 * There are exactly two parties.
   * If the number of voters in a district is even, and the number of voters associated with each party in a district is the same, then neither party is favored in that district.
+
+
+#
+
+### License
+_Redistricting a Geographic Region_ by Dr. Jody Paul is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). ![CC-SA-4](https://creativecommons.org/licenses/by-sa/4.0/)

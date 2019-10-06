@@ -10,8 +10,13 @@
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
+# Build directories
+/build/*
+/doc/*
+/formattedsrc/*
+/reports/*
+
 # Package Files #
-*.jar
 *.war
 *.nar
 *.ear
@@ -21,3 +26,32 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.*.sw[op]
+.Spotlight-V100
+.Trashes
+
+# developer specific
+.project
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
