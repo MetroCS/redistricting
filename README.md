@@ -1,4 +1,4 @@
-# Redistricting a Geographic Region
+# Redistricting a Geographic Region into Election Districts
 
 Objective: A computer program designed to split a given geographic region into election districts.
 
