@@ -2,7 +2,10 @@
 
 This document describes intended and preferred conventions
 for development and maintenance of the Redistricting a Region software product.
+* [Agile Principles](/developmentConventions.md#Agile-Principles)
+* [Coding Convention Guide](/developmentConventions.md#Coding-Convention-Guide)
 
+ 
 ## Agile Principles
 
 ### Working Software
@@ -37,3 +40,25 @@ in which automated tests are written prior to writing the implementation.
 Tests associated with successful implementation remains in the code base as _regression tests._
 
 (Note: Test coverage tools may facilitate _tracing forward_ from a test to code that the test is intended to verify.)
+
+
+## Coding Convention Guide
+
+### Style Convention Precedence and References
+
+#### [Project-specific conventions](/developmentConventions.md#Project-Specific-Conventions) take precedence.
+
+If no project-specific convention is applicable, use the [Sun Convention](https://www.oracle.com/technetwork/java/codeconvtoc-136057.html) guide.
+
+If something is not covered in the project-specific or the Sun Convention guide, use the [Google Convention](https://google.github.io/styleguide/javaguide.html) guide.
+
+If a topic is not covered by any guides, use best judgement and consider opening a project issue to formalize the decision.
+
+- Sun Convention guide: https://www.oracle.com/technetwork/java/codeconvtoc-136057.html
+- Google Convention guide: https://google.github.io/styleguide/javaguide.html
+
+
+### Project-Specific Conventions
+
+- Multiple authors are indicated using multiple @author tags, one tag per line, one author per tag.
+- Many style conventions are embodied in [jp_checks.xml](/lib/jp_checks.xml) and [jp_suppressions.xml](/lib/jp_suppressions.xml) configuration files for [Checkstyle](https://checkstyle.sourceforge.io)
