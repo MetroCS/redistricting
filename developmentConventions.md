@@ -1,4 +1,4 @@
-# Redistricting a  Region- Development Convention
+# Redistricting a Region - Development Conventions
 
 This document describes intended and preferred conventions
 for development and maintenance of the Redistricting a Region software product.
