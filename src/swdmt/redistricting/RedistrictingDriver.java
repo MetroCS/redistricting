@@ -54,7 +54,8 @@ public final class RedistrictingDriver {
                     rng.nextInt(2) == 0 ? Party.PARTY0 : Party.PARTY1, loc));
         }
         // Create region with specified voters
-        Region region = new Region((Set<Location>) workingRegion.locations(), voterSet);
+        Region region = new Region((Set<Location>) workingRegion.locations(), 
+                                   voterSet);
         System.out.println(
                 "Assigned voters with arbitrary parties to locations.");
         Set<District> districts
