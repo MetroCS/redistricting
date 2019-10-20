@@ -85,7 +85,7 @@
 
 
   <target name="all"
-          depends="clean, doc-private, checkstyle, coverage, pmd, cpd, format"
+          depends="clean, doc-private, checkstyle, coverage, pmd, cpd, format, run"
           description="clean, generate documentation, analyze source code, run unit tests, check test coverage"/>
 
   <target name="clean"
@@ -118,6 +118,7 @@
   <target name="test" description="run unit tests" depends="testClean, unitTest" />
 
   <target name="compile" depends="init">
+   <echo message="compiling..." />
     <mkdir dir="${classes.dir}"/>
     <javac destdir="${classes.dir}"
            classpathref="test.classpath"
@@ -129,6 +130,7 @@
   </target>
 
   <target name="jar" depends="compile">
+   <echo message="jarring it up..." />
     <mkdir dir="${jar.dir}"/>
     <jar destfile="${jar.dir}/${productname}.jar" basedir="${classes.dir}">
       <manifest>
@@ -138,6 +140,7 @@
   </target>
 
   <target name="run" depends="jar">
+   <echo message="running..." />
     <java jar="${jar.dir}/${productname}.jar" fork="true"/>
   </target>
 
