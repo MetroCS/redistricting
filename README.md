@@ -1,7 +1,3 @@
-# Getting started 
-
-https://docs.google.com/document/d/1NyTZYrTIgJclxbZcnaqpsJpR6kdoX5Uo021zS0hY0c0/edit?usp=sharing
-
 # Redistricting a Geographic Region into Election Districts
 
 Objective: A computer program designed to split a given geographic region into election districts.
