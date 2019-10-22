@@ -70,7 +70,7 @@ public final class RedistrictingDriver {
      */
     private static String askUser(final String prompt) {
         Scanner console = new Scanner(System.in);
-        System.out.print(prompt);
+        System.out.println(prompt);
         return console.next();
     }
 
