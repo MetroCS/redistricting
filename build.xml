@@ -141,7 +141,7 @@
 
   <target name="run" depends="jar">
    <echo message="running..." />
-    <java jar="${jar.dir}/${productname}.jar" fork="true"/>
+   <java jar="${jar.dir}/${productname}.jar" fork="true"/>
   </target>
 
   <target name="unitTest" depends="test.junit.launcher, test.console.launcher" />
