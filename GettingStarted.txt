@@ -1,0 +1,30 @@
+============================= Getting Started =============================
+
+* PROJECT          : Redistricting (Gerrymandering) Investigation
+
+* PURPOSE          : Investigate political redistricting using software models and algorithms
+
+* CONTEXT		     : CS3250 Fall 2019
+
+* TECHNOLOGIES	 : Code - Java
+               		     : Issue Tracking - Git
+                		 : Version Control - GitHub
+                		 : apache ant - version 1.10.4 or newer
+
+* PROJECT DESCRIPTION: 
+	Please refer to 
+		https://github.com/MisfitDevs/redistricting/blob/master/README.md
+		
+* To download apache ant, 
+	go to https://ant.apache.org/bindownload.cgi
+		Note: Ant is used to run the program
+
+*SET UP COMMAND LINE
+	Step by Step with command line:
+		$cd <file where you have build.xml>
+		$ant all
+		$cd build
+		$cd jar
+To run: java -jar Redistricting.jar
+
+Note: if "$ant all", does not work, "$ant -buildfile build.xml"
