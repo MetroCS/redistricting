@@ -1,1 +1,6 @@
-GitHub Pages Directory
+# Redistricting a Region into Districts
+
+An MSU Denver Computer Science project
+
+## Project Objective
+A computer program designed to split a given geographic region into election districts.
