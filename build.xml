@@ -128,16 +128,19 @@
     </javac>
   </target>
 
-  <target name="jar" depends="compile">
+  <target name="jar" depends="compile" 
+          description="Creates a jar file for the main class">
     <mkdir dir="${jar.dir}"/>
     <jar destfile="${jar.dir}/${productname}.jar" basedir="${classes.dir}">
       <manifest>
         <attribute name="Main-Class" value="${mainclass}"/>
       </manifest>
     </jar>
+    <echo message="Jar file has been created, and can be found at: ${jar.dir}/${productname}.jar" />
   </target>
 
-  <target name="run" depends="jar">
+  <target name="run" depends="jar"
+          description="Runs the program">
     <java jar="${jar.dir}/${productname}.jar" fork="true"/>
   </target>
 
