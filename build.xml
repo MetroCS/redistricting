@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?> 
 <!-- Copyright (c) 2018,2019 by Dr. Jody Paul
      This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
      http://creativecommons.org/licenses/by-sa/4.0/ -->
@@ -25,6 +24,7 @@
   <property name="doc" location="doc"/>
   <property name="build.dir" location="build"/>
   <property name="classes.dir" location="${build.dir}/classes"/>
+  <property name="jar.dir" location="${build.dir}/jar"/>
   <property name="dist" location="dist"/>
   <property name="allreports" location="reports"/>
   <property name="stylecheck" location="${allreports}"/>
@@ -84,7 +84,7 @@
 
 
   <target name="all"
-          depends="clean, doc-private, checkstyle, coverage, pmd, cpd, format, run"
+          depends="clean, doc-private, checkstyle, coverage, pmd, cpd, format"
           description="clean, generate documentation, analyze source code, run unit tests, check test coverage"/>
 
   <target name="clean"
@@ -117,7 +117,6 @@
   <target name="test" description="run unit tests" depends="testClean, unitTest" />
 
   <target name="compile" depends="init">
-   <echo message="compiling..." />
     <mkdir dir="${classes.dir}"/>
     <javac destdir="${classes.dir}"
            classpathref="test.classpath"
@@ -129,8 +128,8 @@
   </target>
 
   <target name="jar" depends="compile">
-   <echo message="jarring it up..." />
-    <jar destfile="${productname}.jar" basedir="${classes.dir}">
+   <mkdir dir="${jar.dir}"/>
+    <jar destfile="${jar.dir}/${productname}.jar" basedir="${classes.dir}">
       <manifest>
         <attribute name="Main-Class" value="${mainclass}"/>
       </manifest>
@@ -138,8 +137,7 @@
   </target>
 
   <target name="run" depends="jar">
-   <echo message="running..." />
-   <java jar="${productname}.jar" fork="true"/>
+   <java jar="${jar.dir}/${productname}.jar" fork="true"/>
   </target>
 
   <target name="unitTest" depends="test.junit.launcher, test.console.launcher" />
