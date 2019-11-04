@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright (c) 2018,2019 by Dr. Jody Paul
      This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
      http://creativecommons.org/licenses/by-sa/4.0/ -->
@@ -127,17 +128,20 @@
     </javac>
   </target>
 
-  <target name="jar" depends="compile">
-   <mkdir dir="${jar.dir}"/>
+  <target name="jar" depends="compile" 
+          description="Creates a jar file for the main class">
+    <mkdir dir="${jar.dir}"/>
     <jar destfile="${jar.dir}/${productname}.jar" basedir="${classes.dir}">
       <manifest>
         <attribute name="Main-Class" value="${mainclass}"/>
       </manifest>
     </jar>
+    <echo message="Jar file has been created, and can be found at: ${jar.dir}/${productname}.jar" />
   </target>
 
-  <target name="run" depends="jar">
-   <java jar="${jar.dir}/${productname}.jar" fork="true"/>
+  <target name="run" depends="jar"
+          description="Runs the program">
+    <java jar="${jar.dir}/${productname}.jar" fork="true"/>
   </target>
 
   <target name="unitTest" depends="test.junit.launcher, test.console.launcher" />
@@ -455,5 +459,6 @@
             description="Run unit tests with JaCoCo instrumentation and format results"/>
 
   <!-- JaCoCo END -->
+
 
 </project>
