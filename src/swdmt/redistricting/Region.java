@@ -29,6 +29,12 @@ public class Region implements java.io.Serializable {
     /** The association of locations with voters. */
     private Map<Location, Voter> voterMap = new HashMap<>();
 
+    public int sideSize(){
+      int numberOfLocations = locations.size();
+      int sideSize = (int) Math.round(Math.sqrt(numberOfLocations));
+      return sideSize;
+    }
+    
     /**
      * Creates a zero-sized region.
      */
