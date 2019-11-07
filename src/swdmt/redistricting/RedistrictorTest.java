@@ -190,6 +190,19 @@ public class RedistrictorTest {
         assertThat(Redistrictor.allDistrictsOfSpecificSize(region, 9).size(), is(1));
     }
 
+    @Test
+    public void allDistrictsOfSpecificSizeTest() {
+        Region region;
+        Set<District> districtSet;
+        region = new Region(9);
+        assertThat(Redistrictor.allDistrictsOfSpecificSize(region, 3).size(), is(22));
+        region = new Region(9);
+        assertThat(Redistrictor.allDistrictsOfSpecificSize(region, 4).size(), is(28));
+        region = new Region(4);
+        assertThat(Redistrictor.allDistrictsOfSpecificSize(region, 2).size(), is(4));
+        region = new Region(4);
+        assertThat(Redistrictor.allDistrictsOfSpecificSize(region, 3).size(), is(4));
+    }
 
     /**
      * Checks generation of districts for a square region,
