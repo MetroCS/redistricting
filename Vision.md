@@ -6,7 +6,7 @@
 This project is intended to support the development of a redistricting tool that
 - Educates the public on the process of redistricting;
 - Demonstrates redistricting by automating the process based on given parameters reflecting a desired outcome; 
-- Demonstrates how redistricting (Gerrymandering) can be used to establish an advantage for a political party or group; and
+- Demonstrates how redistricting can be used to establish an advantage for a political party or group (Gerrymandering); and
 - Facilitates incrementally adding functionality to its modeling capability.
 
 
