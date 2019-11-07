@@ -3,7 +3,8 @@ package swdmt.redistricting;
 import java.util.ArrayList;
 
 /**
- *
+ * Generates a list of possible districts originating from an 
+ * origin point of size N.
  *
  *
  *
@@ -12,50 +13,69 @@ import java.util.ArrayList;
  */
 public class StarGenerator
 {
+  
+  /**
+  * Returns all patterns of length n that originate from an origin point
+  * @param n length of patterns
+  */
   public static ArrayList<ArrayList<Location>> generatePattern(int n){
-    ArrayList<ArrayList<Location>> cc = new ArrayList<ArrayList<Location>>();
+    ArrayList<ArrayList<Location>> builtPatterns = new ArrayList<ArrayList<Location>>();
     ArrayList<Location> visited = new ArrayList<Location>();
-
     Location currentCoord = new Location(0,0);
-    Traverse(new ArrayList<Location>(), currentCoord, n, cc);
+    
+    Traverse(new ArrayList<Location>(), currentCoord, n, builtPatterns);
 
-    return cc;
+    return builtPatterns;
   }
-
-  public static void Traverse(ArrayList<Location> visited, Location current, int moves, ArrayList<ArrayList<Location>> cc){
+  
+  /**
+  * Will recursively build all possible size and patterns starting from
+  * the origin.
+  * @param visited all locations already visited
+  * @param current current location on grid during traversal
+  * @param moves the number of remaining traversals
+  * @param builtPatterns all patterns that are fully built
+  */
+  private static void Traverse(ArrayList<Location> visited, Location current, int moves, ArrayList<ArrayList<Location>> builtPatterns){
     int remainingMoves = moves - 1;
 
     ArrayList<Location> newChain = new ArrayList<Location>(visited);
     newChain.add(current);
 
     if(remainingMoves == 0){
-      cc.add(newChain);
+      builtPatterns.add(newChain);
       return;
     }
 
     Location northCoordinate = new Location(current.xCoordinate(), current.yCoordinate() - 1);
     if (!Contains(visited,northCoordinate)){
-      Traverse(newChain, northCoordinate, remainingMoves, cc);
+      Traverse(newChain, northCoordinate, remainingMoves, builtPatterns);
     }
 
     Location southCoordinate = new Location(current.xCoordinate(), current.yCoordinate() + 1);
     if (!Contains(visited,southCoordinate)){
-      Traverse(newChain, southCoordinate, remainingMoves, cc);
+      Traverse(newChain, southCoordinate, remainingMoves, builtPatterns);
     }
 
     Location eastCoordinate = new Location(current.xCoordinate() + 1, current.yCoordinate());
     if (!Contains(visited,eastCoordinate)){
-      Traverse(newChain, eastCoordinate, remainingMoves, cc);
+      Traverse(newChain, eastCoordinate, remainingMoves, builtPatterns);
     }
 
 
     Location westCoordinate = new Location(current.xCoordinate() - 1, current.yCoordinate());
     if (!Contains(visited,westCoordinate)){
-      Traverse(newChain, westCoordinate, remainingMoves, cc);
+      Traverse(newChain, westCoordinate, remainingMoves, builtPatterns);
     }
   }
 
-  public static boolean Contains(ArrayList<Location> coordinates, Location coordinate){
+  /**
+  * Checks if location is within the Location List 
+  * @param coordinates location within List
+  * @param coordinate location to check
+  * @return Whether the given location lives in the List
+  */
+  private static boolean Contains(ArrayList<Location> coordinates, Location coordinate){
     for (Location cord : coordinates){
       if (cord.equals(coordinate))
         return true;

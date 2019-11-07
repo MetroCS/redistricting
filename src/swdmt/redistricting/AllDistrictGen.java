@@ -12,27 +12,21 @@ import java.util.ArrayList;
  */
 public class AllDistrictGen
 {
-  public static ArrayList<District> generateDistricts(int gridWidth, int gridHeight, int districtSize){
+  
+  /**
+  * Generates all possible districts in a given grid that are of a specific size
+  * @param gridWidth width of the grid
+  * @param gridHeight height of grid
+  * @param districtSize size of a single district
+  * @return all possible districts of size n in the area: gridWidth x gridHeight
+  */
+  public static ArrayList<District> generateDistricts(int gridWidth, int gridHeight, int districtSize) {
      ArrayList<ArrayList<Location>> starPattern = StarGenerator.generatePattern(districtSize);
-     ArrayList<ArrayList<Location>> fourthQuadrantPattern = new  ArrayList<ArrayList<Location>>();
-     for (ArrayList<Location> pattern : starPattern){
-       boolean hasNegativeLocation = false;
-       
-       for (Location coord : pattern){
-         if (coord.xCoordinate() < 0 || coord.yCoordinate() < 0){
-           hasNegativeLocation = true;
-         }
-       }
-              
-       if (!hasNegativeLocation){
-         fourthQuadrantPattern.add(pattern);
-       }
-     }
      
      ArrayList<District> currentDistricts = new ArrayList<District>();
      for (int x = 0; x < gridWidth; x++){
        for (int y = 0; y < gridHeight; y++){
-         for (ArrayList<Location> pattern : fourthQuadrantPattern){
+         for (ArrayList<Location> pattern : starPattern){
            ArrayList<Location> transformed = transformPattern(pattern, x, y);
            if (!isDistrictInBounds(transformed, gridWidth, gridHeight)){
              continue;
@@ -41,7 +35,6 @@ public class AllDistrictGen
            District transformedAsDistrict = new District(transformed);
            
            if (!Contains(currentDistricts, transformedAsDistrict)){
-             
              currentDistricts.add(transformedAsDistrict);
            }
          }
@@ -53,6 +46,13 @@ public class AllDistrictGen
      return currentDistricts;
   }
   
+    /**
+  * Returns Y/N on whether or not a similar district (district with same locations)
+  * exists inside the district collection passed in
+  * @param districts list of districts
+  * @param district the district to look for inside districts
+  * @return whether or not a similar district was in the districts list
+  */
   private static boolean Contains(ArrayList<District> districts, District district){
     for (District d : districts){
       if (Equals(d, district)){
@@ -61,7 +61,13 @@ public class AllDistrictGen
     }
     return false;
   }
-  
+
+  /**
+  * checks whether two districts have the same coordinates
+  * @param districtA first district to compare
+  * @param districtB second district to compare
+  * @return Whether or not districtA has the same Coordinates as districtB
+  */
   private static boolean Equals(District districtA, District districtB){
     if (districtA.size() != districtB.size()){
       return false;
@@ -80,7 +86,15 @@ public class AllDistrictGen
     }
     return true;
   }
-  
+
+  /**
+  * Creates a new pattern based off of the passed in pattern, that is translated by
+  * X and Y
+  * @param pattern starting at the origin
+  * @param offsetX the X translation value
+  * @param offsetY the Y translation value
+  * @return pattern translated by X and Y
+  */  
   private static ArrayList<Location> transformPattern(ArrayList<Location> pattern, int offsetX, int offsetY){
     ArrayList<Location> newPattern = new ArrayList<Location>();
     
@@ -91,8 +105,15 @@ public class AllDistrictGen
     
     return newPattern;
   }
-  
-  
+    
+  /**
+  * Will check if the district is within a grid defined by the origin stretching
+  * to grid width and height.
+  * @param district the district to check
+  * @param gridWidth the upper-bound of X axis
+  * @param gridHeigtht the upper-bound of Y axis
+  * @return Whether district is in bounds or not
+  */
   private static boolean isDistrictInBounds(ArrayList<Location> district, int gridWidth, int gridHeight){
     for (Location cord : district){
       if (cord.xCoordinate() < 0)
