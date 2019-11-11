@@ -46,7 +46,7 @@ Tests associated with successful implementation remains in the code base as _reg
 
 ### Style Convention Precedence and References
 
-#### [Project-specific conventions](/developmentConventions.md#Project-Specific-Conventions) take precedence.
+#### [Project-specific conventions](/DevelopmentConventions.md#Project-Specific-Conventions) take precedence.
 
 If no project-specific convention is applicable, use the [Sun Convention](https://www.oracle.com/technetwork/java/codeconvtoc-136057.html) guide.
 
