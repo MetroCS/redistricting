@@ -113,7 +113,11 @@ public class Redistrictor implements java.io.Serializable {
                     districts.add(new District(locList));
                 }
             } else {
-                //TODO: Logic for districtSize > 1
+              int size = theRegion.sideSize();
+              ArrayList<District> allDistricts = AllDistrictGen.generateDistricts(size, size, districtSize);
+              for (District d : allDistricts){
+                districts.add(d);
+              }
             }
         }
         return districts;
@@ -131,4 +135,5 @@ public class Redistrictor implements java.io.Serializable {
                                     final int districtSize) {
         return allDistrictsOfSpecificSize(theRegion, districtSize).iterator();
     }
+    
 }

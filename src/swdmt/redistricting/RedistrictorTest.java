@@ -190,6 +190,29 @@ public class RedistrictorTest {
         assertThat(Redistrictor.allDistrictsOfSpecificSize(region, 9).size(), is(1));
     }
 
+    @Test
+    public void allDistrictsOfSpecificSizeTest() {
+        Region region;
+        Set<District> districtSet;
+        region = new Region(4);
+        assertThat(Redistrictor.allDistrictsOfSpecificSize(region,2).size(), is(4));
+        assertThat(Redistrictor.allDistrictsOfSpecificSize(region, 3).size(), is(4));
+        region = new Region(9);
+        assertThat(Redistrictor.allDistrictsOfSpecificSize(region, 2).size(), is(12));
+        assertThat(Redistrictor.allDistrictsOfSpecificSize(region, 3).size(), is(22));
+        assertThat(Redistrictor.allDistrictsOfSpecificSize(region, 4).size(), is(28));
+        assertThat(Redistrictor.allDistrictsOfSpecificSize(region, 8).size(), is(5));
+        region = new Region(16);
+        assertThat(Redistrictor.allDistrictsOfSpecificSize(region, 2).size(), is(24));
+        assertThat(Redistrictor.allDistrictsOfSpecificSize(region, 3).size(), is(52));
+        assertThat(Redistrictor.allDistrictsOfSpecificSize(region, 4).size(), is(89));
+        region = new Region(25);
+        assertThat(Redistrictor.allDistrictsOfSpecificSize(region,2).size(), is(40));
+        assertThat(Redistrictor.allDistrictsOfSpecificSize(region,3).size(), is(94));
+        assertThat(Redistrictor.allDistrictsOfSpecificSize(region,4).size(), is(180));
+        region = new Region(64);
+        assertThat(Redistrictor.allDistrictsOfSpecificSize(region, 2).size(), is(112));
+    }
 
     /**
      * Checks generation of districts for a square region,
