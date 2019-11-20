@@ -7,7 +7,7 @@ Goal: Create and educational redistricting tool that can also teach about gerrym
 
 ### [Getting Started](GettingStarted.md)
 
-### [Information on Redistricting](NewRedistricting.md)
+### [Redistricting Program Objectives](RedistrictingProgram.md)
 
 ### [Development Conventions](DevelopmentConventions.md)
 

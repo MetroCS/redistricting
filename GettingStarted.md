@@ -1,28 +1,39 @@
 # Getting Started
+---
 
-### PROJECT		: Redistricting (Gerrymandering) Investigation
-### PURPOSE		: Investigate political redistricting using software models and algorithms
-### CONTEXT		: CS3250 Fall 2019
+PROJECT		: Redistricting Investigation
 
-## TECHNOLOGIES	: 
-*   Code - Java
-*   Issue Tracking - Git
-*   Version Control - GitHub
-*   Apache ant - version 1.10.4 or newer
+PURPOSE		: Investigate political redistricting using software models and algorithms
+
+CONTEXT		: CS3250 Fall 2019
+
+## TECHNOLOGIES: 
+*   Coding Language - Java
+*   Issue Tracking - GitHub
+*   Version Control - Git
+*   Build Process - Apache Ant 
 
 ## PROJECT DESCRIPTION: 
-   Please refer to https://github.com/MetroCS/redistricting/blob/master/README.md
+Please refer to [ReadMe.Md](https://github.com/MetroCS/redistricting/blob/master/README.md) 
+   
+## To download GIT
+[GIT GUI Clients](https://git-scm.com/downloads) - Graphical Interfaces for GIT
 
-## To download apache ant[^1] 
-   [apache ant](https://ant.apache.org/bindownload.cgi)
+## To find GitHub
+[Github](https://github.com/) - Main Page of GitHub
 
-[^1]: Ant is used to run the program
+[Hello World Tutorial](https://guides.github.com/activities/hello-world/) - Starter Guide for those new to GitHub
 
-## SET UP COMMAND LINE
-### Step by Step with command line:
-{
+## To download apache ant 
+[Apache Ant](https://ant.apache.org/bindownload.cgi) - Version 1.10.4 or newer
+
+
+### [**1**]: Apache Ant is the build tool utilized for this project. It runs from the command line. 
+
+Step by Step with command line:
+```
 	$cd <file where you have build.xml>
-	$ant all[^2] 
+	$ant all 
 	$cd build
-
-[^2]: If "$ant all", does not work, "$ant -buildfile build.xml"
+```
+### [**2**]: If "$ant all", does not work, "$ant -buildfile build.xml"
