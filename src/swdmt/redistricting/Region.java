@@ -14,11 +14,11 @@ import java.util.Collection;
  * Zero or more voters may be associated with each location.
  *
  * @author Dr. Jody Paul
- * @version 20191006
+ * @version 20191128
  */
 public class Region implements java.io.Serializable {
     /** Serialization version requirement. */
-    private static final long serialVersionUID = 3L;
+    private static final long serialVersionUID = 4L;
 
     /** The locations comprising this region. */
     private Set<Location> locations = new TreeSet<>();
