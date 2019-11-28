@@ -122,6 +122,6 @@ public class Region implements java.io.Serializable {
      * @return the voters
      */
     public Set<Voter> voters() {
-        return this.voters();
+        return this.voters;
     }
 }
