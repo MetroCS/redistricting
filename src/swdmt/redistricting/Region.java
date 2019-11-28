@@ -116,4 +116,12 @@ public class Region implements java.io.Serializable {
     public int numberOfVoters() {
         return this.voters.size();
     }
+
+    /**
+     * Accesses the voters in this region.
+     * @return the voters
+     */
+    public Set<Voter> voters() {
+        return this.voters();
+    }
 }
