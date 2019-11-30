@@ -1,12 +1,13 @@
 package swdmt.redistricting;
 import static org.junit.Assert.assertThat;
+import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
 import org.junit.Test;
 /**
  * Tests of Party enum.
  *
  * @author  Dr. Jody Paul
- * @version 20191006
+ * @version 20191129
  */
 public class PartyTest {
     /**
@@ -16,5 +17,15 @@ public class PartyTest {
     public void verifyPartyBasics() {
         assertThat(Party.valueOf("NONE"), notNullValue());
         assertThat(Party.valueOf("UNAFFILIATED"), notNullValue());
+    }
+
+    /**
+     * Party single-character identification requirements:
+     * NONE uses '?'; UNAFFILIATED uses '*'.
+     */
+    @Test
+    public void verifyPartyID() {
+        assertThat(Party.valueOf("NONE").id(), is('?'));
+        assertThat(Party.valueOf("UNAFFILIATED").id(), is('*'));
     }
 }
