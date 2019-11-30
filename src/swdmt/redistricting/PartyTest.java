@@ -26,6 +26,6 @@ public class PartyTest {
     @Test
     public void verifyPartyID() {
         assertThat(Party.valueOf("NONE").id(), is('?'));
-        assertThat(Party.valueOf("UNAFFILIATED").id(), is('*'));
+        assertThat(Party.valueOf("UNAFFILIATED").id(), is('U'));
     }
 }
