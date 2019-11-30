@@ -8,70 +8,78 @@ import org.junit.Test;
 /**
  * The test class for Renderer.
  *
- * <p>The renderAsASCII tests presume use of the following characters
- * <PRE>Symbol -- Meaning
- * * -- Arbitrary content
- * ? -- Affiliation unknown
- * U -- Unaffiliated
- * 0 -- Party 0
- * 1 -- Party 1
- * T -- Third Party
- * </PRE>
  * @author  Dr. Jody Paul
- * @version 20191127
+ * @version 20191127.1
  */
 public class RendererTest {
-    /** Check rendering of region of size 1. */
+    /** Render of an arbitrary location. */
+    private static final char R_AR = '*';
+    /** Render of a location with NONE voter. */
+    private static final char R_NO = Party.NONE.id();
+    /** Render of a location with UNAFFILIATED voter. */
+    private static final char R_UN = Party.UNAFFILIATED.id();
+    /** Render of a location with PARTY0 voter. */
+    private static final char R_P0 = Party.PARTY0.id();
+    /** Render of a location with PARTY1 voter. */
+    private static final char R_P1 = Party.PARTY1.id();
+    /** Render of a location with THIRDPARTY voter. */
+    private static final char R_TP = Party.THIRDPARTY.id();
+
+    /** Check rendering of region of size 1, no affiliations. */
     @Test
-    public void renderAsASCII_regionSize1_Test() {
+    public void renderAsASCIIRegionSize1Test() {
         Region region1 = new Region(1);
         assertEquals("+---+\n"
-                   + "| * |\n"
+                   + "| " + R_AR + " |\n"
                    + "+---+\n",
                      Renderer.renderAsASCII(region1));
     }
 
+    /** Check rendering of region of size 1 with affiliation. */
     @Test
-    public void renderAsASCII_regionSize1_Affiliation_Test() {
+    public void renderAsASCIIRegionSize1AffiliationTest() {
         Region region1 = new Region(1);
         assertEquals("+---+\n"
-                   + "| ? |\n"
+                   + "| " + R_NO + " |\n"
                    + "+---+\n",
                      Renderer.renderAsASCII(true, region1));
     }
 
+    /** Check rendering of region of size 16, no affiliations. */
     @Test
-    public void renderAsASCII_regionSize16_Test() {
+    public void renderAsASCIIRegionSize16Test() {
         Region region2 = new Region(16);
         assertEquals("+---+---+---+---+\n"
-                   + "| * | * | * | * |\n"
+                   + "| " + R_AR + " | " + R_AR + " | " + R_AR + " | " + R_AR + " |\n"
                    + "+---+---+---+---+\n"
-                   + "| * | * | * | * |\n"
+                   + "| " + R_AR + " | " + R_AR + " | " + R_AR + " | " + R_AR + " |\n"
                    + "+---+---+---+---+\n"
-                   + "| * | * | * | * |\n"
+                   + "| " + R_AR + " | " + R_AR + " | " + R_AR + " | " + R_AR + " |\n"
                    + "+---+---+---+---+\n"
-                   + "| * | * | * | * |\n"
+                   + "| " + R_AR + " | " + R_AR + " | " + R_AR + " | " + R_AR + " |\n"
                    + "+---+---+---+---+\n",
                      Renderer.renderAsASCII(region2));
     }
 
+    /** Check rendering of region of size 16 with affiliation. */
     @Test
-    public void renderAsASCII_regionSize16_Affiliation_Test() {
+    public void renderAsASCIIregionSize16AffiliationTest() {
         Region region2 = new Region(16);
         assertEquals("+---+---+---+---+\n"
-                   + "| ? | ? | ? | ? |\n"
+                   + "| " + R_NO + " | " + R_NO + " | " + R_NO + " | " + R_NO + " |\n"
                    + "+---+---+---+---+\n"
-                   + "| ? | ? | ? | ? |\n"
+                   + "| " + R_NO + " | " + R_NO + " | " + R_NO + " | " + R_NO + " |\n"
                    + "+---+---+---+---+\n"
-                   + "| ? | ? | ? | ? |\n"
+                   + "| " + R_NO + " | " + R_NO + " | " + R_NO + " | " + R_NO + " |\n"
                    + "+---+---+---+---+\n"
-                   + "| ? | ? | ? | ? |\n"
+                   + "| " + R_NO + " | " + R_NO + " | " + R_NO + " | " + R_NO + " |\n"
                    + "+---+---+---+---+\n",
                      Renderer.renderAsASCII(true, region2));
     }
 
+    /** Check rendering of region of size 36, with 3 locations, no affiliations. */
     @Test
-    public void renderAsASCII_regionLocations3_GridSize36_Test() {
+    public void renderAsASCIIRegionLocations3GridSize36Test() {
         Location location00 = new Location(0, 0);
         Location location25 = new Location(2, 5);
         Location location53 = new Location(5, 3);
@@ -88,23 +96,27 @@ public class RendererTest {
         testVoters.add(voter3);
         Region region3 = new Region(testLocs, testVoters);
         assertEquals("+---+---+---+---+---+---+\n"
-                   + "| * |   |   |   |   |   |\n"
+                   + "| " + R_AR + " |   |   |   |   |   |\n"
                    + "+---+---+---+---+---+---+\n"
                    + "|   |   |   |   |   |   |\n"
                    + "+---+---+---+---+---+---+\n"
                    + "|   |   |   |   |   |   |\n"
                    + "+---+---+---+---+---+---+\n"
-                   + "|   |   |   |   |   | * |\n"
+                   + "|   |   |   |   |   | " + R_AR + " |\n"
                    + "+---+---+---+---+---+---+\n"
                    + "|   |   |   |   |   |   |\n"
                    + "+---+---+---+---+---+---+\n"
-                   + "|   |   | * |   |   |   |\n"
+                   + "|   |   | " + R_AR + " |   |   |   |\n"
                    + "+---+---+---+---+---+---+\n",
                      Renderer.renderAsASCII(region3));
     }
 
+    /**
+     * Check rendering of region of size 36,
+     * with 3 locations, showing affiliations.
+     */
     @Test
-    public void renderAsASCII_regionLocations3_GridSize36_Affiliation_Test() {
+    public void renderAsASCIIRegionLocations3GridSize36AffiliationTest() {
         Location location00 = new Location(0, 0);
         Location location25 = new Location(2, 5);
         Location location53 = new Location(5, 3);
@@ -121,17 +133,17 @@ public class RendererTest {
         testVoters.add(voter3);
         Region region3 = new Region(testLocs, testVoters);
         assertEquals("+---+---+---+---+---+---+\n"
-                   + "| 0 |   |   |   |   |   |\n"
+                   + "| " + R_P0 + " |   |   |   |   |   |\n"
                    + "+---+---+---+---+---+---+\n"
                    + "|   |   |   |   |   |   |\n"
                    + "+---+---+---+---+---+---+\n"
                    + "|   |   |   |   |   |   |\n"
                    + "+---+---+---+---+---+---+\n"
-                   + "|   |   |   |   |   | U |\n"
+                   + "|   |   |   |   |   | " + R_UN + " |\n"
                    + "+---+---+---+---+---+---+\n"
                    + "|   |   |   |   |   |   |\n"
                    + "+---+---+---+---+---+---+\n"
-                   + "|   |   | 1 |   |   |   |\n"
+                   + "|   |   | " + R_P1 + " |   |   |   |\n"
                    + "+---+---+---+---+---+---+\n",
                      Renderer.renderAsASCII(true, region3));
     }
