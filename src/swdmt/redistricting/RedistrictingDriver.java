@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
  * I/O driver for Redistricting application.
  *
  * @author Dr. Jody Paul
- * @version 20191006.1
+ * @version 20191130
  */
 public final class RedistrictingDriver {
     /** Display name of this project. */
@@ -46,6 +46,7 @@ public final class RedistrictingDriver {
         Region workingRegion = new Region(rows * columns);
         System.out.println("Created region " + workingRegion + " with "
                            + numLocations + " locations");
+        System.out.println(Renderer.renderAsASCII(false, workingRegion));
         // Create one voter for each location.
         Set<Voter> voterSet = new HashSet<Voter>();
         Random rng = new Random();
@@ -57,6 +58,7 @@ public final class RedistrictingDriver {
         Region region = new Region((Set<Location>) workingRegion.locations(), voterSet);
         System.out.println(
                 "Assigned voters with arbitrary parties to locations.");
+        System.out.println(Renderer.renderAsASCII(true, region));
         Set<District> districts
                 = Redistrictor.generateDistricts(region, numDistricts);
         System.out.println("Created set of districts " + districts);
