@@ -11,7 +11,7 @@ public enum Party implements java.io.Serializable {
     /** Unrecognized party. */
     NONE('?'),
     /** Unaffiliated voter. */
-    UNAFFILIATED('*'),
+    UNAFFILIATED('U'),
     /** Major Party 0. */
     PARTY0('0'),
     /** Major Party 1. */
