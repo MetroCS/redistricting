@@ -1,24 +1,17 @@
 package swdmt.redistricting;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
 import java.util.TreeMap;
 /**
  * Utility class for rendering regions and districts.
  * <p>Basic versions use ASCII text graphics.</p>
  * <p>Enhanced versions use Java graphical interfaces.</p>
- * <p>ASCII rendering specifies specific characters for party affiliation.
- * <PRE>Symbol -- Meaning
- * * -- Arbitrary content
- * ? -- Affiliation unknown
- * U -- Unaffiliated
- * 0 -- Party 0
- * 1 -- Party 1
- * T -- Third Party
- * </PRE></p>
+ * <p>ASCII rendering retrieves specific affiliation display
+ * character from the Party object itself.  Arbitrary content
+ * is shown using '*'.</p>
+ *
  * @author Dr. Jody Paul
- * @version 20191128
+ * @version 20191128.1
  */
 public final class Renderer {
     /** Render of unknown cell content. */
@@ -33,17 +26,6 @@ public final class Renderer {
     private static final String CELL_EMPTY_MIDDLE = "   |";
     /** Render of the middle of a cell with an associated resident. */
     private static final String CELL_ANY_MIDDLE = " " + ANY + " |";
-    /** Table of party affiliation renderings. */
-    private static final List<Character> PARTY_LABELS;
-
-    static {
-        PARTY_LABELS = new ArrayList<Character>();
-        PARTY_LABELS.add('?'); // None
-        PARTY_LABELS.add('U'); // Unaffiliated
-        PARTY_LABELS.add('0'); // Party 0
-        PARTY_LABELS.add('1'); // Party 1
-        PARTY_LABELS.add('T'); // Any Third Party
-    }
 
     /**
      * Hide the constructor of this utility class.
@@ -108,6 +90,7 @@ public final class Renderer {
         }
         horizontalBorder += "\n";
 
+        // Render the region.
         rendering = horizontalBorder;
         for (int r = 0; r < numRows; r++) {
             String rowMiddle = EDGE;
@@ -116,14 +99,12 @@ public final class Renderer {
                 if (locs.contains(currentLoc)) {
                     if (showAffiliation) {
                         if (voterMap.keySet().contains(currentLoc)) {
-                            rowMiddle
-                                += CELL_ANY_MIDDLE
-                                     .replace('*',
-                                        PARTY_LABELS
-                                         .get(voterMap
-                                              .get(currentLoc)
-                                              .affiliation()
-                                              .ordinal()));
+                            rowMiddle += CELL_ANY_MIDDLE
+                                         .replace('*',
+                                                  voterMap
+                                                  .get(currentLoc)
+                                                  .affiliation()
+                                                  .id());
                         } else {
                             rowMiddle += CELL_ANY_MIDDLE;
                         }
