@@ -2,6 +2,7 @@ package swdmt.redistricting;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Iterator;
 /**
@@ -51,7 +52,7 @@ public class Redistrictor implements java.io.Serializable {
     /**
      * Utility: Apply a generate-and-test algorithm to search for
      * any feasible redistricting solution.
-     * @TODO Contiguity is NOT yet considered!
+     * @TODO Non rectangluar districts are NOT yet considered!
      * @param theRegion the region to be redistricted
      * @param numDistricts the number of districts for the region;
      *        defaults to 1 if value is less-than or equal to 0
@@ -60,6 +61,9 @@ public class Redistrictor implements java.io.Serializable {
      */
     public static Set<District> generateDistricts(final Region theRegion,
                                                   final int numDistricts) {
+                                                    
+                                                    
+                                                    
         Set<District> districts = new HashSet<District>();
         List<List<Location>> districtLocs = new ArrayList<List<Location>>();
         int numberOfDistricts = (numDistricts < 1) ? 1 : numDistricts;
@@ -68,18 +72,30 @@ public class Redistrictor implements java.io.Serializable {
         int numberOfAugmentedDistricts
                 = theRegion.numberOfVoters() % numDistricts;
         Iterator<Location> locit = theRegion.locations().iterator();
+        
+        Location[] snakingLocations = new Location[theRegion.locations().size()];
+        for (int i = 0; i < theRegion.locations().size(); i++){
+          snakingLocations[i] = locit.next();
+        }
+        
+        Arrays.sort(snakingLocations, new SnakingLocationComparer());
+        
+        int currentLocation = 0;
+        
         // Create covering districts with the proper number of locations.
-        // TODO: Contiguity is NOT yet considered.
+        // TODO: Non rectangluar districts are NOT yet considered.
         for (int i = 0; i < numberOfDistricts; i++) {
             List<Location> locList = new ArrayList<Location>();
             for (int vi = 0; vi < minimumNumberOfVotersPerDistrict; vi++) {
-                locList.add(locit.next());
+              locList.add(snakingLocations[currentLocation++]);
             }
+            if (i < numberOfAugmentedDistricts){
+              locList.add(snakingLocations[currentLocation++]);
+            }
+            
             districtLocs.add(new ArrayList<Location>(locList));
         }
-        for (int i = 0; i < numberOfAugmentedDistricts; i++) {
-            districtLocs.get(i).add(locit.next());
-        }
+        
         for (List<Location> locs : districtLocs) {
             districts.add(new District(locs));
         }
