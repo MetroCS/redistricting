@@ -14,11 +14,11 @@ import java.util.Collection;
  * Zero or more voters may be associated with each location.
  *
  * @author Dr. Jody Paul
- * @version 20191128
+ * @version 20191006
  */
 public class Region implements java.io.Serializable {
     /** Serialization version requirement. */
-    private static final long serialVersionUID = 4L;
+    private static final long serialVersionUID = 3L;
 
     /** The locations comprising this region. */
     private Set<Location> locations = new TreeSet<>();
@@ -29,16 +29,12 @@ public class Region implements java.io.Serializable {
     /** The association of locations with voters. */
     private Map<Location, Voter> voterMap = new HashMap<>();
 
-    /**
-     * Computes a default length of the side of the grid containing this region.
-     * @return the length of a side
-     */
-    public int sideSize() {
-        int numberOfLocations = locations.size();
-        int sideSize = (int) Math.round(Math.sqrt(numberOfLocations));
-        return sideSize;
+    public int sideSize(){
+      int numberOfLocations = locations.size();
+      int sideSize = (int) Math.round(Math.sqrt(numberOfLocations));
+      return sideSize;
     }
-
+    
     /**
      * Creates a zero-sized region.
      */
@@ -115,13 +111,5 @@ public class Region implements java.io.Serializable {
      */
     public int numberOfVoters() {
         return this.voters.size();
-    }
-
-    /**
-     * Accesses the voters in this region.
-     * @return the voters
-     */
-    public Set<Voter> voters() {
-        return this.voters;
     }
 }

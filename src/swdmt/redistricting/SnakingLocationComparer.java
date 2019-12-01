@@ -7,7 +7,11 @@ import java.util.Comparator;
  * meaning if all locations are in a grid any sequential block of locations
  * read will be contiguous.
  *
- * @author Jessica
+ * @author Jessica Trujillo
+ * @author Wiwi Veratiwi
+ * @author Mike Walker
+ * @author Zach Morlan
+ * @author Fred Buker
  * @version 20191201
  */
 public class SnakingLocationComparer implements Comparator<Location> {

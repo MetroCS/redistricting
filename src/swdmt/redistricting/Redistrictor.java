@@ -52,7 +52,7 @@ public class Redistrictor implements java.io.Serializable {
     /**
      * Utility: Apply a generate-and-test algorithm to search for
      * any feasible redistricting solution.
-     * @TODO Non rectangluar districts are NOT yet considered!
+     * @TODO Contiguity for non rectangluar districts are NOT yet considered!
      * @param theRegion the region to be redistricted
      * @param numDistricts the number of districts for the region;
      *        defaults to 1 if value is less-than or equal to 0
@@ -60,10 +60,7 @@ public class Redistrictor implements java.io.Serializable {
      *         an empty set if no feasible solution is found.
      */
     public static Set<District> generateDistricts(final Region theRegion,
-                                                  final int numDistricts) {
-                                                    
-                                                    
-                                                    
+                                                  final int numDistricts) {                                          
         Set<District> districts = new HashSet<District>();
         List<List<Location>> districtLocs = new ArrayList<List<Location>>();
         int numberOfDistricts = (numDistricts < 1) ? 1 : numDistricts;
@@ -83,7 +80,7 @@ public class Redistrictor implements java.io.Serializable {
         int currentLocation = 0;
         
         // Create covering districts with the proper number of locations.
-        // TODO: Non rectangluar districts are NOT yet considered.
+        // TODO: Contiguity for non rectangluar districts are NOT yet considered.
         for (int i = 0; i < numberOfDistricts; i++) {
             List<Location> locList = new ArrayList<Location>();
             for (int vi = 0; vi < minimumNumberOfVotersPerDistrict; vi++) {
