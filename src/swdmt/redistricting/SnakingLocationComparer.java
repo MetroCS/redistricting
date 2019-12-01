@@ -5,13 +5,12 @@ import java.util.Comparator;
 /**
  * Snaking Location will compare locations in a snaking fashion
  * meaning if all locations are in a grid any sequential block of locations
- * read will be contiguous. 
+ * read will be contiguous.
  *
  * @author Jessica
  * @version 20191201
  */
-public class SnakingLocationComparer implements Comparator<Location>
-{
+public class SnakingLocationComparer implements Comparator<Location> {
   /**
   * comparing each location to one another to ensure contiguity.
   *
@@ -20,30 +19,26 @@ public class SnakingLocationComparer implements Comparator<Location>
   * @return 1 if greater, -1 if less than item being compared to, 0 if equal
   */
   @Override
-  public int compare(Location locationA, Location locationB){
-    if(locationA.xCoordinate() > locationB.xCoordinate()){
+  public int compare(final Location locationA, final Location locationB) {
+    if (locationA.xCoordinate() > locationB.xCoordinate()) {
       return 1;
     }
-    if(locationA.xCoordinate() < locationB.xCoordinate()){
+    if (locationA.xCoordinate() < locationB.xCoordinate()) {
       return -1;
     }
-    
     int x = locationA.xCoordinate();
-    
-    if(locationA.yCoordinate() == locationB.yCoordinate()){
+    if (locationA.yCoordinate() == locationB.yCoordinate()) {
       return 0;
     }
-    if(x % 2 == 0){
-      if(locationA.yCoordinate() <locationB.yCoordinate()){
+    if (x % 2 == 0) {
+      if (locationA.yCoordinate() < locationB.yCoordinate()) {
         return -1;
       }
       return 1;
     }
-    
-    if(locationA.yCoordinate() < locationB.yCoordinate()){
+    if (locationA.yCoordinate() < locationB.yCoordinate()) {
       return 1;
     }
-    
     return -1;
   }
 }
