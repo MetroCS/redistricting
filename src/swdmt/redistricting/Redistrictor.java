@@ -18,7 +18,7 @@ import java.util.Iterator;
  * Most functionality is available via utility methods.
  *
  * @author Dr. Jody Paul
- * @version 20191006
+ * @version 20191201
  */
 public class Redistrictor implements java.io.Serializable {
     /** Serialization version requirement. */
