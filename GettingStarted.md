@@ -5,7 +5,8 @@ PROJECT		: Redistricting Investigation
 
 PURPOSE		: Investigate political redistricting using software models and algorithms
 
-CONTEXT		: CS3250 Fall 2019
+CONTEXT		: Software Development
+
 
 ## TECHNOLOGIES: 
 *   Coding Language - Java
