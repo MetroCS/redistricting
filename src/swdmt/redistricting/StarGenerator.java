@@ -1,7 +1,5 @@
 package swdmt.redistricting;
 
-import java.util.ArrayList;
-
 /**
  * Generates a list of possible districts originating from an
  * origin point of size N.
