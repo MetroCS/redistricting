@@ -1,5 +1,7 @@
 package swdmt.redistricting;
 
+import java.util.ArrayList;
+
 /**
  *
  * AllDistrictGen will generate all possible districts within a
@@ -18,9 +20,9 @@ public class AllDistrictGen {
   * @param districtSize size of a single district
   * @return all possible districts of size n in the area: gridWidth x gridHeight
   */
-  public static ArrayList<District> generateDistricts(int gridWidth,
-                                                      int gridHeight,
-                                                      int districtSize) {
+  public static ArrayList<District> generateDistricts(final int gridWidth,
+                                                      final int gridHeight,
+                                                      final int districtSize) {
      ArrayList<ArrayList<Location>> starPattern =
                                    StarGenerator.generatePattern(districtSize);
      ArrayList<District> currentDistricts = new ArrayList<District>();
@@ -48,8 +50,8 @@ public class AllDistrictGen {
   * @param district the district to look for inside districts
   * @return whether or not a similar district was in the districts list
   */
-  private static boolean Contains(ArrayList<District> districts,
-                                  District district) {
+  private static boolean Contains(final ArrayList<District> districts,
+                                  final District district) {
     for (District d : districts) {
       if (Equals(d, district)) {
         return true;
@@ -63,7 +65,8 @@ public class AllDistrictGen {
   * @param districtB second district to compare
   * @return Whether or not districtA has the same Coordinates as districtB
   */
-  private static boolean Equals(District districtA, District districtB) {
+  private static boolean Equals(final District districtA,
+                                final District districtB) {
     if (districtA.size() != districtB.size()) {
       return false;
     }
@@ -89,8 +92,9 @@ public class AllDistrictGen {
   * @return pattern translated by X and Y
   */
   private static ArrayList<Location> transformPattern(
-                                              ArrayList<Location> pattern,
-                                              int offsetX, int offsetY) {
+                                             final ArrayList<Location> pattern,
+                                             final int offsetX,
+                                             final int offsetY) {
     ArrayList<Location> newPattern = new ArrayList<Location>();
     for (Location coord : pattern) {
       Location transformedCoord = new Location(coord.xCoordinate() + offsetX,
@@ -104,11 +108,12 @@ public class AllDistrictGen {
   * to grid width and height.
   * @param district the district to check
   * @param gridWidth the upper-bound of X axis
-  * @param gridHeigtht the upper-bound of Y axis
+  * @param gridHeight the upper-bound of Y axis
   * @return Whether district is in bounds or not
   */
-  private static boolean isDistrictInBounds(ArrayList<Location> district,
-                                            int gridWidth, int gridHeight) {
+  private static boolean isDistrictInBounds(final ArrayList<Location> district,
+                                            final int gridWidth,
+                                            final int gridHeight) {
     for (Location cord : district) {
       if (cord.xCoordinate() < 0) {
         return false;
@@ -125,6 +130,6 @@ public class AllDistrictGen {
     }
     return true;
   }
-  private AllDistrictGen {
+  private AllDistrictGen() {
   }
 }
