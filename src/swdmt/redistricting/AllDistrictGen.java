@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author Jessica Trujillo
  * @version 2.0
  */
-public class AllDistrictGen {
+public final class AllDistrictGen {
   /**
   * Generates all possible districts in a given grid that are of
   * a specific size.
@@ -34,7 +34,7 @@ public class AllDistrictGen {
              continue;
            }
            District transformedAsDistrict = new District(transformed);
-           if (!Contains(currentDistricts, transformedAsDistrict)) {
+           if (!contains(currentDistricts, transformedAsDistrict)) {
              currentDistricts.add(transformedAsDistrict);
            }
          }
@@ -50,10 +50,10 @@ public class AllDistrictGen {
   * @param district the district to look for inside districts
   * @return whether or not a similar district was in the districts list
   */
-  private static boolean Contains(final ArrayList<District> districts,
+  private static boolean contains(final ArrayList<District> districts,
                                   final District district) {
     for (District d : districts) {
-      if (Equals(d, district)) {
+      if (equals(d, district)) {
         return true;
       }
     }
@@ -65,7 +65,7 @@ public class AllDistrictGen {
   * @param districtB second district to compare
   * @return Whether or not districtA has the same Coordinates as districtB
   */
-  private static boolean Equals(final District districtA,
+  private static boolean equals(final District districtA,
                                 final District districtB) {
     if (districtA.size() != districtB.size()) {
       return false;
@@ -130,6 +130,11 @@ public class AllDistrictGen {
     }
     return true;
   }
+
+  /**
+  * Constructor is private,  methods are static only and this class
+  * should never be instantiated.
+  */
   private AllDistrictGen() {
   }
 }

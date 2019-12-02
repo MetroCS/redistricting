@@ -1,5 +1,8 @@
 package swdmt.redistricting;
 
+
+import java.util.ArrayList;
+
 /**
  * Generates a list of possible districts originating from an
  * origin point of size N.
@@ -7,7 +10,7 @@ package swdmt.redistricting;
  * @author Jessica Trujillo
  * @version 2.0
  */
-public class StarGenerator {
+public final class StarGenerator {
   /**
   * Returns all patterns of length n that originate from an origin point.
   * @param n length of patterns
@@ -76,6 +79,10 @@ public class StarGenerator {
     return false;
   }
 
+  /**
+  * Constructor is private,  methods are static only and this class
+  * should never be instantiated.
+  */
   private StarGenerator() {
   }
 }

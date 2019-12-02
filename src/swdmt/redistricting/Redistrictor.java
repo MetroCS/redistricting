@@ -19,7 +19,7 @@ import java.util.Iterator;
  * @author Dr. Jody Paul
  * @version 20191006
  */
-public class Redistrictor implements java.io.Serializable {
+public final class Redistrictor implements java.io.Serializable {
     /** Serialization version requirement. */
     private static final long serialVersionUID = 3L;
 
@@ -114,8 +114,11 @@ public class Redistrictor implements java.io.Serializable {
                 }
             } else {
               int size = theRegion.sideSize();
-              ArrayList<District> allDistricts = AllDistrictGen.generateDistricts(size, size, districtSize);
-              for (District d : allDistricts){
+              ArrayList<District> allDistricts =
+                AllDistrictGen.generateDistricts(size,
+                                                 size,
+                                                 districtSize);
+              for (District d : allDistricts) {
                 districts.add(d);
               }
             }
@@ -135,5 +138,4 @@ public class Redistrictor implements java.io.Serializable {
                                     final int districtSize) {
         return allDistrictsOfSpecificSize(theRegion, districtSize).iterator();
     }
-    
 }
