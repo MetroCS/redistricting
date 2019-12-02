@@ -76,7 +76,7 @@ public class StarGenerator {
     return false;
   }
 
-  private StarGenerator {
+  private StarGenerator() {
   }
 }
 
