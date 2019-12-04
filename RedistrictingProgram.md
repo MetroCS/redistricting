@@ -8,11 +8,11 @@ The desired product is a maintainable application that addresses the described r
 
 Early versions of the product may utilize some or all of the following simplifications (preconditions):
 
-*The region is represented by a rectangular grid.
-*The number of voters at each location is exactly 1.
-*The number of districts is a proper divisor of the number of locations in the grid.
-*There are exactly two parties.
-*If the number of voters in a district is even, and the number of voters associated with each party in a district is the same, then neither party is favored in that district.
+* The region is represented by a rectangular grid.
+* The number of voters at each location is exactly 1.
+* The number of districts is a proper divisor of the number of locations in the grid.
+* There are exactly two parties.
+  * If the number of voters in a district is even, and the number of voters associated with each party in a district is the same, then neither party is favored in that district.
 
 ## Region
 The program is given a specified region a two-dimensional grid of locations (using row and column indices).  Each location represents the voters residing at that location.  Each voter is identified by their party affiliation.  An example of such a region is given here.
@@ -22,11 +22,11 @@ In this example the region is a 5x5 grid of locations. There is exactly one vote
 ![5x5 Region of Locations matching the textual description](/images/NewfigureA.png)
  
 ## Districts
-The program must divide the region into a specified number of districts. Each district must contain the same number of voters as all other districts within practical constraints (e.g., allows off-by-one where the number of voters is not evenly divisible by the number of districts).
+The program must divide the region into a _specified number of districts_. Each district must contain the _same number of voters_ as all other districts within practical constraints (e.g., allows off-by-one where the number of voters is not evenly divisible by the number of districts).
 
 A district can be represented as a set of grid coordinates.  For example { (0,0, (0,1), (1,0), (1,1) } could represent a district comprised of the four locations in the upper-left part of the example region.
 
-Districts must be non-overlapping and contiguous. That is, each location within the same district must share an edge with at least one other location in that district.
+Districts must be _non-overlapping_ and _contiguous_. That is, each location within the same district must share an edge with at least one other location in that district.
 
 For example, if the number of districts specified for the example region is 5, one such outcome would simply divide the grid into rows.  In this case, each district is made up of the set of locations    { (i, 0), (i, 1), (i, 2), (i, 3), (i, 4) }, where i specifies a row index 0 ≤ i < 5. 
  
