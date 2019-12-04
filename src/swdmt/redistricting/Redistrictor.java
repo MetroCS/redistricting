@@ -60,7 +60,7 @@ public final class Redistrictor implements java.io.Serializable {
      *         an empty set if no feasible solution is found.
      */
     public static Set<District> generateDistricts(final Region theRegion,
-                                                  final int numDistricts) {                                          
+                                                  final int numDistricts) {
         Set<District> districts = new HashSet<District>();
         List<List<Location>> districtLocs = new ArrayList<List<Location>>();
         int numberOfDistricts = (numDistricts < 1) ? 1 : numDistricts;
@@ -69,30 +69,33 @@ public final class Redistrictor implements java.io.Serializable {
         int numberOfAugmentedDistricts
                 = theRegion.numberOfVoters() % numDistricts;
         Iterator<Location> locit = theRegion.locations().iterator();
-        
-        Location[] snakingLocations = new Location[theRegion.locations().size()];
-        for (int i = 0; i < theRegion.locations().size(); i++){
+
+        Location[] snakingLocations =
+          new Location[theRegion.locations().size()];
+        for (int i = 0; i < theRegion.locations().size(); i++) {
           snakingLocations[i] = locit.next();
         }
-        
+
         Arrays.sort(snakingLocations, new SnakingLocationComparer());
-        
+
         int currentLocation = 0;
-        
-        // Create covering districts with the proper number of locations.
-        // TODO: Contiguity for non rectangluar districts are NOT yet considered.
+
+        // Create covering districts with the proper
+        // number of locations.
+        // TODO: Contiguity for non rectangluar districts
+        // are NOT yet considered.
         for (int i = 0; i < numberOfDistricts; i++) {
             List<Location> locList = new ArrayList<Location>();
             for (int vi = 0; vi < minimumNumberOfVotersPerDistrict; vi++) {
               locList.add(snakingLocations[currentLocation++]);
             }
-            if (i < numberOfAugmentedDistricts){
+            if (i < numberOfAugmentedDistricts) {
               locList.add(snakingLocations[currentLocation++]);
             }
-            
+
             districtLocs.add(new ArrayList<Location>(locList));
         }
-        
+
         for (List<Location> locs : districtLocs) {
             districts.add(new District(locs));
         }
