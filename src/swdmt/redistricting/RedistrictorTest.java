@@ -195,7 +195,7 @@ public class RedistrictorTest {
         Region region;
         Set<District> districtSet;
         region = new Region(4);
-        assertThat(Redistrictor.allDistrictsOfSpecificSize(region,2).size(), is(4));
+        assertThat(Redistrictor.allDistrictsOfSpecificSize(region, 2).size(), is(4));
         assertThat(Redistrictor.allDistrictsOfSpecificSize(region, 3).size(), is(4));
         region = new Region(9);
         assertThat(Redistrictor.allDistrictsOfSpecificSize(region, 2).size(), is(12));
@@ -207,9 +207,9 @@ public class RedistrictorTest {
         assertThat(Redistrictor.allDistrictsOfSpecificSize(region, 3).size(), is(52));
         assertThat(Redistrictor.allDistrictsOfSpecificSize(region, 4).size(), is(89));
         region = new Region(25);
-        assertThat(Redistrictor.allDistrictsOfSpecificSize(region,2).size(), is(40));
-        assertThat(Redistrictor.allDistrictsOfSpecificSize(region,3).size(), is(94));
-        assertThat(Redistrictor.allDistrictsOfSpecificSize(region,4).size(), is(180));
+        assertThat(Redistrictor.allDistrictsOfSpecificSize(region, 2).size(), is(40));
+        assertThat(Redistrictor.allDistrictsOfSpecificSize(region, 3).size(), is(94));
+        assertThat(Redistrictor.allDistrictsOfSpecificSize(region, 4).size(), is(180));
         region = new Region(64);
         assertThat(Redistrictor.allDistrictsOfSpecificSize(region, 2).size(), is(112));
     }
