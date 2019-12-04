@@ -1,4 +1,5 @@
 package swdmt.redistricting;
+import java.util.ArrayList;
 
 import java.util.ArrayList;
 
@@ -9,12 +10,12 @@ import java.util.ArrayList;
  *
  *
  * @author Jessica Trujillo
- * @version 2.0
+ * @version 1.0
  */
-public class AllDistrictGen {
+public class AllDistrictGen{
+  
   /**
-  * Generates all possible districts in a given grid that are of
-  * a specific size.
+  * Generates all possible districts in a given grid that are of a specific size.
   * @param gridWidth width of the grid
   * @param gridHeight height of grid
   * @param districtSize size of a single district
@@ -33,7 +34,9 @@ public class AllDistrictGen {
            if (!isDistrictInBounds(transformed, gridWidth, gridHeight)) {
              continue;
            }
+           
            District transformedAsDistrict = new District(transformed);
+           
            if (!Contains(currentDistricts, transformedAsDistrict)) {
              currentDistricts.add(transformedAsDistrict);
            }
@@ -42,10 +45,10 @@ public class AllDistrictGen {
      }
      return currentDistricts;
   }
+  
   /**
-  * Returns Y/N on whether or not a similar district
-  * (district with same locations) exists inside the
-  * district collection passed in.
+  * Returns Y/N on whether or not a similar district (district with same locations)
+  * exists inside the district collection passed in.
   * @param districts list of districts
   * @param district the district to look for inside districts
   * @return whether or not a similar district was in the districts list
@@ -59,6 +62,7 @@ public class AllDistrictGen {
     }
     return false;
   }
+
   /**
   * checks whether two districts have the same coordinates.
   * @param districtA first district to compare
@@ -70,6 +74,7 @@ public class AllDistrictGen {
     if (districtA.size() != districtB.size()) {
       return false;
     }
+    
     for (Location coordA : districtA.locations()) {
       boolean anyMatch = false;
       for (Location coordB : districtB.locations()) {
@@ -83,9 +88,10 @@ public class AllDistrictGen {
     }
     return true;
   }
+
   /**
-  * Creates a new pattern based off of the passed in pattern, that is
-  * translated by X and Y.
+  * Creates a new pattern based off of the passed in pattern, that is translated by
+  * X and Y.
   * @param pattern starting at the origin
   * @param offsetX the X translation value
   * @param offsetY the Y translation value
@@ -96,13 +102,14 @@ public class AllDistrictGen {
                                              final int offsetX,
                                              final int offsetY) {
     ArrayList<Location> newPattern = new ArrayList<Location>();
+    
     for (Location coord : pattern) {
-      Location transformedCoord = new Location(coord.xCoordinate() + offsetX,
-                                               coord.yCoordinate() + offsetY);
+      Location transformedCoord = new Location(coord.xCoordinate() + offsetX, coord.yCoordinate() + offsetY);
       newPattern.add(transformedCoord);
     }
     return newPattern;
   }
+    
   /**
   * Will check if the district is within a grid defined by the origin stretching
   * to grid width and height.
@@ -127,7 +134,7 @@ public class AllDistrictGen {
       if (cord.yCoordinate() >= gridHeight) {
         return false;
       }
-    }
+    }   
     return true;
   }
   private AllDistrictGen() {
