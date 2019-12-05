@@ -15,4 +15,4 @@ Goal: Computer application that demonstrates the process of redistricting and il
 
 ___
 
-__Project website:__ https://github.com/MetroCS/redistricting
+__Project website:__ https://metrocs.github.io/redistricting/
