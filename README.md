@@ -10,7 +10,7 @@ Goal: Computer application that demonstrates the process of redistricting and il
 
 #### [Development Conventions](DevelopmentConventions.md)
 
-### [Contributing - Getting Started](GettingStarted.md)
+### [Contributing / Getting Started](GettingStarted.md)
 
 
 ___
