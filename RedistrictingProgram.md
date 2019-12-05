@@ -1,5 +1,4 @@
-# Redistricting a Region
-Description - Redistricting a Geographic Region
+# Redistricting a Geographic Region
 
 Objective: A computer program designed to split a given geographic region into election districts.
 
