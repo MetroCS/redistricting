@@ -6,11 +6,11 @@ Goal: Computer application that demonstrates the process of redistricting and il
 
 ### [Vision & Stakeholders](Vision.md)
 
-### [Redistricting Program Objectives](RedistrictingProgram.md)
+### [Redistricting Program Description](RedistrictingProgram.md)
 
-### [Getting Started](GettingStarted.md)
+#### [Development Conventions](DevelopmentConventions.md)
 
-### [Development Conventions](DevelopmentConventions.md)
+### [Contributing / Getting Started](GettingStarted.md)
 
 
 ___
