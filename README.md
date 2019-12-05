@@ -1,16 +1,16 @@
-## Redistricting Tools
+## Redistricting Investigation
 
-Goal: Create and educational redistricting tool that can also teach about gerrymandering
+Goal: Computer application that demonstrates the process of redistricting and illustrates potential impacts (including gerrymandering)
+
 ### [License](LICENSE)
 
 ### [Vision & Stakeholders](Vision.md)
 
-### [Getting Started](GettingStarted.md)
-
 ### [Redistricting Program Objectives](RedistrictingProgram.md)
 
-### [Development Conventions](DevelopmentConventions.md)
+### [Getting Started](GettingStarted.md)
 
+### [Development Conventions](DevelopmentConventions.md)
 
 
 ___
