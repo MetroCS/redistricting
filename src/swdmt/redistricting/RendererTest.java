@@ -9,7 +9,7 @@ import org.junit.Test;
  * The test class for Renderer.
  *
  * @author  Dr. Jody Paul
- * @version 20191127.1
+ * @version 20191201
  */
 public class RendererTest {
     /** Render of an arbitrary location. */
@@ -45,7 +45,7 @@ public class RendererTest {
                      Renderer.renderAsASCII(true, region1));
     }
 
-    /** Check rendering of region of size 16, no affiliations. */
+    /** Check rendering of square region of size 16, no affiliations. */
     @Test
     public void renderAsASCIIRegionSize16Test() {
         Region region2 = new Region(16);
@@ -61,7 +61,7 @@ public class RendererTest {
                      Renderer.renderAsASCII(region2));
     }
 
-    /** Check rendering of region of size 16 with affiliation. */
+    /** Check rendering of square region of size 16 with affiliation. */
     @Test
     public void renderAsASCIIregionSize16AffiliationTest() {
         Region region2 = new Region(16);
@@ -77,7 +77,63 @@ public class RendererTest {
                      Renderer.renderAsASCII(true, region2));
     }
 
-    /** Check rendering of region of size 36, with 3 locations, no affiliations. */
+    /**
+     * Check rendering of rectangular region of size 3x5,
+     * no affiliation.
+     */
+    @Test
+    public void renderAsASCIIRegionLocations3GridSize3x5Test() {
+        Set<Location> testLocs = new TreeSet<Location>();
+        Set<Voter> testVoters = new HashSet<Voter>();
+        for (int x = 0; x < 5; x++) {
+            for (int y = 0; y < 3; y++) {
+                Location loc = new Location(x, y);
+                testLocs.add(loc);
+                testVoters.add(new Voter(Party.PARTY0, loc));
+            }
+        }
+        Region region3 = new Region(testLocs, testVoters);
+        assertEquals("+---+---+---+---+---+\n"
+                   + "| " + R_AR + " | " + R_AR + " | " + R_AR + " | " + R_AR + " | " + R_AR + " |\n"
+                   + "+---+---+---+---+---+\n"
+                   + "| " + R_AR + " | " + R_AR + " | " + R_AR + " | " + R_AR + " | " + R_AR + " |\n"
+                   + "+---+---+---+---+---+\n"
+                   + "| " + R_AR + " | " + R_AR + " | " + R_AR + " | " + R_AR + " | " + R_AR + " |\n"
+                   + "+---+---+---+---+---+\n",
+                     Renderer.renderAsASCII(region3));
+    }
+
+
+    /**
+     * Check rendering of rectangular region of size 3x5,
+     * showing affiliation.
+     */
+    @Test
+    public void renderAsASCIIRegionLocations3GridSize3x5AffiliationTest() {
+        Set<Location> testLocs = new TreeSet<Location>();
+        Set<Voter> testVoters = new HashSet<Voter>();
+        for (int x = 0; x < 5; x++) {
+            for (int y = 0; y < 3; y++) {
+                Location loc = new Location(x, y);
+                testLocs.add(loc);
+                testVoters.add(new Voter(Party.PARTY0, loc));
+            }
+        }
+        Region region3 = new Region(testLocs, testVoters);
+        assertEquals("+---+---+---+---+---+\n"
+                   + "| " + R_P0 + " | " + R_P0 + " | " + R_P0 + " | " + R_P0 + " | " + R_P0 + " |\n"
+                   + "+---+---+---+---+---+\n"
+                   + "| " + R_P0 + " | " + R_P0 + " | " + R_P0 + " | " + R_P0 + " | " + R_P0 + " |\n"
+                   + "+---+---+---+---+---+\n"
+                   + "| " + R_P0 + " | " + R_P0 + " | " + R_P0 + " | " + R_P0 + " | " + R_P0 + " |\n"
+                   + "+---+---+---+---+---+\n",
+                     Renderer.renderAsASCII(true, region3));
+    }
+
+    /**
+     * Check rendering of region in square grid of size 36,
+     * with 3 locations, no affiliation.
+     */
     @Test
     public void renderAsASCIIRegionLocations3GridSize36Test() {
         Location location00 = new Location(0, 0);
@@ -94,7 +150,7 @@ public class RendererTest {
         testVoters.add(voter1);
         testVoters.add(voter2);
         testVoters.add(voter3);
-        Region region3 = new Region(testLocs, testVoters);
+        Region region4 = new Region(testLocs, testVoters);
         assertEquals("+---+---+---+---+---+---+\n"
                    + "| " + R_AR + " |   |   |   |   |   |\n"
                    + "+---+---+---+---+---+---+\n"
@@ -108,12 +164,12 @@ public class RendererTest {
                    + "+---+---+---+---+---+---+\n"
                    + "|   |   | " + R_AR + " |   |   |   |\n"
                    + "+---+---+---+---+---+---+\n",
-                     Renderer.renderAsASCII(region3));
+                     Renderer.renderAsASCII(region4));
     }
 
     /**
-     * Check rendering of region of size 36,
-     * with 3 locations, showing affiliations.
+     * Check rendering of region in square grid of size 36,
+     * with 3 locations, showing affiliation.
      */
     @Test
     public void renderAsASCIIRegionLocations3GridSize36AffiliationTest() {
@@ -131,7 +187,7 @@ public class RendererTest {
         testVoters.add(voter1);
         testVoters.add(voter2);
         testVoters.add(voter3);
-        Region region3 = new Region(testLocs, testVoters);
+        Region region4 = new Region(testLocs, testVoters);
         assertEquals("+---+---+---+---+---+---+\n"
                    + "| " + R_P0 + " |   |   |   |   |   |\n"
                    + "+---+---+---+---+---+---+\n"
@@ -145,6 +201,68 @@ public class RendererTest {
                    + "+---+---+---+---+---+---+\n"
                    + "|   |   | " + R_P1 + " |   |   |   |\n"
                    + "+---+---+---+---+---+---+\n",
-                     Renderer.renderAsASCII(true, region3));
+                     Renderer.renderAsASCII(true, region4));
+    }
+
+    /**
+     * Check rendering of region in non-square grid,
+     * with 3 locations, no affiliations.
+     */
+    @Test
+    public void renderAsASCIIRegionLocations3GridSize15Test() {
+        Location location00 = new Location(0, 0);
+        Location location12 = new Location(1, 2);
+        Location location51 = new Location(5, 1);
+        Set<Location> testLocs = new TreeSet<Location>();
+        testLocs.add(location00);
+        testLocs.add(location12);
+        testLocs.add(location51);
+        Voter voter1 = new Voter(Party.PARTY0, location00);
+        Voter voter2 = new Voter(Party.PARTY1, location12);
+        Voter voter3 = new Voter(Party.UNAFFILIATED, location51);
+        Set<Voter> testVoters = new HashSet<Voter>();
+        testVoters.add(voter1);
+        testVoters.add(voter2);
+        testVoters.add(voter3);
+        Region region5 = new Region(testLocs, testVoters);
+        assertEquals("+---+---+---+---+---+---+\n"
+                   + "| " + R_AR + " |   |   |   |   |   |\n"
+                   + "+---+---+---+---+---+---+\n"
+                   + "|   |   |   |   |   | " + R_AR + " |\n"
+                   + "+---+---+---+---+---+---+\n"
+                   + "|   | " + R_AR + " |   |   |   |   |\n"
+                   + "+---+---+---+---+---+---+\n",
+                     Renderer.renderAsASCII(region5));
+    }
+
+    /**
+     * Check rendering of region in non-square grid,
+     * with 3 locations, showing affiliations.
+     */
+    @Test
+    public void renderAsASCIIRegionLocations3GridSize15AffiliationTest() {
+        Location location00 = new Location(0, 0);
+        Location location12 = new Location(1, 2);
+        Location location51 = new Location(5, 1);
+        Set<Location> testLocs = new TreeSet<Location>();
+        testLocs.add(location00);
+        testLocs.add(location12);
+        testLocs.add(location51);
+        Voter voter1 = new Voter(Party.PARTY0, location00);
+        Voter voter2 = new Voter(Party.PARTY1, location12);
+        Voter voter3 = new Voter(Party.UNAFFILIATED, location51);
+        Set<Voter> testVoters = new HashSet<Voter>();
+        testVoters.add(voter1);
+        testVoters.add(voter2);
+        testVoters.add(voter3);
+        Region region5 = new Region(testLocs, testVoters);
+        assertEquals("+---+---+---+---+---+---+\n"
+                   + "| " + R_P0 + " |   |   |   |   |   |\n"
+                   + "+---+---+---+---+---+---+\n"
+                   + "|   |   |   |   |   | " + R_UN + " |\n"
+                   + "+---+---+---+---+---+---+\n"
+                   + "|   | " + R_P1 + " |   |   |   |   |\n"
+                   + "+---+---+---+---+---+---+\n",
+                     Renderer.renderAsASCII(true, region5));
     }
 }
