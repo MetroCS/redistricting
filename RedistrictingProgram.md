@@ -46,12 +46,13 @@ The program may be given a party preference and will attempt to create districts
 Using the example region, the program was asked to create five districts. It produced the following two outcomes demonstrating that either of the two parties could have a majority of the districts.
 
 ### Run A Districts:  
+```
 {(0, 0), (0, 1), (1, 0), (2, 0), (3, 0)}  
 {(0, 2), (0, 3), (0, 4), (1, 3), (2, 3)}  
 {(1, 1), (1, 2), (2, 1), (2, 2), (3, 2)}  
 {(1, 4), (2, 4), (3, 3), (3, 4), (4, 4)}   
 {(3, 1), (4, 0), (4, 1), (4, 2), (4, 3)}  
- 
+``` 
  ![Gerrymandered grid from Run A - Preference to Party A (3 of 5 districts)](images/NewfigureC.png)  
  
  Preference to Party A (3 of 5 districts)
