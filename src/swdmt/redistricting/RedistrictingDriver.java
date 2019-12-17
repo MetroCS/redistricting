@@ -75,26 +75,4 @@ public final class RedistrictingDriver {
         System.out.print(prompt);
         return console.next();
     }
-
-    /**
-     * Prompt the user to enter a response using GUI.
-     * @param prompt the prompt to provide to the user
-     * @return string entered by user
-     */
-    private static String askUserGUI(final String prompt) {
-        String response = (String) JOptionPane.showInputDialog(
-                null,
-                prompt,
-                PROJECT_NAME,
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                null,
-                null
-            );
-        if (null == response) {
-            System.exit(-1);
-        }
-        return response;
-    }
-
 }
