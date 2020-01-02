@@ -8,9 +8,9 @@ Goal: Computer application that demonstrates the process of redistricting and il
 
 ### [Redistricting Program Description](RedistrictingProgram.md)
 
-#### [Development Conventions](DevelopmentConventions.md)
+### [Contributing](Contributing.md)
 
-### [Contributing / Getting Started](GettingStarted.md)
+#### [Development Conventions](DevelopmentConventions.md)
 
 
 ___
