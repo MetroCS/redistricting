@@ -1,19 +1,15 @@
-# Getting Started
+# Contributing to the Redistricting project
 ---
+Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md]. By participating in this project you agree to abide by its terms.
 
-PROJECT		: Redistricting Investigation
-
-PURPOSE		: Investigate political redistricting using software models and algorithms
-
+## PROJECT DESCRIPTION
+Please refer to [README.md](README.md)
 
 ## TECHNOLOGIES
-* Coding Language - Java
+* Programming Language - Java
 * Issue Tracking - GitHub
 * Version Control - Git
 * Build Process - Apache Ant 
-
-## PROJECT DESCRIPTION
-Please refer to [README.md](https://github.com/MetroCS/redistricting/blob/master/README.md)
 
 ## TOOLS
 ### Git
@@ -33,4 +29,3 @@ Please refer to [README.md](https://github.com/MetroCS/redistricting/blob/master
    $ ant all 
    $ cd build
 ```
-If `ant all` does not work, try `ant -buildfile build.xml`
