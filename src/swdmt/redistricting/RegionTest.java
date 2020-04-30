@@ -4,6 +4,8 @@ import static org.hamcrest.core.Is.is;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import java.util.Set;
+import java.util.HashSet;
 /**
  * Tests for class Region.
  *
@@ -85,5 +87,29 @@ public class RegionTest {
             assertThat("Square region number of voters failed at size " + i * i,
                        (new Region(i * i)).numberOfVoters(), is(i * i));
         }
+    }
+
+    @Test(timeout = MAX_TIMEOUT)
+    public void votersOnlySquareRegionTest() {
+        int numVotersSquare = 4;
+        Set<Voter> voters = new HashSet<>();
+        for (int i = 0; i < numVotersSquare; i++) {
+            for (int k = 0; k < numVotersSquare; k++){
+                voters.add(new Voter(null, new Location(i, k)));
+            }
+        }
+        Region newRegion = new Region(voters);
+    }
+
+    @Test(timeout = MAX_TIMEOUT)
+    public void votersOnlyNotSquareRegionTest() {
+        int numVoters = 5;
+        Set<Voter> voters = new HashSet<>();
+        for (int i = 0; i < numVoters; i++) {
+            for (int k = 0; k < numVoters; k++) {
+                voters.add(new Voter(null, new Location(i, k)));
+            }
+        }
+        Region newRegion = new Region(voters);
     }
 }

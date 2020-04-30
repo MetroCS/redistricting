@@ -94,6 +94,23 @@ public class Region implements java.io.Serializable {
     }
 
     /**
+     * Creates a region defined by the specified set of voters.
+     * @param voterSet the set of voters
+     */
+    public Region(final Set<Voter> voterSet) {
+        this.locations = new TreeSet<>();
+        this.voters = new HashSet<>();
+        this.voterMap = new HashMap<>();
+
+        for (Voter v : voterSet) {
+            Location loc = v.location();
+            this.locations.add(loc);
+            this.voters.add(v);
+            this.voterMap.put(v.location(), v);
+        }
+    }
+
+    /**
      * Accesses the number of locations in this region.
      * @return the number of locations
      */
