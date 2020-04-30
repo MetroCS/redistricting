@@ -82,4 +82,26 @@ public class DistrictTest {
         district1 = new District(locations);
         assertFalse(district1.contiguityValid());
     }
+
+    @Test
+    public void contiguityValidDistrictsNotContiguous() {
+        HashSet<Location> locations = new HashSet<>();
+        locations.add(new Location(0, 0));
+        locations.add(new Location(0, 1));
+        District district1 = new District(locations);
+        assertTrue(district1.contiguityValid());
+
+        locations.add(new Location(2, 0));
+        district1 = new District(locations);
+        assertFalse(district1.contiguityValid());
+
+        locations.add(new Location(2, 1));
+        district1 = new District(locations);
+        assertFalse(district1.contiguityValid());
+
+        locations.add(new Location(1, 0));
+        district1 = new District(locations);
+        assertTrue(district1.contiguityValid());
+
+   }
 }
