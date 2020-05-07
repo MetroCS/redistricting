@@ -1,7 +1,9 @@
 package swdmt.redistricting;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import org.junit.Test;
+//import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
 /**
  * Tests for Voter objects.
  *
@@ -23,9 +25,11 @@ public class VoterTest {
         assertThat(voter2.affiliation(), is(Party.NONE));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void invalidLocationTest() {
-        Voter voter1 = new Voter(Party.NONE, null);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Voter voter1 = new Voter(Party.NONE, null);
+        });
     }
 
     @Test
