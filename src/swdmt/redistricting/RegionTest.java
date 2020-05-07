@@ -1,9 +1,14 @@
 package swdmt.redistricting;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import java.time.Duration;
+
 import static org.hamcrest.core.Is.is;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
+//import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
+
 /**
  * Tests for class Region.
  *
@@ -27,7 +32,7 @@ public class RegionTest {
      *
      * Called before every test case method.
      */
-    @Before
+    @BeforeEach
     public void setUp() {
     }
 
@@ -36,7 +41,7 @@ public class RegionTest {
      *
      * Called after every test case method.
      */
-    @After
+    @AfterEach
     public void tearDown() {
     }
 
@@ -54,36 +59,46 @@ public class RegionTest {
         assertThat((new Region(-0)).numberOfVoters(), is(0));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void squareRegionNegativeSizeTest() {
-        Region r = new Region(-4);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Region r = new Region(-4);
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void squareRegionNonSquareSizeTest() {
-        Region r = new Region(15);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Region r = new Region(15);
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void squareRegionExtremeSizeTest() {
-        Region r = new Region(Integer.MAX_VALUE);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Region r = new Region(Integer.MAX_VALUE);
+        });
     }
 
-    @Test(timeout = MAX_TIMEOUT)
+    @Test
     public void squareRegionValidSizeTest() {
-        int maxRegionSide = (int) Math.sqrt(MAX_REGION_SIZE);
-        for (int i = 0; i < maxRegionSide; i++) {
-            assertThat("Square region test failed at size " + i * i,
-                       i * i, is((new Region(i * i)).size()));
-        }
+        Assertions.assertTimeout(Duration.ofMillis(MAX_TIMEOUT), () -> {
+            int maxRegionSide = (int) Math.sqrt(MAX_REGION_SIZE);
+            for (int i = 0; i < maxRegionSide; i++) {
+                assertThat("Square region test failed at size " + i * i,
+                        i * i, is((new Region(i * i)).size()));
+            }
+        });
     }
 
-    @Test(timeout = MAX_TIMEOUT)
+    @Test
     public void squareRegionNumberOfVotersTest() {
-        int maxRegionSide = (int) Math.sqrt(MAX_REGION_SIZE);
-        for (int i = 0; i < maxRegionSide; i++) {
-            assertThat("Square region number of voters failed at size " + i * i,
-                       (new Region(i * i)).numberOfVoters(), is(i * i));
-        }
+        Assertions.assertTimeout(Duration.ofMillis(MAX_TIMEOUT), () -> {
+            int maxRegionSide = (int) Math.sqrt(MAX_REGION_SIZE);
+            for (int i = 0; i < maxRegionSide; i++) {
+                assertThat("Square region number of voters failed at size " + i * i,
+                        (new Region(i * i)).numberOfVoters(), is(i * i));
+            }
+        });
     }
 }

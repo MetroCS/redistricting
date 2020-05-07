@@ -2,8 +2,9 @@ package swdmt.redistricting;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.HashSet;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.Test;
+//import org.junit.jupiter.api.Test;
 
 /**
  * The test class for Renderer.
