@@ -230,48 +230,40 @@ public class RedistrictorTest {
         region = new Region();
         districtSet = Redistrictor.generateDistricts(region, 1);
         for (District d : districtSet) {
-            //assertTrue("Checking contiguity of district " + d, d.contiguityValid());
-            assertTrue(d.contiguityValid());
+            assertTrue(d.contiguityValid(), "Checking contiguity of district " + d);
         }
         region = new Region(1);
         districtSet = Redistrictor.generateDistricts(region, 1);
         for (District d : districtSet) {
-            //assertTrue("Checking contiguity of district " + d, d.contiguityValid());
-            assertTrue(d.contiguityValid());
+            assertTrue(d.contiguityValid(), "Checking contiguity of district " + d);
         }
 
         region = new Region(4);
         districtSet = Redistrictor.generateDistricts(region, 2);
         for (District d : districtSet) {
-            //assertTrue("Checking contiguity of district " + d, d.contiguityValid());
-            assertTrue(d.contiguityValid());
+            assertTrue(d.contiguityValid(), "Checking contiguity of district " + d);
         }
 
         region = new Region(9);
         districtSet = Redistrictor.generateDistricts(region, 1);
         for (District d : districtSet) {
-            //assertTrue("Contiguity error for district " + d, d.contiguityValid());
-            assertTrue(d.contiguityValid());
+            assertTrue(d.contiguityValid(), "Checking contiguity of district " + d);
         }
         districtSet = Redistrictor.generateDistricts(region, 2);
         for (District d : districtSet) {
-            //assertTrue("Contiguity error for district " + d, d.contiguityValid());
-            assertTrue(d.contiguityValid());
+            assertTrue(d.contiguityValid(), "Checking contiguity of district " + d);
         }
         districtSet = Redistrictor.generateDistricts(region, 3);
         for (District d : districtSet) {
-            //assertTrue("Contiguity error for district " + d, d.contiguityValid());
-            assertTrue(d.contiguityValid());
+            assertTrue(d.contiguityValid(), "Checking contiguity of district " + d);
         }
         districtSet = Redistrictor.generateDistricts(region, 4);
         for (District d : districtSet) {
-            //assertTrue("Contiguity error for district " + d, d.contiguityValid());
-            assertTrue(d.contiguityValid());
+            assertTrue(d.contiguityValid(), "Checking contiguity of district " + d);
         }
         districtSet = Redistrictor.generateDistricts(region, 5);
         for (District d : districtSet) {
-            //assertTrue("Contiguity error for district " + d, d.contiguityValid());
-            assertTrue(d.contiguityValid());
+            assertTrue(d.contiguityValid(), "Checking contiguity of district " + d);
         }
     }
 }
