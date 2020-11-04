@@ -127,5 +127,18 @@ public class RegionTest {
 		assertThat("Region with Voters outside of Location has wrong number of voters ", region.numberOfVoters(), is(0));
 	}
 
+	@Test(expected = IllegalArgumentException.class)
+	public void regionWithWrongType(){
+		Region r1 = new Region(2, 12);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void regionWithSwitchedInput(){
+		Set<Location> locationSet = new HashSet<Location>();
+		Set<Voter> voterSet = new HashSet<Voter>();
+		
+		Region r2 = new Region(voterSet, locationSet);
+	}
+
 }
 
