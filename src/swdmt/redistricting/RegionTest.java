@@ -128,8 +128,13 @@ public class RegionTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void regionWithWrongType(){
+    public void regionWithWrongTypeInt(){
         Region r1 = new Region(2, 12);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void regionWithWrongTypeString(){
+        Region r1 = new Region("Two", "Twelve");
     }
 
     @Test(expected = IllegalArgumentException.class)
