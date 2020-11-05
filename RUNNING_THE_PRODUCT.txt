@@ -1,0 +1,49 @@
+﻿How To Run and Contribute To This Project
+
+
+Assuming that user will be operating within the Linux Terminal (CLI)
+
+
+This Program Is Written In Java
+
+
+
+
+1. Download and install Java. (verify java version)
+   1. Open the command line and use command:
+$ sudo apt install default-jdk
+   2. Download and install ant/git
+   1. Open the command line and use command: $ sudo apt install ant
+   2. Verify version with command: $ ant -version
+
+
+   3. Follow These Steps To Download Project From Github:
+
+(1) ### Use GitHub to fork their repository###     
+(2) $ git clone <MY_URL> <DIR> <-- From Origin                    
+(3) $ cd <DIR>                                                             
+(4) $ git remote add upstream <THEIR_URL> 
+
+      4. To Make A Contribution:
+
+(1)$ git checkout -b <BRANCH_NAME>                         
+         ...      
+(2)<DO WORK>                                                                                     
+         …                                
+(3)$ git add .                                            
+(4)$ git commit -v
+(5) $ git push -u origin <BRANCH_NAME>
+(6) Use GitHub to open a pull request from <BRANCH_NAME> in yours to main on
+     theirs.
+         5. Run apache ant via linux terminal.
+         1. Run the command: $ ant all 
+
+
+
+
+
+
+Work Cited:
+https://java.com/en/download/help/linux_install.html
+https://ant.apache.org/manual/index.html
+https://gouda.msudenver.edu/moodle/mod/page/view.php?id=11813
