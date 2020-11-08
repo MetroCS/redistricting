@@ -1,49 +1,28 @@
-﻿How To Run and Contribute To This Project
+# How To Run and Contribute To This Java Program
 
 
-Assuming that user will be operating within the Linux Terminal (CLI)
+##Running The Program (Initial Setup):
+
+###For Linux Users:
+
+Download and install Java. Follow the tutorial here:
+https://opensource.com/article/19/11/install-java-linux 
+Download and install Git. Follow the tutorial here: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git/ 
+Download and install ant. Follow the tutorial here: 
+https://ant.apache.org/manual/install.html 
 
 
-This Program Is Written In Java
+###For Windows and Mac Users:
+
+There is a good guide for getting started, and connecting to a repository here:
+https://phoenixnap.com/kb/how-to-install-git-windows
+Follow the guide to get started working on Git
+Download and install ant. Follow the tutorial here: 
+https://ant.apache.org/manual/install.html 
 
 
-
-
-1. Download and install Java. (verify java version)
-   1. Open the command line and use command:
-$ sudo apt install default-jdk
-   2. Download and install ant/git
-   1. Open the command line and use command: $ sudo apt install ant
-   2. Verify version with command: $ ant -version
-
-
-   3. Follow These Steps To Download Project From Github:
-
-(1) ### Use GitHub to fork their repository###     
-(2) $ git clone <MY_URL> <DIR> <-- From Origin                    
-(3) $ cd <DIR>                                                             
-(4) $ git remote add upstream <THEIR_URL> 
-
-      4. To Make A Contribution:
-
-(1)$ git checkout -b <BRANCH_NAME>                         
-         ...      
-(2)<DO WORK>                                                                                     
-         …                                
-(3)$ git add .                                            
-(4)$ git commit -v
-(5) $ git push -u origin <BRANCH_NAME>
-(6) Use GitHub to open a pull request from <BRANCH_NAME> in yours to main on
-     theirs.
-         5. Run apache ant via linux terminal.
-         1. Run the command: $ ant all 
-
-
-
-
-
-
-Work Cited:
-https://java.com/en/download/help/linux_install.html
-https://ant.apache.org/manual/index.html
-https://gouda.msudenver.edu/moodle/mod/page/view.php?id=11813
+###Work Cited:
+(n.d.). Retrieved November 08, 2020, from https://ant.apache.org/manual/index.html
+20 Nov 2019 Seth Kenlon (Red Hat) Feed131up, Hat), S., & (Correspondent), C. (n.d.). How to install Java on Linux. Retrieved November 08, 2020, from https://opensource.com/article/19/11/install-java-linux
+2020, August 28. How to Install Git on Windows {Step-by-Step Tutorial} - PhoenixNAP. Retrieved November 08, 2020, from https://phoenixnap.com/kb/how-to-install-git-windows
+1.5 Getting Started - Installing Git. (n.d.). Retrieved November 08, 2020, from https://git-scm.com/book/en/v2/Getting-Started-Installing-Git/
