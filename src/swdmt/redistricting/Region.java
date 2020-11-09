@@ -71,6 +71,27 @@ public class Region implements java.io.Serializable {
             }
         }
     }
+    
+    /**
+     * Creates a region based on a Collection of voters
+     * If the location of the voter is already stored,
+     * it will not store the location a second time,
+     * but it will still add the voter
+     * @param voters a collection of voters
+     * 
+     */
+    public Region(final Collection<Voter> voters) {
+        this.locations = new TreeSet<>();
+        this.voters = new HashSet<>();
+        this.voterMap = new HashMap<>();
+        for (Voter v: voters){
+            if (!this.locations.contains(v.location())){
+                this.locations.add(v.location());
+            }
+            this.voters.add(v);
+            this.voterMap.put(v.location(), v);
+        }
+    }
 
     /**
      * Creates a region defined by the specified set of locations

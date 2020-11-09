@@ -1,11 +1,17 @@
 package swdmt.redistricting;
 import static org.junit.Assert.assertThat;
+import org.junit.jupiter.api.Assertions;
 import static org.hamcrest.core.Is.is;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.TreeSet;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Collection;
 
 /**
  * Tests for class Region.
@@ -126,24 +132,41 @@ public class RegionTest {
         assertThat("Region with Voters outside of Locations has wrong size ", region.size(), is(1));
         assertThat("Region with Voters outside of Location has wrong number of voters ", region.numberOfVoters(), is(0));
     }
-
-    @Test(expected = IllegalArgumentException.class)
+    
+    /*
+    @Test(timeout = MAX_TIMEOUT)
     public void regionWithWrongTypeInt(){
-        Region r1 = new Region(2, 12);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Region r1 = new Region(2, 12);
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+
+    @Test(timeout = MAX_TIMEOUT)
     public void regionWithWrongTypeString(){
-        Region r1 = new Region("Two", "Twelve");
+	ExpectedException thrown = ExpectedException.none();	
+	thrown.expectMessage("incompatible types");
+	Region r1 = new Region("Two", "Twelve");
+
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    
+    @Test(timeout = MAX_TIMEOUT)
     public void regionWithSwitchedInput(){
-        Set<Location> locationSet = new HashSet<Location>();
-        Set<Voter> voterSet = new HashSet<Voter>();
+        boolean passed = true;
+        try {
+            Set<Location> locationSet = new HashSet<Location>();
+            Set<Voter> voterSet = new HashSet<Voter>();
 		
-        Region r2 = new Region(voterSet, locationSet);
-    }
+            Region r2 = new Region(voterSet, locationSet);
 
+            shouldHaveThrown(IllegalArgumentException.class);
+        } catch (IllegalArgumentException e) {
+	    passed = false;
+        }
+        assertThat("Region input switched ", passed, is(false));
+    }
+    */
+   
 }
 
