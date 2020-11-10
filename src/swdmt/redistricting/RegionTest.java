@@ -1,17 +1,12 @@
 package swdmt.redistricting;
 import static org.junit.Assert.assertThat;
-import org.junit.jupiter.api.Assertions;
 import static org.hamcrest.core.Is.is;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import java.util.Set;
 import java.util.HashSet;
-import java.util.TreeSet;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Collection;
+
 
 /**
  * Tests for class Region.
