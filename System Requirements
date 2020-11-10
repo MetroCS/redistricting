@@ -7,18 +7,36 @@
 
 Download and install Java. Follow the tutorial here:
 https://opensource.com/article/19/11/install-java-linux 
-Download and install Git. Follow the tutorial here: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git/ 
+
+If using git:
+Download and verify your installation of git. Follow the tutorial here: 
+https://git-scm.com/book/en/v2/Getting-Started-Installing-Git/
+Use git to download program repository
+
+Otherwise download zip file from:
+https://github.com/MetroCS/redistricting
+
 Download and install ant. Follow the tutorial here: 
-https://ant.apache.org/manual/install.html 
+https://ant.apache.org/manual/install.html
+Use ant to access build options.
 
 
 ###For Windows and Mac Users:
 
 There is a good guide for getting started, and connecting to a repository here:
 https://phoenixnap.com/kb/how-to-install-git-windows
-Follow the guide to get started working on Git
+
+If using git:
+Download and verify your installation of git. Follow the tutorial here:
+https://git-scm.com/book/en/v2/Getting-Started-Installing-Git/
+Use git to download program repository.
+
+Otherwise download zip file from:
+https://github.com/MetroCS/redistricting
+
 Download and install ant. Follow the tutorial here: 
-https://ant.apache.org/manual/install.html 
+https://ant.apache.org/manual/install.html
+Use ant to access build options.
 
 
 ###Work Cited:
