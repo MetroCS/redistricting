@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.TreeSet;
 import java.util.Collection;
+
 /**
  * A region represents a politically-defined area comprised
  * of locations and voters that occupy those locations.

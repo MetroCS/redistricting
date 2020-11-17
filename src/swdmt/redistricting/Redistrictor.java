@@ -34,7 +34,7 @@ public final class Redistrictor implements java.io.Serializable {
      * @throws illegalArgumentException if the region is null
      */
     public Redistrictor(final Region theRegion) {
-        if (null == this.region) {
+        if (null == theRegion) {
             throw new IllegalArgumentException(
                     "Cannot associate null region with new Redistrictor");
         }

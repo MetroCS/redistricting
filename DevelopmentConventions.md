@@ -2,8 +2,8 @@
 
 This document describes intended and preferred conventions
 for development and maintenance of the Redistricting a Region software product.
-* [Agile Principles](/developmentConventions.md#Agile-Principles)
-* [Coding Convention Guide](/developmentConventions.md#Coding-Convention-Guide)
+* [Agile Principles](/DevelopmentConventions.md#Agile-Principles)
+* [Coding Convention Guide](/DevelopmentConventions.md#Coding-Convention-Guide)
 
  
 ## Agile Principles

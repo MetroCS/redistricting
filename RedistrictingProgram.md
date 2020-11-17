@@ -59,7 +59,7 @@ Using the example region, the program was asked to create five districts. It pro
  
  
 ### Run B Districts:  
-{(0, i), (1, i), (2, i), (3, i), (4, i)} where 
+```{(0, i), (1, i), (2, i), (3, i), (4, i)}``` where 
 i specifies a column index 0 ≤ i < 5.
 
 ![Gerrymandered Grid for Run B - Preference to Party B (5 of 5 districts)](images/NewfigureD.png) 

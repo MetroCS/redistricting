@@ -6,7 +6,7 @@
   <description>
       Build file for Redistricting project investigation
   </description>
-  <property name="version" value="20191006_3"/>
+  <property name="version" value="20191216_1"/>
   <property name="author" value="Jody Paul"/>
   <property name="copyright" value="Copyright (c) 2018,2019 by Dr. Jody Paul"/>
   <property name="license"
@@ -64,6 +64,11 @@
   <property name="jacoco.classes.dir" location="${jacoco.result.dir}/classes"/>
   <property name="jacoco.instr.dir" location="${jacoco.result.dir}/instrumented"/>
   <property name="jacoco.exec.file" location="${jacoco.result.dir}/jacoco.exec"/>
+
+    <!-- SpotBugs directories -->
+  <property name="spotbugs.dir" location="lib/spotbugs"/>
+  <property name="spotbugs.home" value="${spotbugs.dir}"/>
+  <property name="spotbugs.reports.dir" location="${allreports}"/>
 
   <path id="classpath">
     <fileset dir="${lib}" includes="**/*.jar"/>
@@ -129,9 +134,11 @@
   </target>
 
   <target name="jar" depends="compile" 
-          description="Creates a jar file for the main class">
+          description="Creates a jar file for the product">
     <mkdir dir="${jar.dir}"/>
-    <jar destfile="${jar.dir}/${productname}.jar" basedir="${classes.dir}">
+    <jar destfile="${jar.dir}/${productname}.jar"
+         basedir="${classes.dir}"
+         excludes="**/*Test.class">
       <manifest>
         <attribute name="Main-Class" value="${mainclass}"/>
       </manifest>
@@ -140,7 +147,7 @@
   </target>
 
   <target name="run" depends="jar"
-          description="Runs the program">
+          description="Runs the development version of the program">
     <java jar="${jar.dir}/${productname}.jar" fork="true"/>
   </target>
 
@@ -460,5 +467,41 @@
 
   <!-- JaCoCo END -->
 
+
+  <!-- Define SpotBugs task -->
+  <taskdef
+    resource="edu/umd/cs/findbugs/anttask/tasks.properties"
+    classpath="${spotbugs.dir}/lib/spotbugs-ant.jar" />
+  <!-- Spotbugs definition -->
+  <target name="spotbugs"
+          depends="jar"
+          description="process source files with SpotBugs">
+    <spotbugs home="${spotbugs.dir}"
+              output="html"
+              outputFile="${allreports}/spotbugs.html" >
+      <sourcePath path="${src.dir}" />
+      <class location="${jar.dir}/${productname}.jar"/>
+    </spotbugs>
+  </target>
+
+
+  <!-- Define ProGuard task -->
+  <taskdef resource="proguard/ant/task.properties"
+           classpath="lib/proguard/proguard.jar" />
+  <!-- dist and ProGuard definitions -->
+  <target name="dist"
+          depends="proguard"
+          description="Use ProGuard to create distribution jar"/>
+  <target name="proguard"
+          depends="jar">
+    <proguard>
+      <libraryjar name="${java.home}/jmods/java.base.jmod"/>
+      -injars       ${jar.dir}/${productname}.jar
+      -outjars      ${dist}/${productname}.jar
+      -keepclasseswithmembers public class * {
+          public static void main(java.lang.String[]);
+    }
+    </proguard>
+  </target>
 
 </project>
