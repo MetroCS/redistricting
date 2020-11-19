@@ -56,8 +56,8 @@ public class District implements java.io.Serializable {
      public boolean contiguityValid() {
                boolean contiguous = true;
                if (this.locations.size() > 1) {
-                   Set<Location> contiguousLocations = new TreeSet<>();
-                   Set<Location> filterdLoc = new TreeSet<>();
+                   Set<Location> contiguousLocations = new HashSet<>();
+                   Set<Location> filterdLoc = new HashSet<>();
                    Location homeLoc = this.locations.iterator().next();
                    boolean filLocSet = true;
                    int conLocSize = contiguousLocations.size();
