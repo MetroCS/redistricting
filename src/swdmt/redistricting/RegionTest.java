@@ -111,39 +111,21 @@ public class RegionTest {
     		
     }
 	
-    @Test(timeout = MAX_TIMEOUT)
-    public void regionWithVotersOutsideLocations() {
-        Location location3 = new Location(0,3);
-        Voter voter3 = new Voter(Party.NONE, new Location(0,2));
+	@Test(timeout = MAX_TIMEOUT)
+	public void regionWithVotersOutsideLocations() {
+		Location location3 = new Location(0,3);
+		Voter voter3 = new Voter(Party.NONE, new Location(0,2));
 		
-        Set<Location> locationSet = new HashSet<Location>();
-        locationSet.add(location3);
+		Set<Location> locationSet = new HashSet<Location>();
+		locationSet.add(location3);
 		
-        Set<Voter> voterSet = new HashSet<Voter>();
-        voterSet.add(voter3);
+		Set<Voter> voterSet = new HashSet<Voter>();
+		voterSet.add(voter3);
 		
-        Region region = new Region(locationSet, voterSet);
-        assertThat("Region with Voters outside of Locations has wrong size ", region.size(), is(1));
-        assertThat("Region with Voters outside of Location has wrong number of voters ", region.numberOfVoters(), is(0));
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void regionWithWrongTypeInt(){
-        Region r1 = new Region(2, 12);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void regionWithWrongTypeString(){
-        Region r1 = new Region("Two", "Twelve");
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void regionWithSwitchedInput(){
-        Set<Location> locationSet = new HashSet<Location>();
-        Set<Voter> voterSet = new HashSet<Voter>();
-		
-        Region r2 = new Region(voterSet, locationSet);
-    }
+		Region region = new Region(locationSet, voterSet);
+		assertThat("Region with Voters outside of Locations has wrong size ", region.size(), is(1));
+		assertThat("Region with Voters outside of Location has wrong number of voters ", region.numberOfVoters(), is(0));
+	}
 
 }
 
