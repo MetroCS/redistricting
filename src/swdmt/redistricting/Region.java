@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.TreeSet;
-import java.util.Collection;
 
 /**
  * A region represents a politically-defined area comprised
