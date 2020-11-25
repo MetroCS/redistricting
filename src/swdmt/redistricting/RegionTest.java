@@ -107,7 +107,6 @@ public class RegionTest {
         Region region = new Region(locationSet, voterSet);
         assertThat("Region with all voters in location set test failed; Location and Voter sets of size 2 produced Region with wrong size.", region.size(), is(2));
         assertThat("Region with all voters in location set test failed; Location and Voter sets of size 2 produced Region with wrong number of voters.", region.numberOfVoters(), is(2));
-
     }
 
     @Test(timeout = MAX_TIMEOUT)
