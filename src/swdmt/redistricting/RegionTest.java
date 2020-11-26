@@ -88,8 +88,9 @@ public class RegionTest {
                        (new Region(i * i)).numberOfVoters(), is(i * i));
         }
     }
+
     @Test(timeout = MAX_TIMEOUT)
-    public void regionWithVotersInsideLocations() {
+    public void regionWithAllVotersInLocationSetTest() {
         Location location1 = new Location(3, 3);
         Location location2 = new Location(0, 1);
         Voter voter1 = new Voter(Party.NONE, location1);
@@ -104,13 +105,12 @@ public class RegionTest {
         voterSet.add(voter2);
 
         Region region = new Region(locationSet, voterSet);
-        assertThat("Region with Voters inside Locations has wrong size ", region.size(), is(2));
-        assertThat("Region with Voters inside Locaton has wrong number of voters ", region.numberOfVoters(), is(2));
-
+        assertThat("Region with all voters in location set test failed; Location and Voter sets of size 2 produced Region with wrong size.", region.size(), is(2));
+        assertThat("Region with all voters in location set test failed; Location and Voter sets of size 2 produced Region with wrong number of voters.", region.numberOfVoters(), is(2));
     }
 
     @Test(timeout = MAX_TIMEOUT)
-    public void regionWithVotersOutsideLocations() {
+    public void regionWithVoterNotInLocationSetTest() {
         Location location3 = new Location(0,3);
         Voter voter3 = new Voter(Party.NONE, new Location(0,2));
 
@@ -121,7 +121,7 @@ public class RegionTest {
         voterSet.add(voter3);
 
         Region region = new Region(locationSet, voterSet);
-        assertThat("Region with Voters outside of Locations has wrong size ", region.size(), is(1));
-        assertThat("Region with Voters outside of Location has wrong number of voters ", region.numberOfVoters(), is(0));
+        assertThat("Region with no voters in the location set test failed; given Location set size 1 and Voter set size 1 produced Region with wrong size.", region.size(), is(1));
+        assertThat("Region with no voters in the location set test failed; given Location set size 1 and Voter set size 1 produced wrong number of voters in the region.", region.numberOfVoters(), is(0));
     }
 }
