@@ -6,7 +6,7 @@
 
 #NOTE: COLUMNS * ROWS MUST BE A PERFECT SQUARE
 
-#First enter the number of rows
+1. First enter the number of rows
 the default number of rows is 5
 
 #Then enter the number of columns
