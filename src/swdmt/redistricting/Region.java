@@ -73,18 +73,18 @@ public class Region implements java.io.Serializable {
     }
 
    /**
-    * Creates a region based on a Collection of Voters
-    * Uses each voters information to update location, voters and voterMap
-    * @param voterCollection is a Collection of Voters
+    * Creates a region based on a Collection of Voters.
+    * Uses each voters information to update location, voters and voterMap.
+    * @param voterCollection is a Collection of Voters.
     */
     public Region(final Collection<Voter> voterCollection) {
         this.locations = new TreeSet<>();
-	this.voters = new HashSet<>();
-	this.voterMap = new HashMap<>();
-	for (Voter v : voterCollection) {
-	    voters.add(v);
-	    locations.add(v.location());
-	    voterMap.put(v.location(), v); 
+        this.voters = new HashSet<>();
+        this.voterMap = new HashMap<>();
+        for (Voter v : voterCollection) {
+	    this.voters.add(v);
+	    this.locations.add(v.location());
+	    this.voterMap.put(v.location(), v); 
 	}
     } 
 
