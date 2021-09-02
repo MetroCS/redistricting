@@ -16,8 +16,8 @@ Initial Scope
 Expanded Scope
 - A user interface for redistricting scenario exploration
 
-## Stakeholder Types
+### Stakeholder Identification
 
-- User: public, students, novice programmers
-- Educator: instructors, mentors, tutors
-- Maintainer: project developers, maintainers, and quality engineers
+- *User*: public, students, programmers (including novice and experienced)
+- *Educator*: instructors, mentors, tutors
+- *Maintainer*: project developers, maintainers, and quality engineers
