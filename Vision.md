@@ -9,9 +9,15 @@ This project is intended to support the development of a redistricting tool that
 - Demonstrates how redistricting can be used to establish an advantage for a political party or group (Gerrymandering); and
 - Facilitates incrementally adding functionality to its modeling capability.
 
+### Scope
 
-## Stakeholder Types
+Initial Scope
+- A library (Java package) that provides utilities for building programs that investigate redistricting scenarios
+Expanded Scope
+- A user interface for redistricting scenario exploration
 
-- User: public, students, novice programmers
-- Educator: instructors, mentors, tutors
-- Maintainer: project developers, maintainers, and quality engineers
+### Stakeholder Identification
+
+- *User*: public, students, programmers (including novice and experienced)
+- *Educator*: instructors, mentors, tutors
+- *Maintainer*: project developers, maintainers, and quality engineers
