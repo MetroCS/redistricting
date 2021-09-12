@@ -11,9 +11,9 @@ This project is intended to support the development of a redistricting tool that
 
 ### Scope
 
-Initial Scope
+#### Initial Scope
 - A library (Java package) that provides utilities for building programs that investigate redistricting scenarios
-Expanded Scope
+#### Expanded Scope
 - A user interface for redistricting scenario exploration
 
 ### Stakeholder Identification
