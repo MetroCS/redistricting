@@ -45,7 +45,7 @@ The program may be given a party preference and will attempt to create districts
 
 Using the example region, the program was asked to create five districts. It produced the following two outcomes demonstrating that either of the two parties could have a majority of the districts.
 
-### Run A Districts:  
+### Run 1 - Districts:  
 ```
 {(0, 0), (0, 1), (1, 0), (2, 0), (3, 0)}  
 {(0, 2), (0, 3), (0, 4), (1, 3), (2, 3)}  
@@ -53,22 +53,22 @@ Using the example region, the program was asked to create five districts. It pro
 {(1, 4), (2, 4), (3, 3), (3, 4), (4, 4)}   
 {(3, 1), (4, 0), (4, 1), (4, 2), (4, 3)}  
 ``` 
- ![Gerrymandered grid from Run A - Preference to Party A (3 of 5 districts)](images/NewfigureC.png)  
+ ![Gerrymandered grid from Run 1 - Preference to Party A (3 of 5 districts)](images/NewfigureC.png)  
  
  Preference to Party A (3 of 5 districts)
  
  
-### Run B Districts:  
+### Run 2 Districts:  
 ```{(0, i), (1, i), (2, i), (3, i), (4, i)}``` where 
 i specifies a column index 0 ≤ i < 5.
 
-![Gerrymandered Grid for Run B - Preference to Party B (5 of 5 districts)](images/NewfigureD.png) 
+![Gerrymandered Grid for Run 2 - Preference to Party B (5 of 5 districts)](images/NewfigureD.png) 
 
 Preference to Party B (5 of 5 districts)
  
  
-Run A defines 3 districts with preference to Party A, 2 districts with preference to party B, so results in a region preference to Party A.
-Run B defines all 5 districts with preference to Party B, so results in a region preference to Party B. 
+Run 1 defines 3 districts with preference to Party A, 2 districts with preference to party B, so results in a region preference to Party A.
+Run 2 defines all 5 districts with preference to Party B, so results in a region preference to Party B. 
 
 
 
