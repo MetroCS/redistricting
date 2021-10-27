@@ -1,6 +1,6 @@
 # Redistricting a Region into Districts
 
-An MSU Denver Computer Science project
+An MSU Denver Computer Sciences project
 
 ## Project Objective
 A computer programming library designed to support investigations of splitting a geographic region into election districts.
