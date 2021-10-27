@@ -1,6 +1,8 @@
 ## Redistricting Investigation
 
-Goal: Computer application that demonstrates the process of redistricting and illustrates potential impacts (including gerrymandering)
+Vision: Computer application that demonstrates the process of redistricting and illustrates potential impacts (including gerrymandering)
+
+Current Goal: Utility library for use in the development of applications that support investigation of potential impacts of redistricting
 
 ### [License](LICENSE)
 
