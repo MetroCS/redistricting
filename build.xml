@@ -201,7 +201,7 @@
         <filename name="**/*.java"/>
         <exclude name="**/*Test.java"/>
       </fileset>
-      <link href="https://docs.oracle.com/javase/8/docs/api/" />
+      <link href="https://docs.oracle.com/en/java/javase/11/docs/api/" />
     </javadoc>
   </target>
 
@@ -215,7 +215,7 @@
       <fileset dir="${src.dir}" casesensitive="yes" defaultexcludes="yes">
         <filename name="**/*.java"/>
       </fileset>
-      <link href="https://docs.oracle.com/javase/8/docs/api/" />
+      <link href="https://docs.oracle.com/en/java/javase/11/docs/api/" />
     </javadoc>
   </target>
 
