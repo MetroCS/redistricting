@@ -148,7 +148,9 @@
 
   <target name="run" depends="jar"
           description="Runs the development version of the program">
-    <java jar="${jar.dir}/${productname}.jar" fork="true"/>
+          <echo message="To run the demonstration:"/>
+          <echo message="Build using 'ant jar'"/>
+          <echo message="Run using 'java -jar build\jar\Redistricting.jar'"/>
   </target>
 
   <target name="unitTest" depends="test.junit.launcher, test.console.launcher" />
