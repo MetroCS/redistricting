@@ -55,6 +55,4 @@ dist/
 nbdist/
 nbactions.xml
 nb-configuration.xml
-help
 jacoco.exec
--help
