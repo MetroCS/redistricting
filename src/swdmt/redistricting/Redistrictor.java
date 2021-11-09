@@ -112,8 +112,7 @@ public final class Redistrictor implements java.io.Serializable {
      * size is within ±1 of the district size parameter.
      * @param theRegion the region
      * @param districtSize the size of the districts
-     * @return a set of all districts of the specified size
-     *     within a tolerance of ±1
+     * @return a set of any and all possible districts for a specified version.
      */
     public static Set<District> allDistrictsOfSpecificSize(
                                     final Region theRegion,
