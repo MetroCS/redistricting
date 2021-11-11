@@ -29,9 +29,8 @@ This project uses [Discussions](https://github.com/MetroCS/redistricting/discuss
 ### Apache Ant 
 * [Apache Ant](https://ant.apache.org/bindownload.cgi)
 
-#### Using Ant at the command line 
+#### Running the Demo using ant
 ```
    $ cd <directory containing build.xml>
-   $ ant all 
-   $ cd build
+   $ ant run
 ```
