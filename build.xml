@@ -46,7 +46,7 @@
   <property name="productname" value="Redistricting"/>
 
     <!-- identify main class -->
-  <property name="mainclass" value="swdmt.redistricting.RedistrictingDriver"/>
+  <property name="mainclass" value="swdmt.redistricting.RedistrictingDemo"/>
 
     <!-- checkstyle properties -->
   <property name="checkstyle.jar" value="${lib}/checkstyle.jar"/>
