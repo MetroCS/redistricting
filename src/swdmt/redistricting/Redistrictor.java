@@ -107,13 +107,11 @@ public final class Redistrictor implements java.io.Serializable {
      * specified size from a given region.
      * If the region is smaller than the specified size,
      * then a single district is returned.
-     * Otherwise, creates a set of all districts of
-     * approximately equal size; that is, each district's
-     * size is within ±1 of the district size parameter.
+     * Otherwise, a set is created that contains all 
+     * districts of the specified size.
      * @param theRegion the region
      * @param districtSize the size of the districts
      * @return a set of all districts of the specified size
-     *     within a tolerance of ±1
      */
     public static Set<District> allDistrictsOfSpecificSize(
                                     final Region theRegion,
