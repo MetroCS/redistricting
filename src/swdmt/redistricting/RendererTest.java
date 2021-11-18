@@ -1,102 +1,80 @@
 package swdmt.redistricting;
-
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.HashSet;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 
 /**
  * The test class for Renderer.
  *
- * @author Dr. Jody Paul
+ * @author  Dr. Jody Paul
  * @version 20191201
  */
 public class RendererTest {
-    /**
-     * Render of an arbitrary location.
-     */
+    /** Render of an arbitrary location. */
     private static final char R_AR = '*';
-    /**
-     * Render of a location with NONE voter.
-     */
+    /** Render of a location with NONE voter. */
     private static final char R_NO = Party.NONE.id();
-    /**
-     * Render of a location with UNAFFILIATED voter.
-     */
+    /** Render of a location with UNAFFILIATED voter. */
     private static final char R_UN = Party.UNAFFILIATED.id();
-    /**
-     * Render of a location with PARTY0 voter.
-     */
+    /** Render of a location with PARTY0 voter. */
     private static final char R_P0 = Party.PARTY0.id();
-    /**
-     * Render of a location with PARTY1 voter.
-     */
+    /** Render of a location with PARTY1 voter. */
     private static final char R_P1 = Party.PARTY1.id();
-    /**
-     * Render of a location with THIRDPARTY voter.
-     */
+    /** Render of a location with THIRDPARTY voter. */
     private static final char R_TP = Party.THIRDPARTY.id();
 
-    /**
-     * Check rendering of region of size 1, no affiliations.
-     */
+    /** Check rendering of region of size 1, no affiliations. */
     @Test
     public void renderAsASCIIRegionSize1Test() {
         Region region1 = new Region(1);
-        Assertions.assertEquals("+---+\n"
-                        + "| " + R_AR + " |\n"
-                        + "+---+\n",
-                Renderer.renderAsASCII(region1));
+        assertEquals("+---+\n"
+                   + "| " + R_AR + " |\n"
+                   + "+---+\n",
+                     Renderer.renderAsASCII(region1));
     }
 
-    /**
-     * Check rendering of region of size 1 with affiliation.
-     */
+    /** Check rendering of region of size 1 with affiliation. */
     @Test
     public void renderAsASCIIRegionSize1AffiliationTest() {
         Region region1 = new Region(1);
-        Assertions.assertEquals("+---+\n"
-                        + "| " + R_NO + " |\n"
-                        + "+---+\n",
-                Renderer.renderAsASCII(true, region1));
+        assertEquals("+---+\n"
+                   + "| " + R_NO + " |\n"
+                   + "+---+\n",
+                     Renderer.renderAsASCII(true, region1));
     }
 
-    /**
-     * Check rendering of square region of size 16, no affiliations.
-     */
+    /** Check rendering of square region of size 16, no affiliations. */
     @Test
     public void renderAsASCIIRegionSize16Test() {
         Region region2 = new Region(16);
-        Assertions.assertEquals("+---+---+---+---+\n"
-                        + "| " + R_AR + " | " + R_AR + " | " + R_AR + " | " + R_AR + " |\n"
-                        + "+---+---+---+---+\n"
-                        + "| " + R_AR + " | " + R_AR + " | " + R_AR + " | " + R_AR + " |\n"
-                        + "+---+---+---+---+\n"
-                        + "| " + R_AR + " | " + R_AR + " | " + R_AR + " | " + R_AR + " |\n"
-                        + "+---+---+---+---+\n"
-                        + "| " + R_AR + " | " + R_AR + " | " + R_AR + " | " + R_AR + " |\n"
-                        + "+---+---+---+---+\n",
-                Renderer.renderAsASCII(region2));
+        assertEquals("+---+---+---+---+\n"
+                   + "| " + R_AR + " | " + R_AR + " | " + R_AR + " | " + R_AR + " |\n"
+                   + "+---+---+---+---+\n"
+                   + "| " + R_AR + " | " + R_AR + " | " + R_AR + " | " + R_AR + " |\n"
+                   + "+---+---+---+---+\n"
+                   + "| " + R_AR + " | " + R_AR + " | " + R_AR + " | " + R_AR + " |\n"
+                   + "+---+---+---+---+\n"
+                   + "| " + R_AR + " | " + R_AR + " | " + R_AR + " | " + R_AR + " |\n"
+                   + "+---+---+---+---+\n",
+                     Renderer.renderAsASCII(region2));
     }
 
-    /**
-     * Check rendering of square region of size 16 with affiliation.
-     */
+    /** Check rendering of square region of size 16 with affiliation. */
     @Test
     public void renderAsASCIIregionSize16AffiliationTest() {
         Region region2 = new Region(16);
-        Assertions.assertEquals("+---+---+---+---+\n"
-                        + "| " + R_NO + " | " + R_NO + " | " + R_NO + " | " + R_NO + " |\n"
-                        + "+---+---+---+---+\n"
-                        + "| " + R_NO + " | " + R_NO + " | " + R_NO + " | " + R_NO + " |\n"
-                        + "+---+---+---+---+\n"
-                        + "| " + R_NO + " | " + R_NO + " | " + R_NO + " | " + R_NO + " |\n"
-                        + "+---+---+---+---+\n"
-                        + "| " + R_NO + " | " + R_NO + " | " + R_NO + " | " + R_NO + " |\n"
-                        + "+---+---+---+---+\n",
-                Renderer.renderAsASCII(true, region2));
+        assertEquals("+---+---+---+---+\n"
+                   + "| " + R_NO + " | " + R_NO + " | " + R_NO + " | " + R_NO + " |\n"
+                   + "+---+---+---+---+\n"
+                   + "| " + R_NO + " | " + R_NO + " | " + R_NO + " | " + R_NO + " |\n"
+                   + "+---+---+---+---+\n"
+                   + "| " + R_NO + " | " + R_NO + " | " + R_NO + " | " + R_NO + " |\n"
+                   + "+---+---+---+---+\n"
+                   + "| " + R_NO + " | " + R_NO + " | " + R_NO + " | " + R_NO + " |\n"
+                   + "+---+---+---+---+\n",
+                     Renderer.renderAsASCII(true, region2));
     }
 
     /**
@@ -115,14 +93,14 @@ public class RendererTest {
             }
         }
         Region region3 = new Region(testLocs, testVoters);
-        Assertions.assertEquals("+---+---+---+---+---+\n"
-                        + "| " + R_AR + " | " + R_AR + " | " + R_AR + " | " + R_AR + " | " + R_AR + " |\n"
-                        + "+---+---+---+---+---+\n"
-                        + "| " + R_AR + " | " + R_AR + " | " + R_AR + " | " + R_AR + " | " + R_AR + " |\n"
-                        + "+---+---+---+---+---+\n"
-                        + "| " + R_AR + " | " + R_AR + " | " + R_AR + " | " + R_AR + " | " + R_AR + " |\n"
-                        + "+---+---+---+---+---+\n",
-                Renderer.renderAsASCII(region3));
+        assertEquals("+---+---+---+---+---+\n"
+                   + "| " + R_AR + " | " + R_AR + " | " + R_AR + " | " + R_AR + " | " + R_AR + " |\n"
+                   + "+---+---+---+---+---+\n"
+                   + "| " + R_AR + " | " + R_AR + " | " + R_AR + " | " + R_AR + " | " + R_AR + " |\n"
+                   + "+---+---+---+---+---+\n"
+                   + "| " + R_AR + " | " + R_AR + " | " + R_AR + " | " + R_AR + " | " + R_AR + " |\n"
+                   + "+---+---+---+---+---+\n",
+                     Renderer.renderAsASCII(region3));
     }
 
 
@@ -142,14 +120,14 @@ public class RendererTest {
             }
         }
         Region region3 = new Region(testLocs, testVoters);
-        Assertions.assertEquals("+---+---+---+---+---+\n"
-                        + "| " + R_P0 + " | " + R_P0 + " | " + R_P0 + " | " + R_P0 + " | " + R_P0 + " |\n"
-                        + "+---+---+---+---+---+\n"
-                        + "| " + R_P0 + " | " + R_P0 + " | " + R_P0 + " | " + R_P0 + " | " + R_P0 + " |\n"
-                        + "+---+---+---+---+---+\n"
-                        + "| " + R_P0 + " | " + R_P0 + " | " + R_P0 + " | " + R_P0 + " | " + R_P0 + " |\n"
-                        + "+---+---+---+---+---+\n",
-                Renderer.renderAsASCII(true, region3));
+        assertEquals("+---+---+---+---+---+\n"
+                   + "| " + R_P0 + " | " + R_P0 + " | " + R_P0 + " | " + R_P0 + " | " + R_P0 + " |\n"
+                   + "+---+---+---+---+---+\n"
+                   + "| " + R_P0 + " | " + R_P0 + " | " + R_P0 + " | " + R_P0 + " | " + R_P0 + " |\n"
+                   + "+---+---+---+---+---+\n"
+                   + "| " + R_P0 + " | " + R_P0 + " | " + R_P0 + " | " + R_P0 + " | " + R_P0 + " |\n"
+                   + "+---+---+---+---+---+\n",
+                     Renderer.renderAsASCII(true, region3));
     }
 
     /**
@@ -173,20 +151,20 @@ public class RendererTest {
         testVoters.add(voter2);
         testVoters.add(voter3);
         Region region4 = new Region(testLocs, testVoters);
-        Assertions.assertEquals("+---+---+---+---+---+---+\n"
-                        + "| " + R_AR + " |   |   |   |   |   |\n"
-                        + "+---+---+---+---+---+---+\n"
-                        + "|   |   |   |   |   |   |\n"
-                        + "+---+---+---+---+---+---+\n"
-                        + "|   |   |   |   |   |   |\n"
-                        + "+---+---+---+---+---+---+\n"
-                        + "|   |   |   |   |   | " + R_AR + " |\n"
-                        + "+---+---+---+---+---+---+\n"
-                        + "|   |   |   |   |   |   |\n"
-                        + "+---+---+---+---+---+---+\n"
-                        + "|   |   | " + R_AR + " |   |   |   |\n"
-                        + "+---+---+---+---+---+---+\n",
-                Renderer.renderAsASCII(region4));
+        assertEquals("+---+---+---+---+---+---+\n"
+                   + "| " + R_AR + " |   |   |   |   |   |\n"
+                   + "+---+---+---+---+---+---+\n"
+                   + "|   |   |   |   |   |   |\n"
+                   + "+---+---+---+---+---+---+\n"
+                   + "|   |   |   |   |   |   |\n"
+                   + "+---+---+---+---+---+---+\n"
+                   + "|   |   |   |   |   | " + R_AR + " |\n"
+                   + "+---+---+---+---+---+---+\n"
+                   + "|   |   |   |   |   |   |\n"
+                   + "+---+---+---+---+---+---+\n"
+                   + "|   |   | " + R_AR + " |   |   |   |\n"
+                   + "+---+---+---+---+---+---+\n",
+                     Renderer.renderAsASCII(region4));
     }
 
     /**
@@ -210,20 +188,20 @@ public class RendererTest {
         testVoters.add(voter2);
         testVoters.add(voter3);
         Region region4 = new Region(testLocs, testVoters);
-        Assertions.assertEquals("+---+---+---+---+---+---+\n"
-                        + "| " + R_P0 + " |   |   |   |   |   |\n"
-                        + "+---+---+---+---+---+---+\n"
-                        + "|   |   |   |   |   |   |\n"
-                        + "+---+---+---+---+---+---+\n"
-                        + "|   |   |   |   |   |   |\n"
-                        + "+---+---+---+---+---+---+\n"
-                        + "|   |   |   |   |   | " + R_UN + " |\n"
-                        + "+---+---+---+---+---+---+\n"
-                        + "|   |   |   |   |   |   |\n"
-                        + "+---+---+---+---+---+---+\n"
-                        + "|   |   | " + R_P1 + " |   |   |   |\n"
-                        + "+---+---+---+---+---+---+\n",
-                Renderer.renderAsASCII(true, region4));
+        assertEquals("+---+---+---+---+---+---+\n"
+                   + "| " + R_P0 + " |   |   |   |   |   |\n"
+                   + "+---+---+---+---+---+---+\n"
+                   + "|   |   |   |   |   |   |\n"
+                   + "+---+---+---+---+---+---+\n"
+                   + "|   |   |   |   |   |   |\n"
+                   + "+---+---+---+---+---+---+\n"
+                   + "|   |   |   |   |   | " + R_UN + " |\n"
+                   + "+---+---+---+---+---+---+\n"
+                   + "|   |   |   |   |   |   |\n"
+                   + "+---+---+---+---+---+---+\n"
+                   + "|   |   | " + R_P1 + " |   |   |   |\n"
+                   + "+---+---+---+---+---+---+\n",
+                     Renderer.renderAsASCII(true, region4));
     }
 
     /**
@@ -247,14 +225,14 @@ public class RendererTest {
         testVoters.add(voter2);
         testVoters.add(voter3);
         Region region5 = new Region(testLocs, testVoters);
-        Assertions.assertEquals("+---+---+---+---+---+---+\n"
-                        + "| " + R_AR + " |   |   |   |   |   |\n"
-                        + "+---+---+---+---+---+---+\n"
-                        + "|   |   |   |   |   | " + R_AR + " |\n"
-                        + "+---+---+---+---+---+---+\n"
-                        + "|   | " + R_AR + " |   |   |   |   |\n"
-                        + "+---+---+---+---+---+---+\n",
-                Renderer.renderAsASCII(region5));
+        assertEquals("+---+---+---+---+---+---+\n"
+                   + "| " + R_AR + " |   |   |   |   |   |\n"
+                   + "+---+---+---+---+---+---+\n"
+                   + "|   |   |   |   |   | " + R_AR + " |\n"
+                   + "+---+---+---+---+---+---+\n"
+                   + "|   | " + R_AR + " |   |   |   |   |\n"
+                   + "+---+---+---+---+---+---+\n",
+                     Renderer.renderAsASCII(region5));
     }
 
     /**
@@ -278,13 +256,13 @@ public class RendererTest {
         testVoters.add(voter2);
         testVoters.add(voter3);
         Region region5 = new Region(testLocs, testVoters);
-        Assertions.assertEquals("+---+---+---+---+---+---+\n"
-                        + "| " + R_P0 + " |   |   |   |   |   |\n"
-                        + "+---+---+---+---+---+---+\n"
-                        + "|   |   |   |   |   | " + R_UN + " |\n"
-                        + "+---+---+---+---+---+---+\n"
-                        + "|   | " + R_P1 + " |   |   |   |   |\n"
-                        + "+---+---+---+---+---+---+\n",
-                Renderer.renderAsASCII(true, region5));
+        assertEquals("+---+---+---+---+---+---+\n"
+                   + "| " + R_P0 + " |   |   |   |   |   |\n"
+                   + "+---+---+---+---+---+---+\n"
+                   + "|   |   |   |   |   | " + R_UN + " |\n"
+                   + "+---+---+---+---+---+---+\n"
+                   + "|   | " + R_P1 + " |   |   |   |   |\n"
+                   + "+---+---+---+---+---+---+\n",
+                     Renderer.renderAsASCII(true, region5));
     }
 }
