@@ -147,10 +147,10 @@
   </target>
 
   <target name="run" depends="jar"
-          description="Gives Instructions on how to run">
+          description="Gives instructions on how to run">
           <echo message="To run the demonstration:"/>
-          <echo message="Build using 'ant jar'"/>
-          <echo message="Run using 'java -jar ${jar.dir}\${productname}.jar'"/>
+          <echo message="Build using 'ant Run'"/>
+          <echo message="Run using 'java -jar ${jar.dir}/${productname}.jar'"/>
   </target>
 
   <target name="unitTest" depends="test.junit.launcher, test.console.launcher" />
