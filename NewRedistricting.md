@@ -16,7 +16,7 @@ If the number of voters in a district is even, and the number of voters associat
 The program is given a specified region a two-dimensional grid of locations (using row and column indices).  Each location represents the voters residing at that location.  Each voter is identified by their party affiliation.  An example of such a region is given here.
 In this example the region is a 5x5 grid of locations. There is exactly one voter associated with each location. Each voter is affiliated with either Party A or Party B. Voters associated with Party A occupy grid locations (0, 0), (0, 1), (1, 1), (1, 2), (1, 4), (2, 0), (3, 2), (3, 3), and (4, 4). All other locations are occupied by voters associated with Party B.
 
-![5x5 Region of Locations matching the textual description](images/NewfigureA.png)
+![5x5 Region of Locations matching the textual description](/images/NewfigureA.png)
  
 ## Districts
 The program must divide the region into a specified number of districts. Each district must contain the same number of voters as all other districts within practical constraints (e.g., allows off-by-one where the number of voters is not evenly divisible by the number of districts).
@@ -24,7 +24,7 @@ A district can be represented as a set of grid coordinates.  For example { (0,0,
 Districts must be non-overlapping and contiguous. That is, each location within the same district must share an edge with at least one other location in that district.
 For example, if the number of districts specified for the example region is 5, one such outcome would simply divide the grid into rows.  In this case, each district is made up of the set of locations    { (i, 0), (i, 1), (i, 2), (i, 3), (i, 4) }, where i specifies a row index 0 ≤ i < 5. 
  
-![Example Region with Districts by Row](images/NewfigureB.png)
+![Example Region with Districts by Row](/images/NewfigureB.png)
  
  
 ## Favored Party
