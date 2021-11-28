@@ -67,6 +67,11 @@ public class RegionTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
+    public void squareRegionNonSquareSizeTestNum3() {
+        Region r = new Region(3);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void squareRegionExtremeSizeTest() {
         Region r = new Region(Integer.MAX_VALUE);
     }
