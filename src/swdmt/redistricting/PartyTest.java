@@ -1,9 +1,8 @@
 package swdmt.redistricting;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
-import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
-
 /**
  * Tests of Party enum.
  *
@@ -16,8 +15,8 @@ public class PartyTest {
      */
     @Test
     public void verifyPartyBasics() {
-        MatcherAssert.assertThat(Party.valueOf("NONE"), notNullValue());
-        MatcherAssert.assertThat(Party.valueOf("UNAFFILIATED"), notNullValue());
+        assertThat(Party.valueOf("NONE"), notNullValue());
+        assertThat(Party.valueOf("UNAFFILIATED"), notNullValue());
     }
 
     /**
@@ -26,7 +25,7 @@ public class PartyTest {
      */
     @Test
     public void verifyPartyID() {
-        MatcherAssert.assertThat(Party.valueOf("NONE").id(), is('?'));
-        MatcherAssert.assertThat(Party.valueOf("UNAFFILIATED").id(), is('U'));
+        assertThat(Party.valueOf("NONE").id(), is('?'));
+        assertThat(Party.valueOf("UNAFFILIATED").id(), is('U'));
     }
 }
