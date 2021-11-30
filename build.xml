@@ -149,7 +149,7 @@
   <target name="run" depends="jar"
           description="Gives instructions on how to run">
           <echo message="To run the demonstration:"/>
-          <echo message="Build using 'ant Run'"/>
+          <echo message="Build using 'ant run'"/>
           <echo message="Run using 'java -jar ${jar.dir}/${productname}.jar'"/>
   </target>
 
