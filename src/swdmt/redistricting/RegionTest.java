@@ -1,11 +1,14 @@
 package swdmt.redistricting;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.hamcrest.core.Is.is;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Collection;
+
 /**
  * Tests for class Region.
  *
@@ -40,6 +43,20 @@ public class RegionTest {
      */
     @After
     public void tearDown() {
+    }
+
+    @Test
+    public void voterRegionInputConstructorTest() {
+        Voter voterA = new Voter(Party.PARTY0, new Location(0, 0));
+        Voter voterB = new Voter(Party.PARTY1, new Location(1, 1));
+        Collection<Voter> voters = new HashSet<Voter>();
+        voters.add(voterA);
+        voters.add(voterB);
+        Region region = new Region(voters);
+        for (Voter v : voters) {
+            assertTrue(region.voters().contains(v));
+            assertTrue(region.locations().contains(v.location()));
+        }
     }
 
     @Test
