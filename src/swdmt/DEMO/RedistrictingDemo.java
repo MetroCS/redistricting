@@ -1,16 +1,17 @@
 package swdmt.redistricting;
+
+import java.util.HashSet;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
-import java.util.HashSet;
-import javax.swing.JOptionPane;
+
 /**
- * I/O driver for Redistricting application.
+ * Demonstration of the redistricting application.
  *
  * @author Dr. Jody Paul
  * @version 20191130
  */
-public final class RedistrictingDriver {
+public final class RedistrictingDemo {
     /** Display name of this project. */
     private static final String PROJECT_NAME = "Redistricting";
     /** Default number of rows in new region. */
@@ -23,10 +24,13 @@ public final class RedistrictingDriver {
     private static final int DEFAULT_NUM_DISTRICTS = 5;
 
     /** Hidden constructor. */
-    private RedistrictingDriver() { }
+    private RedistrictingDemo() { }
 
     /**
-     * Main driver for redistricting application.
+     * Main driver for redistricting Demo.
+     * Prompts user for formatting data to create districts.
+     * Creates voters and assigns them to locations with arbitrary parties.
+     *
      * @param args ignored
      */
     public static void main(final String[] args) {
