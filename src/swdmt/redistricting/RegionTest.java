@@ -1,15 +1,19 @@
 package swdmt.redistricting;
+
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.hamcrest.core.Is.is;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Collection;
+
 /**
  * Tests for class Region.
  *
- * @author  Dr. Jody Paul
+ * @author Dr. Jody Paul
  * @version 20191006
  */
 public class RegionTest {
@@ -40,6 +44,20 @@ public class RegionTest {
      */
     @After
     public void tearDown() {
+    }
+
+    @Test
+    public void voterRegionInputConstructorTest() {
+        Voter voterA = new Voter(Party.PARTY0, new Location(0, 0));
+        Voter voterB = new Voter(Party.PARTY1, new Location(1, 1));
+        Collection<Voter> voters = new HashSet<Voter>();
+        voters.add(voterA);
+        voters.add(voterB);
+        Region region = new Region(voters);
+        for (Voter v : voters) {
+            assertTrue(region.voters().contains(v));
+            assertTrue(region.locations().contains(v.location()));
+        }
     }
 
     @Test
@@ -81,7 +99,7 @@ public class RegionTest {
         int maxRegionSide = (int) Math.sqrt(MAX_REGION_SIZE);
         for (int i = 0; i < maxRegionSide; i++) {
             assertThat("Square region test failed at size " + i * i,
-                       i * i, is((new Region(i * i)).size()));
+                    i * i, is((new Region(i * i)).size()));
         }
     }
 
@@ -90,7 +108,7 @@ public class RegionTest {
         int maxRegionSide = (int) Math.sqrt(MAX_REGION_SIZE);
         for (int i = 0; i < maxRegionSide; i++) {
             assertThat("Square region number of voters failed at size " + i * i,
-                       (new Region(i * i)).numberOfVoters(), is(i * i));
+                    (new Region(i * i)).numberOfVoters(), is(i * i));
         }
     }
 
@@ -110,14 +128,18 @@ public class RegionTest {
         voterSet.add(voter2);
 
         Region region = new Region(locationSet, voterSet);
-        assertThat("Region with all voters in location set test failed; Location and Voter sets of size 2 produced Region with wrong size.", region.size(), is(2));
-        assertThat("Region with all voters in location set test failed; Location and Voter sets of size 2 produced Region with wrong number of voters.", region.numberOfVoters(), is(2));
+        assertThat(
+                "Region with all voters in location set test failed; Location and Voter sets of size 2 produced Region with wrong size.",
+                region.size(), is(2));
+        assertThat(
+                "Region with all voters in location set test failed; Location and Voter sets of size 2 produced Region with wrong number of voters.",
+                region.numberOfVoters(), is(2));
     }
 
     @Test(timeout = MAX_TIMEOUT)
     public void regionWithVoterNotInLocationSetTest() {
-        Location location3 = new Location(0,3);
-        Voter voter3 = new Voter(Party.NONE, new Location(0,2));
+        Location location3 = new Location(0, 3);
+        Voter voter3 = new Voter(Party.NONE, new Location(0, 2));
 
         Set<Location> locationSet = new HashSet<Location>();
         locationSet.add(location3);
@@ -126,7 +148,11 @@ public class RegionTest {
         voterSet.add(voter3);
 
         Region region = new Region(locationSet, voterSet);
-        assertThat("Region with no voters in the location set test failed; given Location set size 1 and Voter set size 1 produced Region with wrong size.", region.size(), is(1));
-        assertThat("Region with no voters in the location set test failed; given Location set size 1 and Voter set size 1 produced wrong number of voters in the region.", region.numberOfVoters(), is(0));
+        assertThat(
+                "Region with no voters in the location set test failed; given Location set size 1 and Voter set size 1 produced Region with wrong size.",
+                region.size(), is(1));
+        assertThat(
+                "Region with no voters in the location set test failed; given Location set size 1 and Voter set size 1 produced wrong number of voters in the region.",
+                region.numberOfVoters(), is(0));
     }
 }
