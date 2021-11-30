@@ -71,8 +71,8 @@ public final class RedistrictingDriver {
      * @return string entered by user
      */
     private static String askUser(final String prompt) {
-        System.out.print(prompt);
         Scanner console = new Scanner(System.in);
+        System.out.print(prompt);
         return console.next();
     }
 }
