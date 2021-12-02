@@ -48,9 +48,8 @@ public class RegionTest {
     }
 
     /**
-     * Test case for Region(Collection<Voter>)
-     * Should return True
-     */
+    * Test case for Region(Collection<Voter>)
+    */
     @Test
     public void voterRegionInputConstructorTest() {
         Voter voterA = new Voter(Party.PARTY0, new Location(0, 0));
@@ -59,6 +58,8 @@ public class RegionTest {
         voters.add(voterA);
         voters.add(voterB);
         Region region = new Region(voters);
+        assertThat(region.voters().size(), is(2));
+        assertThat(region.locations().size(), is(2));
         for (Voter v : voters) {
             assertTrue(region.voters().contains(v));
             assertTrue(region.locations().contains(v.location()));
