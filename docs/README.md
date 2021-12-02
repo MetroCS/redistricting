@@ -6,7 +6,7 @@ An MSU Denver Computer Sciences project
 A computer programming library designed to support investigations of splitting a geographic region into election districts.
 
 ___
-API: [swdmt/redistricting](api/index.html)
+Package API: [redistricting API](api/index.html)
 
 Project Repository: [https://github.com/MetroCS/redistricting](https://github.com/MetroCS/redistricting)
 
