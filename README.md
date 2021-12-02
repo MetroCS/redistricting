@@ -1,8 +1,6 @@
 ## Redistricting Investigation
 
-Vision: Computer application that demonstrates the process of redistricting and illustrates potential impacts (including gerrymandering)
-
-Current Goal: Utility library for use in the development of applications that support investigation of potential impacts of redistricting
+Goal: A Java utility package that supports the development of applications to investigate potential impacts of redistricting
 
 ### [License](LICENSE)
 
