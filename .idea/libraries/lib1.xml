@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="lib1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/checkstyle.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/ant-colorizor.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/java2html.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/j2h.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
