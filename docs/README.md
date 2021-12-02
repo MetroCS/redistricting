@@ -3,10 +3,10 @@
 An MSU Denver Computer Sciences project
 
 ## Project Objective
-A computer programming library designed to support investigations of splitting a geographic region into election districts.
+A Java utility library designed to support investigations of splitting a geographic region into election districts.
 
 ___
-Package API: [redistricting API](api/index.html)
+Package Documentation: [redistricting API](api/index.html)
 
 Project Repository: [https://github.com/MetroCS/redistricting](https://github.com/MetroCS/redistricting)
 
