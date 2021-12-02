@@ -146,10 +146,10 @@
     <echo message="Jar file has been created, and can be found at: ${jar.dir}/${productname}.jar" />
   </target>
 
-  <target name="run" depends="jar"
+  <target name="run"
           description="Gives instructions on how to run">
           <echo message="To run the demonstration:"/>
-          <echo message="Build using 'ant run'"/>
+          <echo message="Build using 'ant jar'"/>
           <echo message="Run using 'java -jar ${jar.dir}/${productname}.jar'"/>
   </target>
 
