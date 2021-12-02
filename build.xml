@@ -42,7 +42,7 @@
     </not>
   </condition>
 
-  <!-- Identify product name -->
+    <!-- Identify product name -->
   <property name="productname" value="Redistricting"/>
 
     <!-- identify main class -->
@@ -201,7 +201,7 @@
         <filename name="**/*.java"/>
         <exclude name="**/*Test.java"/>
       </fileset>
-      <link href="${https://docs.oracle.com/javase/17/docs/api/}" />
+      <link href="https://docs.oracle.com/javase/8/docs/api/" />
     </javadoc>
   </target>
 
@@ -215,7 +215,7 @@
       <fileset dir="${src.dir}" casesensitive="yes" defaultexcludes="yes">
         <filename name="**/*.java"/>
       </fileset>
-      <link href="${https://docs.oracle.com/javase/17/docs/api/}" />
+      <link href="https://docs.oracle.com/javase/8/docs/api/" />
     </javadoc>
   </target>
 

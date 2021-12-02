@@ -1,24 +1,21 @@
 package swdmt.redistricting;
+
+import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
-import java.util.Set;
+import java.util.Arrays;
 import java.util.HashSet;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import java.util.Set;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * The test class for Star Generator.
- *
- */
-public class StarGeneratorTest {
-
+class StarGeneratorTest {
     /**
      * Ensure each pattern generated has the correct number of Locations,
      * and there are no duplicates in any of the generated patterns.
      */
     @Test
-    public void generatePatternTest() {
+    void generatePatternTest() {
         int n = 100;
         ArrayList<ArrayList<Location>> patterns = StarGenerator.generatePattern(n);
         for(ArrayList<Location> pattern: patterns) {
@@ -28,10 +25,10 @@ public class StarGeneratorTest {
             for(Location currentDistrict: pattern) {
                 if(previousDistrict != null) {
                     assertTrue(
-                            currentDistrict.xCoordinate() + 1 == previousDistrict.xCoordinate() ||
-                                    currentDistrict.xCoordinate() - 1 == previousDistrict.xCoordinate() ||
-                                    currentDistrict.yCoordinate() + 1 == previousDistrict.yCoordinate() ||
-                                    currentDistrict.yCoordinate() - 1 == previousDistrict.yCoordinate()
+                currentDistrict.xCoordinate() + 1 == previousDistrict.xCoordinate() ||
+                        currentDistrict.xCoordinate() - 1 == previousDistrict.xCoordinate() ||
+                        currentDistrict.yCoordinate() + 1 == previousDistrict.yCoordinate() ||
+                        currentDistrict.yCoordinate() - 1 == previousDistrict.yCoordinate()
                     );
                 }
                 previousDistrict = currentDistrict;
