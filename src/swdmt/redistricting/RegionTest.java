@@ -4,9 +4,8 @@ import static org.hamcrest.core.Is.is;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.*;
-
+import java.util.Set;
+import java.util.HashSet;
 /**
  * Tests for class Region.
  *
@@ -66,13 +65,6 @@ public class RegionTest {
     public void squareRegionNonSquareSizeTest() {
         Region r = new Region(15);
     }
-    
-
-
-    @Test(expected = IllegalArgumentException.class)
-    public void squareRegionNonSquareSizeTestNum3() {
-        Region r = new Region(3);
-    }
 
     @Test(expected = IllegalArgumentException.class)
     public void squareRegionExtremeSizeTest() {
@@ -96,38 +88,6 @@ public class RegionTest {
                        (new Region(i * i)).numberOfVoters(), is(i * i));
         }
     }
-
-    /*
-    In this test we test the constructor for Region.java that uses one parameter of a collection of voters. Where
-    we tested the size of the region, the number of voters and the location of voters.
-     */
-    @Test(timeout = MAX_TIMEOUT)
-    public void voterCollectionTest() {
-        Collection<Voter> regionVoter = new HashSet<Voter>();
-        Set<Location> regionLocation = new TreeSet<Location>();
-        Location location1 = new Location(0, 0);
-        Location location2 = new Location(0, 1);
-        Location location3 = new Location(1, 0);
-        Location location4 = new Location(1, 1);
-        Voter voter1 = new Voter(Party.NONE, location1);
-        Voter voter2 = new Voter(Party.PARTY0, location2);
-        Voter voter3 = new Voter(Party.PARTY1, location3);
-        Voter voter4 = new Voter(Party.NONE, location4);
-        regionVoter.add(voter1);
-        regionVoter.add(voter2);
-        regionVoter.add(voter3);
-        regionVoter.add(voter4);
-        regionLocation.add(location1);
-        regionLocation.add(location2);
-        regionLocation.add(location3);
-        regionLocation.add(location4);
-        Region region = new Region(regionVoter);
-        assertThat(4,is(region.size()));
-        assertThat(4, is(region.numberOfVoters()));
-        assertThat(regionLocation, is(region.locations()));
-        }
-
-
 
     @Test(timeout = MAX_TIMEOUT)
     public void regionWithAllVotersInLocationSetTest() {
