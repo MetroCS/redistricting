@@ -1,0 +1,27 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/spotbugs/lib/spotbugs-annotations.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spotbugs/lib/asm-commons-7.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spotbugs/lib/dom4j-2.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spotbugs/lib/slf4j-api-1.8.0-alpha2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spotbugs/lib/spotbugs.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spotbugs/lib/jcip-annotations-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spotbugs/lib/jaxen-1.1.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spotbugs/lib/commons-lang-2.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spotbugs/lib/spotbugs-ant.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spotbugs/lib/jsr305-3.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spotbugs/lib/asm-analysis-7.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spotbugs/lib/slf4j-api-1.8.0-beta2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spotbugs/lib/asm-7.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spotbugs/lib/asm-util-7.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spotbugs/lib/log4j-slf4j18-impl-2.11.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spotbugs/lib/log4j-api-2.11.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spotbugs/lib/bcel-6.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spotbugs/lib/log4j-core-2.11.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spotbugs/lib/asm-tree-7.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
