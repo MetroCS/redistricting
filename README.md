@@ -6,7 +6,7 @@ Goal: A Java utility package that supports the development of applications to in
 
 ### [Vision & Stakeholders](Vision.md)
 
-### [Redistricting Program Description](RedistrictingProgram.md)
+### [Project Description and Terminology](Redistricting.md)
 
 ### [Contributing](Contributing.md)
 
