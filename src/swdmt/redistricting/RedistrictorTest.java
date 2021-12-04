@@ -1,11 +1,12 @@
 package swdmt.redistricting;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.AnyOf.anyOf;
-import static org.junit.Assert.assertTrue;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import java.util.Set;
 /**
  * Tests for redistrictor.
@@ -25,7 +26,7 @@ public class RedistrictorTest {
      *
      * Called before every test case method.
      */
-    @Before
+    @BeforeEach
     public void setUp() {
     }
 
@@ -34,13 +35,15 @@ public class RedistrictorTest {
      *
      * Called after every test case method.
      */
-    @After
+    @AfterEach
     public void tearDown() {
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void invalidRegionParameterConstructorTest() {
-        Redistrictor r = new Redistrictor(null);
+    @Test
+    public void invalidRegionParameterConstructorShouldRaiseAnException() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            Redistrictor r = new Redistrictor(null);
+        });
     }
 
     @Test
@@ -226,40 +229,40 @@ public class RedistrictorTest {
         region = new Region();
         districtSet = Redistrictor.generateDistricts(region, 1);
         for (District d : districtSet) {
-            assertTrue("Checking contiguity of district " + d, d.contiguityValid());
+            assertTrue(d.contiguityValid(), "Checking contiguity of district " + d);
         }
         region = new Region(1);
         districtSet = Redistrictor.generateDistricts(region, 1);
         for (District d : districtSet) {
-            assertTrue("Checking contiguity of district " + d, d.contiguityValid());
+            assertTrue(d.contiguityValid(), "Checking contiguity of district " + d);
         }
 
         region = new Region(4);
         districtSet = Redistrictor.generateDistricts(region, 2);
         for (District d : districtSet) {
-            assertTrue("Checking contiguity of district " + d, d.contiguityValid());
+            assertTrue(d.contiguityValid(), "Checking contiguity of district " + d);
         }
 
         region = new Region(9);
         districtSet = Redistrictor.generateDistricts(region, 1);
         for (District d : districtSet) {
-            assertTrue("Contiguity error for district " + d, d.contiguityValid());
+            assertTrue(d.contiguityValid(), "Contiguity error for district " + d);
         }
         districtSet = Redistrictor.generateDistricts(region, 2);
         for (District d : districtSet) {
-            assertTrue("Contiguity error for district " + d, d.contiguityValid());
+            assertTrue(d.contiguityValid(), "Contiguity error for district " + d);
         }
         districtSet = Redistrictor.generateDistricts(region, 3);
         for (District d : districtSet) {
-            assertTrue("Contiguity error for district " + d, d.contiguityValid());
+            assertTrue(d.contiguityValid(), "Contiguity error for district " + d);
         }
         districtSet = Redistrictor.generateDistricts(region, 4);
         for (District d : districtSet) {
-            assertTrue("Contiguity error for district " + d, d.contiguityValid());
+            assertTrue(d.contiguityValid(), "Contiguity error for district " + d);
         }
         districtSet = Redistrictor.generateDistricts(region, 5);
         for (District d : districtSet) {
-            assertTrue("Contiguity error for district " + d, d.contiguityValid());
+            assertTrue(d.contiguityValid(), "Contiguity error for district " + d);
         }
     }
 }
