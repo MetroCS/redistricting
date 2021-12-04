@@ -8,7 +8,7 @@ A Java utility library designed to support investigations of splitting a geograp
 ___
 Library Documentation: [redistricting API](api/index.html)
 
-Usage Example: [Create and Display Region](examples/create_and_render_region.md)
+Usage Example: [Create and Display Region](examples/create_and_display_region)
 
 Project Repository: [https://github.com/MetroCS/redistricting](https://github.com/MetroCS/redistricting)
 
