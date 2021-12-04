@@ -7,7 +7,7 @@
     <strong>MetroCS/redistricting:</strong>
       <a href="https://metrocs.github.io/redistricting/">Website</a>
       | <a href="https://github.com/MetroCS/redistricting">Repository</a>
-    <h1>(Example) Create and Display a Region</h1>
+    <h1>Create and Display a Region (Example)</h1>
     <p>This example demonstrates creating and displaying a region with parameters entered at the console.</p>
     <p>Each location in the region is associated with a voter whose party affiliation is arbitrarily assigned.</p>
     <p>A default redistricting algorithm is used to create the specified number of districts.</p>
@@ -71,5 +71,35 @@
 <font color="#FF0000">}</font>
 </tt></pre>
 <hr />
+<h2>Sample Run (Transcript)</h2>
+<pre>
+% <b>java Example1</b>
+Enter the number of rows: <b>7</b>
+Enter the number of columns: <b>7</b>
+Enter the number of districts: <b>3</b>
+Rendering voter-identified region with 49 locations.
++---+---+---+---+---+---+---+
+| T | 0 | T | 0 | ? | 0 | 0 |
++---+---+---+---+---+---+---+
+| 1 | U | T | ? | U | U | U |
++---+---+---+---+---+---+---+
+| T | 0 | 1 | T | 0 | 0 | U |
++---+---+---+---+---+---+---+
+| U | U | T | U | U | 1 | U |
++---+---+---+---+---+---+---+
+| U | 0 | 1 | U | 0 | T | ? |
++---+---+---+---+---+---+---+
+| 0 | T | T | 0 | ? | ? | 0 |
++---+---+---+---+---+---+---+
+| ? | U | ? | 0 | 0 | 1 | ? |
++---+---+---+---+---+---+---+
+Key: ?=NONE  U=UNAFFILIATED  0=PARTY0  1=PARTY1  T=THIRDPARTY  
+Created set of districts [[District@731395981; size: 17], [District@1196765369; size: 16], [District@486898233; size: 16]]
+</pre>
+<hr />
+<em>Example - Create and Display a Region</em> (v1.0)<br />
+<strong>MetroCS/redistricting:</strong>
+  <a href="https://metrocs.github.io/redistricting/">Website</a>
+  | <a href="https://github.com/MetroCS/redistricting">Repository</a>
   </body>
 </html>
