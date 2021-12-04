@@ -69,12 +69,12 @@ public class Example1 {
 ```
 ### Sample Run (Transcript)
 
-```
-% **javac Example1.java**
-% **java Example1**
-Enter the number of rows: **7**
-Enter the number of columns: **7**
-Enter the number of districts: **3**
+<pre><code>
+% <b>javac Example1.java</b>
+% <b>java Example1</b>
+Enter the number of rows: <b>7</b>
+Enter the number of columns: <b>7</b>
+Enter the number of districts: <b>3</b>
 Rendering voter-identified region with 49 locations.
 +---+---+---+---+---+---+---+
 | T | 0 | T | 0 | ? | 0 | 0 |
@@ -93,7 +93,7 @@ Rendering voter-identified region with 49 locations.
 +---+---+---+---+---+---+---+
 Key: ?=NONE  U=UNAFFILIATED  0=PARTY0  1=PARTY1  T=THIRDPARTY  
 Created set of districts [[District@731395981; size: 17], [District@1196765369; size: 16], [District@486898233; size: 16]]
-```
+</code></pre>
 
 _Example - Create and Display a Region_ (v1.0)
 
