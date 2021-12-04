@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
+<html lang="en">
+  <head>
+    <title>Example - Create and Display a Region</title>
+  </head>
+  <body>
+    <h1>Create and Display a Region</h1>
+    <p>This example demonstrates creating and displaying a region with parameters entered at the console.</p>
+    <p>Each location in the region is associated with a voter whose party affiliation is arbitrarily assigned.</p>
+    <p>A default redistricting algorithm is used to create the specified number of districts.</p>
+    <hr />
+<pre><tt><i><font color="#9A1900">// Example use of redistricting package utilities.</font></i>
+<b><font color="#000080">import</font></b> swdmt<font color="#990000">.</font>redistricting<font color="#990000">.*;</font>
+<b><font color="#000080">import</font></b> java<font color="#990000">.</font>util<font color="#990000">.</font>HashSet<font color="#990000">;</font>
+<b><font color="#000080">import</font></b> java<font color="#990000">.</font>util<font color="#990000">.</font>Random<font color="#990000">;</font>
+<b><font color="#000080">import</font></b> java<font color="#990000">.</font>util<font color="#990000">.</font>Set<font color="#990000">;</font>
+<b><font color="#000080">import</font></b> java<font color="#990000">.</font>util<font color="#990000">.</font>Scanner<font color="#990000">;</font>
+<i><font color="#9A1900">/**</font></i>
+<i><font color="#9A1900"> * Demonstration of basic use of redistricting package utilities.</font></i>
+<i><font color="#9A1900"> * </font></i><font color="#009900">@version</font><i><font color="#9A1900"> 20211203.1</font></i>
+<i><font color="#9A1900"> */</font></i>
+<b><font color="#0000FF">public</font></b> <b><font color="#0000FF">class</font></b> <font color="#008080">Example1</font> <font color="#FF0000">{</font>
+
+    <b><font color="#0000FF">public</font></b> <b><font color="#0000FF">static</font></b> <font color="#009900">void</font> <b><font color="#000000">main</font></b><font color="#990000">(</font><b><font color="#0000FF">final</font></b> String<font color="#990000">[]</font> args<font color="#990000">)</font> <font color="#FF0000">{</font>
+        <font color="#009900">int</font> rows<font color="#990000">,</font> columns<font color="#990000">,</font> numLocations<font color="#990000">,</font> numDistricts<font color="#990000">;</font>
+        <font color="#008080">Scanner</font> console <font color="#990000">=</font> <b><font color="#0000FF">new</font></b> <b><font color="#000000">Scanner</font></b><font color="#990000">(</font>System<font color="#990000">.</font>in<font color="#990000">);</font>
+
+        System<font color="#990000">.</font>out<font color="#990000">.</font><b><font color="#000000">print</font></b><font color="#990000">(</font><font color="#FF0000">"Enter the number of rows: "</font><font color="#990000">);</font>
+        rows <font color="#990000">=</font> Integer<font color="#990000">.</font><b><font color="#000000">parseInt</font></b><font color="#990000">(</font>console<font color="#990000">.</font><b><font color="#000000">next</font></b><font color="#990000">());</font>
+        System<font color="#990000">.</font>out<font color="#990000">.</font><b><font color="#000000">print</font></b><font color="#990000">(</font><font color="#FF0000">"Enter the number of columns: "</font><font color="#990000">);</font>
+        columns <font color="#990000">=</font> Integer<font color="#990000">.</font><b><font color="#000000">parseInt</font></b><font color="#990000">(</font>console<font color="#990000">.</font><b><font color="#000000">next</font></b><font color="#990000">());</font>
+        System<font color="#990000">.</font>out<font color="#990000">.</font><b><font color="#000000">print</font></b><font color="#990000">(</font><font color="#FF0000">"Enter the number of districts: "</font><font color="#990000">);</font>
+        numDistricts <font color="#990000">=</font> Integer<font color="#990000">.</font><b><font color="#000000">parseInt</font></b><font color="#990000">(</font>console<font color="#990000">.</font><b><font color="#000000">next</font></b><font color="#990000">());</font>
+        numLocations <font color="#990000">=</font> rows <font color="#990000">*</font> columns<font color="#990000">;</font>
+
+        <i><font color="#9A1900">// Create a region of specified size to establish locations.</font></i>
+        <font color="#008080">Region</font> demoRegion <font color="#990000">=</font> <b><font color="#0000FF">new</font></b> <b><font color="#000000">Region</font></b><font color="#990000">(</font>rows <font color="#990000">*</font> columns<font color="#990000">);</font>
+
+        <i><font color="#9A1900">// Create one voter with arbitrary party for each location.</font></i>
+        <font color="#008080">Set&lt;Voter&gt;</font> voterSet <font color="#990000">=</font> <b><font color="#0000FF">new</font></b> HashSet<font color="#990000">&lt;</font>Voter<font color="#990000">&gt;();</font>
+        <font color="#008080">Random</font> rng <font color="#990000">=</font> <b><font color="#0000FF">new</font></b> <b><font color="#000000">Random</font></b><font color="#990000">();</font>
+        <font color="#009900">int</font> numberOfParties <font color="#990000">=</font> Party<font color="#990000">.</font><b><font color="#000000">values</font></b><font color="#990000">().</font>length<font color="#990000">;</font>
+        <b><font color="#0000FF">for</font></b> <font color="#990000">(</font><font color="#008080">Location</font> loc <font color="#990000">:</font> demoRegion<font color="#990000">.</font><b><font color="#000000">locations</font></b><font color="#990000">())</font> <font color="#FF0000">{</font>
+            voterSet<font color="#990000">.</font><b><font color="#000000">add</font></b><font color="#990000">(</font><b><font color="#0000FF">new</font></b> <b><font color="#000000">Voter</font></b><font color="#990000">(</font>Party<font color="#990000">.</font><b><font color="#000000">values</font></b><font color="#990000">()[</font>rng<font color="#990000">.</font><b><font color="#000000">nextInt</font></b><font color="#990000">(</font>numberOfParties<font color="#990000">)],</font>
+                                   loc<font color="#990000">));</font>
+        <font color="#FF0000">}</font>
+
+        <i><font color="#9A1900">// Create a region with the established voter set.</font></i>
+        demoRegion <font color="#990000">=</font> <b><font color="#0000FF">new</font></b> <b><font color="#000000">Region</font></b><font color="#990000">((</font>Set<font color="#990000">&lt;</font>Location<font color="#990000">&gt;)</font> demoRegion<font color="#990000">.</font><b><font color="#000000">locations</font></b><font color="#990000">(),</font>
+                                voterSet<font color="#990000">);</font>
+
+        <i><font color="#9A1900">// Render voter-filled region to console.</font></i>
+        System<font color="#990000">.</font>out<font color="#990000">.</font><b><font color="#000000">println</font></b><font color="#990000">(</font><font color="#FF0000">"Rendering voter-identified region with "</font>
+                           <font color="#990000">+</font> demoRegion<font color="#990000">.</font><b><font color="#000000">locations</font></b><font color="#990000">().</font><b><font color="#000000">size</font></b><font color="#990000">()</font>
+                           <font color="#990000">+</font> <font color="#FF0000">" locations."</font><font color="#990000">);</font>
+        System<font color="#990000">.</font>out<font color="#990000">.</font><b><font color="#000000">print</font></b><font color="#990000">(</font>Renderer<font color="#990000">.</font><b><font color="#000000">renderAsASCII</font></b><font color="#990000">(</font><b><font color="#0000FF">true</font></b><font color="#990000">,</font> demoRegion<font color="#990000">));</font>
+        System<font color="#990000">.</font>out<font color="#990000">.</font><b><font color="#000000">print</font></b><font color="#990000">(</font><font color="#FF0000">"Key: "</font><font color="#990000">);</font>
+        <b><font color="#0000FF">for</font></b> <font color="#990000">(</font><font color="#008080">Party</font> p <font color="#990000">:</font> Party<font color="#990000">.</font><b><font color="#000000">values</font></b><font color="#990000">())</font> <font color="#FF0000">{</font>
+            System<font color="#990000">.</font>out<font color="#990000">.</font><b><font color="#000000">print</font></b><font color="#990000">(</font>p<font color="#990000">.</font><b><font color="#000000">id</font></b><font color="#990000">()</font> <font color="#990000">+</font> <font color="#FF0000">"="</font> <font color="#990000">+</font> p <font color="#990000">+</font> <font color="#FF0000">"  "</font><font color="#990000">);</font>
+        <font color="#FF0000">}</font>
+        System<font color="#990000">.</font>out<font color="#990000">.</font><b><font color="#000000">println</font></b><font color="#990000">();</font>
+
+        <i><font color="#9A1900">// Redistrict the region.</font></i>
+        Set<font color="#990000">&lt;</font>District<font color="#990000">&gt;</font> districts
+                <font color="#990000">=</font> Redistrictor<font color="#990000">.</font><b><font color="#000000">generateDistricts</font></b><font color="#990000">(</font>demoRegion<font color="#990000">,</font> numDistricts<font color="#990000">);</font>
+        System<font color="#990000">.</font>out<font color="#990000">.</font><b><font color="#000000">println</font></b><font color="#990000">(</font><font color="#FF0000">"Created set of districts "</font> <font color="#990000">+</font> districts<font color="#990000">);</font>
+    <font color="#FF0000">}</font>
+<font color="#FF0000">}</font>
+</tt></pre>
+<hr />
+  </body>
+</html>
