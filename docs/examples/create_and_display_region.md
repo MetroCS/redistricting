@@ -97,4 +97,4 @@ Created set of districts [[District@731395981; size: 17], [District@1196765369; 
 
 _Example - Create and Display a Region_ (v1.0)
 
-MetroCS/redistricting: [Website](https://metrocs.github.io/redistricting/) | [Repository](https://github.com/MetroCS/redistricting)
+MetroCS/redistricting: [Website](https://metrocs.github.io/redistricting/) ｜ [Repository](https://github.com/MetroCS/redistricting)
