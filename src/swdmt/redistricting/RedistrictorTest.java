@@ -8,6 +8,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.Set;
+import java.util.TreeSet;
+import java.util.HashSet;
+import java.util.NoSuchElementException;
 /**
  * Tests for redistrictor.
  *
@@ -262,8 +265,39 @@ public class RedistrictorTest {
         }
         districtSet = Redistrictor.generateDistricts(region, 5);
         for (District d : districtSet) {
-            assertTrue(d.contiguityValid(), "Contiguity error for district " + d);
+        	assertTrue(d.contiguityValid(), "Contiguity error for district " + d);
         }
     }
+    
+    /**
+     * Checks to see that the generateDistricts produces
+     * a valid set of districts for a region which should
+     * be redistrictable, but is not one contiguous region
+     * and has separate components on the same x and y levels.
+     */
+    @Test
+    public void generateDistrictsNonContiguousRegionTest() {
+    	Region region;
+    	Set<District> districtSet;
+    	Set<Voter> voterSet = new HashSet<Voter>();
+    	Location locationA = new Location(0,0);
+    	Location locationB = new Location(1,0);
+    	Location locationC = new Location(0,1);
+    	Location locationD = new Location(4,0);
+    	Location locationE = new Location(5,0);
+    	Location locationF = new Location(4,1);
+    	voterSet.add(new Voter(null, locationA));
+    	voterSet.add(new Voter(null, locationB));
+    	voterSet.add(new Voter(null, locationC));
+    	voterSet.add(new Voter(null, locationD));
+    	voterSet.add(new Voter(null, locationE));
+    	voterSet.add(new Voter(null, locationF));
+    	region = new Region(voterSet);
+    	districtSet = Redistrictor.generateDistricts(region, 2);
+    	for (District d : districtSet) {
+    		assertTrue(d.contiguityValid(), "Contiguity error for district " + d);
+    	}
+    }
+
 }
 
