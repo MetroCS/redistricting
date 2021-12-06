@@ -1,16 +1,20 @@
-## Redistricting Investigation
+# Redistricting Investigation
 
 Goal: A Java utility package that supports the development of applications to investigate potential impacts of redistricting
 
-### [License](LICENSE)
+- ## [License](LICENSE)
 
-### [Vision & Stakeholders](Vision.md)
+- ## [Vision & Stakeholders](Vision.md)
 
-### [Project Description and Terminology](Redistricting.md)
+- ## [Project Description and Terminology](Redistricting.md)
 
-### [Contributing](Contributing.md)
+  - #### [API Documentation](https://metrocs.github.io/redistricting/api/index.html)
+  - #### Examples
+    - [Create and Display a Region](docs/examples/create_and_display_region.md)
 
-#### [Development Conventions](DevelopmentConventions.md)
+- ## [Contributing](Contributing.md)
+
+  - #### [Development Conventions](DevelopmentConventions.md)
 
 
 ___
