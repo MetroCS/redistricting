@@ -2,6 +2,14 @@ package swdmt.redistricting;
 import java.util.Collection;
 import java.util.Map;
 import java.util.TreeMap;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.util.Comparator;
+import java.util.Set;
+
 /**
  * Utility class for rendering regions and districts.
  * <p>Basic versions use ASCII text graphics.</p>
@@ -131,5 +139,108 @@ public final class Renderer {
      */
     public static String renderAsASCII(final Region region) {
         return renderAsASCII(false, region);
+    }
+
+    /**
+     * Displays the voter map within a JFrame window.
+     *
+     * @param region   Region object defining the area being divided into districts
+     * @param district Set of District objects typically provided by
+     *                 the Redistrictor class generateDistricts() method
+     * @author Henry Callin, Joe Gunter
+     */
+    public static void renderAsGUI(Region region, Set<District> district) {
+        //Finds the number of rows and columns(in case they change in the future).
+        Collection<Location> locs = region.locations();
+        Location locWithMinimumX = locs
+                .stream()
+                .min(Comparator.comparingInt(Location::xCoordinate))
+                .orElse(null);
+        Location locWithMinimumY = locs
+                .stream()
+                .min(Comparator.comparingInt(Location::yCoordinate))
+                .orElse(null);
+        Location locWithMaximumX = locs
+                .stream()
+                .max(Comparator.comparingInt(Location::xCoordinate))
+                .orElse(null);
+        Location locWithMaximumY = locs
+                .stream()
+                .max(Comparator.comparingInt(Location::yCoordinate))
+                .orElse(null);
+
+
+        // Construct location:voter mapping.
+        Map<Location, Voter> voterMap = new TreeMap<>();
+        for (Voter vot : region.voters()) {
+            voterMap.put(vot.location(), vot);
+        }
+
+        //Assigns number of rows and columns.
+        assert locWithMaximumY != null;
+        int numRows = 1 + locWithMaximumY.yCoordinate()
+                - locWithMinimumY.yCoordinate();
+        int numCols = 1 + locWithMaximumX.xCoordinate()
+                - locWithMinimumX.xCoordinate();
+
+        //Define Initial Window Size based on number of rows and cols
+        int windowInitHeight = numRows * 60;
+        int windowInitWidth = numCols * 60;
+
+        //Creates an array to represent the region then loops across the array to
+        //define which voter is assigned to which district, numbering them accordingly.
+        Integer[][] districtArray = new Integer[numRows][numCols];
+        int districtNum = 1;
+        for (District dist : district) {
+            for (Location locations : dist.locations()) {
+                districtArray[locations.xCoordinate()][locations.yCoordinate()] = districtNum;
+            }
+            districtNum++;
+        }
+
+        //Initializes JFrame display and squares.
+        JFrame frame = new JFrame();
+        GridLayout display = new GridLayout(numRows, numCols);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(display);
+
+        //Assigns red or blue backgrounds to the squares depending on
+        //Voter affiliation and displays a number indicating
+        //to which district a voter belongs.
+        frame = combineFrameParts(frame, numRows, numCols, voterMap, districtArray);
+        frame.setSize(windowInitWidth, windowInitHeight);
+        frame.setVisible(true);
+    }
+
+    /**
+     * Helper method to combine all relevant data within GenerateAsGUI
+     * into a JFrame for display.
+     *
+     * @param frame         JFrame object being built upon
+     * @param numRows       number of rows in the region
+     * @param numCols       number of columns in the region
+     * @param voterMap      map defining voter affiliation of each location in the region
+     * @param districtArray 2d array containing district information for the region
+     * @return JFrame with all voters, voter affiliations, and districts assigned
+     */
+    private static JFrame combineFrameParts(JFrame frame, int numRows, int numCols, Map<Location, Voter> voterMap, Integer[][] districtArray) {
+        for (int r = 0; r < numRows; r++) {
+            for (int c = 0; c < numCols; c++) {
+                Location currentLoc = new Location(c, r);
+                if (voterMap.containsKey(currentLoc)) {
+                    JButton b = new JButton(districtArray[r][c].toString());
+                    b.setFont(new Font("Arial", Font.BOLD, 30));
+                    b.setForeground(Color.WHITE);
+                    if (voterMap.get(currentLoc).affiliation().id() == '1') {
+                        b.setBackground(Color.RED);
+                    } else {
+                        b.setBackground(Color.BLUE);
+                    }
+                    b.setOpaque(true);
+                    frame.add(b);
+                }
+            }
+        }
+        return frame;
     }
 }

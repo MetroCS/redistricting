@@ -63,6 +63,9 @@ public final class RedistrictingDriver {
         Set<District> districts
                 = Redistrictor.generateDistricts(region, numDistricts);
         System.out.println("Created set of districts " + districts);
+
+        // Display the region graphically
+        Renderer.renderAsGUI(region,districts);
     }
 
     /**
