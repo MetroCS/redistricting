@@ -1,4 +1,9 @@
 package swdmt.redistricting;
+import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.Collection;
 import java.util.Map;
 import java.util.TreeMap;
@@ -26,6 +31,12 @@ public final class Renderer {
     private static final String CELL_EMPTY_MIDDLE = "   |";
     /** Render of the middle of a cell with an associated resident. */
     private static final String CELL_ANY_MIDDLE = " " + ANY + " |";
+
+    //added vars for graphic output
+    public static final int NUM_PARTIES = 5;
+    private static int rows = 2;
+    private static int columns = 2 ;
+    public static final int windowHeight = (Toolkit.getDefaultToolkit().getScreenSize().height * 3 ) / 4;
 
     /**
      * Hide the constructor of this utility class.
@@ -132,4 +143,60 @@ public final class Renderer {
     public static String renderAsASCII(final Region region) {
         return renderAsASCII(false, region);
     }
+
+    /** makegGrid function
+     * padding should be the space between grid squares,
+     * height and width is the height / width of grid squares
+     * bufferedImages is an array of grid squares.
+     * the loop iterates it selects an index of bufferedimages and paints it to an appropriate color.
+     * **/
+    public static BufferedImage[] colorGrid() {
+        int padding = ((rows + 1) * 5 - (int) Math.floor(rows / 30.0));
+        int height = (windowHeight - padding) / rows;
+        int width = (windowHeight - padding) / rows;
+
+        BufferedImage[] bufferedImages = new BufferedImage[NUM_PARTIES];
+
+        Color purple = new Color(102,0,153);
+        Color[] colors = new Color[]{Color.RED, Color.BLUE, purple, Color.ORANGE, Color.GREEN};
+
+        for (int i = 0; i < NUM_PARTIES; i++) {
+            Graphics2D g2d = bufferedImages[i].createGraphics();
+            g2d.setColor(colors[i]);
+            g2d.fillRect(0, 0, width, height);
+            g2d.dispose();
+        }
+        return bufferedImages;
+    }
+    /** graphicalOutput function
+     * does display a colored grid, based on the params entered.
+     * This is using the new imagine array to create a grid, which is using th makeGrid function
+     * the GUI component(s) is using swing
+     * At this point the logic to display district hasn't been implemented.
+     * This is more a proof of concept of what the true out should or could show**/
+    public static void renderASGUI(int rows, int cols, int districts, int[] districtParty) {
+        BufferedImage[] bufferedImages = colorGrid();
+
+        JPanel regionDisplay = new JPanel();
+
+        regionDisplay.setLayout(new GridLayout(rows, cols));
+
+        for (int i = 0; i < (rows * cols); i++) {
+            final JLabel cell =  new JLabel(new ImageIcon(bufferedImages[districtParty[i]]));
+            cell.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            regionDisplay.add(cell);
+
+        }
+
+        JFrame frame = new JFrame("Redistricting: " + rows + "x" + cols + " grid");
+
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setPreferredSize(new Dimension(windowHeight, windowHeight));
+        frame.setResizable(false); //Needs to be here if using manually spaced grid, optional otherwise
+        frame.add(regionDisplay);
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+
 }
