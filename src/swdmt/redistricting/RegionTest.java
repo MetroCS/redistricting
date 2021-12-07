@@ -3,12 +3,14 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTimeout;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static java.time.Duration.ofMillis;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Collection;
 /**
  * Tests for class Region.
  *
@@ -43,6 +45,25 @@ public class RegionTest {
      */
     @AfterEach
     public void tearDown() {
+    }
+
+    /**
+    * Test case for Region(Collection<Voter>)
+    */
+    @Test
+    public void voterRegionInputConstructorTest() {
+        Voter voterA = new Voter(Party.PARTY0, new Location(0, 0));
+        Voter voterB = new Voter(Party.PARTY1, new Location(1, 1));
+        Collection<Voter> voters = new HashSet<Voter>();
+        voters.add(voterA);
+        voters.add(voterB);
+        Region region = new Region(voters);
+        assertThat(region.voters().size(), is(2));
+        assertThat(region.locations().size(), is(2));
+        for (Voter v : voters) {
+            assertTrue(region.voters().contains(v));
+            assertTrue(region.locations().contains(v.location()));
+        }
     }
 
     /**
