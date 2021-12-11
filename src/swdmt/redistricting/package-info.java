@@ -3,6 +3,7 @@
  * redistricting investigation project.
  * <p>
  * @author Dr. Jody Paul
- * @version 20191006
+ * @author CS 3250 Participants
+ * @version 20211211
  */
 package swdmt.redistricting;
