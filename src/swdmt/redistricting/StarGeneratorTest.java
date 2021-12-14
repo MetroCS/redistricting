@@ -5,13 +5,13 @@ import java.util.HashSet;
 import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-class StarGeneratorTest {
+public class StarGeneratorTest {
     /**
      * Ensure each pattern generated has the correct number of Locations,
      * and there are no duplicates in any of the generated patterns.
      */
     @Test
-    void generatePatternTest() {
+    public void generatePatternTest() {
         int n = 100;
         ArrayList<ArrayList<Location>> patterns = StarGenerator.generatePattern(n);
         for(ArrayList<Location> pattern: patterns) {
