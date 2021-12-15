@@ -45,9 +45,6 @@
     <!-- Identify product name -->
   <property name="productname" value="Redistricting"/>
 
-    <!-- identify main class -->
-  <property name="mainclass" value="swdmt.redistricting.RedistrictingDriver"/>
-
     <!-- checkstyle properties -->
   <property name="checkstyle.jar" value="${lib}/checkstyle.jar"/>
   <property name="checkstyle.xsl" value="${lib}/checkstyle.xsl"/>
@@ -139,16 +136,8 @@
     <jar destfile="${jar.dir}/${productname}.jar"
          basedir="${classes.dir}"
          excludes="**/*Test.class">
-      <manifest>
-        <attribute name="Main-Class" value="${mainclass}"/>
-      </manifest>
     </jar>
     <echo message="Jar file has been created, and can be found at: ${jar.dir}/${productname}.jar" />
-  </target>
-
-  <target name="run" depends="jar"
-          description="Runs the development version of the program">
-    <java jar="${jar.dir}/${productname}.jar" fork="true"/>
   </target>
 
   <target name="unitTest" depends="test.junit.launcher, test.console.launcher" />
