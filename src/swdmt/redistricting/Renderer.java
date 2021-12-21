@@ -13,7 +13,7 @@ import java.util.TreeSet;
  * is shown using '*'.</p>
  *
  * @author Dr. Jody Paul
- * @version 2021121
+ * @version 20211221
  */
 public final class Renderer {
     /** Render of unknown cell content. */
