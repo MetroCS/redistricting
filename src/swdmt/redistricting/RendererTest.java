@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
  * The test class for Renderer.
  *
  * @author  Dr. Jody Paul
- * @version 20191201
+ * @version 20191221.1
  */
 public class RendererTest {
     /** Render of an arbitrary location. */
@@ -24,6 +24,7 @@ public class RendererTest {
     private static final char R_P1 = Party.PARTY1.id();
     /** Render of a location with THIRDPARTY voter. */
     private static final char R_TP = Party.THIRDPARTY.id();
+
 
     /** Check rendering of region of size 1, no affiliations. */
     @Test
@@ -45,6 +46,7 @@ public class RendererTest {
                      Renderer.renderAsASCII(true, region1));
     }
 
+
     /** Check rendering of square region of size 16, no affiliations. */
     @Test
     public void renderAsASCIIRegionSize16Test() {
@@ -61,6 +63,7 @@ public class RendererTest {
                      Renderer.renderAsASCII(region2));
     }
 
+
     /** Check rendering of square region of size 16 with affiliation. */
     @Test
     public void renderAsASCIIregionSize16AffiliationTest() {
@@ -76,6 +79,7 @@ public class RendererTest {
                    + "+---+---+---+---+\n",
                      Renderer.renderAsASCII(true, region2));
     }
+
 
     /**
      * Check rendering of rectangular region of size 3x5,
@@ -129,6 +133,7 @@ public class RendererTest {
                    + "+---+---+---+---+---+\n",
                      Renderer.renderAsASCII(true, region3));
     }
+
 
     /**
      * Check rendering of region in square grid of size 36,
@@ -264,5 +269,103 @@ public class RendererTest {
                    + "|   | " + R_P1 + " |   |   |   |   |\n"
                    + "+---+---+---+---+---+---+\n",
                      Renderer.renderAsASCII(true, region5));
+    }
+
+    /** Check rendering of region of size 1, no affiliations, 1 district. */
+    @Test
+    public void renderAsASCIIRegionSize1District1Test() {
+        Region region1 = new Region(1);
+        Set<District> districts = new HashSet<District>();
+        districts.add(new District(region1.locations()));
+        assertEquals("+---+\n"
+                   + "| " + R_AR + " |\n"
+                   + "+---+\n",
+                     Renderer.renderAsASCII(region1, districts));
+    }
+
+    /** Check rendering of region of size 1 with affiliation, 1 district. */
+    @Test
+    public void renderAsASCIIRegionSize1District1AffiliationTest() {
+        Region region1 = new Region(1);
+        Set<District> districts = new HashSet<District>();
+        districts.add(new District(region1.locations()));
+        assertEquals("+---+\n"
+                   + "| " + R_NO + " |\n"
+                   + "+---+\n",
+                     Renderer.renderAsASCII(true, region1, districts));
+    }
+
+
+    /**
+     * Check rendering of rectangular region of size 1x2,
+     * with 1 district, showing affiliation.
+     */
+    @Test
+    public void renderAsASCIIRegionGridSize1x2District1AffiliationTest() {
+        Set<Location> testLocs = new TreeSet<Location>();
+        Set<Voter> testVoters = new HashSet<Voter>();
+        Location loc = new Location(0, 0);
+        testLocs.add(loc);
+        testVoters.add(new Voter(Party.PARTY0, loc));
+        loc = new Location(1, 0);
+        testLocs.add(loc);
+        testVoters.add(new Voter(Party.PARTY0, loc));
+        Region region2 = new Region(testLocs, testVoters);
+        Set<District> districts = new HashSet<District>();
+        districts.add(new District(region2.locations()));
+        assertEquals("+---+---+\n"
+                   + "| " + R_P0 + "   " + R_P0 + " |\n"
+                   + "+---+---+\n",
+                     Renderer.renderAsASCII(true, region2, districts));
+    }
+
+
+    /**
+     * Check rendering of rectangular region of size 3x5,
+     * showing affiliation, with 3 districts.
+     */
+    @Test
+    public void renderAsASCIIRegionGridSize3x5District3AffiliationTest() {
+        Set<Location> testLocs = new TreeSet<Location>();
+        Set<Voter> testVoters = new HashSet<Voter>();
+        Set<District> districts = new HashSet<District>();
+        for (int x = 0; x < 5; x++) {
+            for (int y = 0; y < 3; y++) {
+                Location loc = new Location(x, y);
+                testLocs.add(loc);
+                testVoters.add(new Voter(Party.PARTY0, loc));
+            }
+        }
+        Set<Location> locsForDistrict = new TreeSet<Location>();
+        locsForDistrict.add(new Location(0, 0));
+        locsForDistrict.add(new Location(1, 0));
+        locsForDistrict.add(new Location(1, 1));
+        locsForDistrict.add(new Location(2, 0));
+        locsForDistrict.add(new Location(3, 0));
+        districts.add(new District(locsForDistrict));
+        locsForDistrict = new TreeSet<Location>();
+        locsForDistrict.add(new Location(0, 1));
+        locsForDistrict.add(new Location(0, 2));
+        locsForDistrict.add(new Location(1, 2));
+        locsForDistrict.add(new Location(2, 2));
+        locsForDistrict.add(new Location(3, 2));
+        districts.add(new District(locsForDistrict));
+        locsForDistrict = new TreeSet<Location>();
+        locsForDistrict.add(new Location(4, 0));
+        locsForDistrict.add(new Location(2, 1));
+        locsForDistrict.add(new Location(3, 1));
+        locsForDistrict.add(new Location(4, 1));
+        locsForDistrict.add(new Location(4, 2));
+        districts.add(new District(locsForDistrict));
+
+        Region region3 = new Region(testLocs, testVoters);
+        assertEquals("+---+---+---+---+---+\n"
+                   + "| " + R_P0 + "   " + R_P0 + "   " + R_P0 + "   " + R_P0 + " | " + R_P0 + " |\n"
+                   + "+---+   +---+---+   +\n"
+                   + "| " + R_P0 + " | " + R_P0 + " | " + R_P0 + "   " + R_P0 + "   " + R_P0 + " |\n"
+                   + "+   +---+---+---+   +\n"
+                   + "| " + R_P0 + "   " + R_P0 + "   " + R_P0 + "   " + R_P0 + " | " + R_P0 + " |\n"
+                   + "+---+---+---+---+---+\n",
+                     Renderer.renderAsASCII(true, region3, districts));
     }
 }
