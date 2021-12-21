@@ -2,6 +2,8 @@ package swdmt.redistricting;
 import java.util.Collection;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.Set;
+import java.util.TreeSet;
 /**
  * Utility class for rendering regions and districts.
  * <p>Basic versions use ASCII text graphics.</p>
@@ -11,7 +13,7 @@ import java.util.TreeMap;
  * is shown using '*'.</p>
  *
  * @author Dr. Jody Paul
- * @version 20191128.1
+ * @version 2021121
  */
 public final class Renderer {
     /** Render of unknown cell content. */
@@ -30,12 +32,13 @@ public final class Renderer {
     /**
      * Hide the constructor of this utility class.
      */
-    private Renderer() { }
 
+    private Renderer() { }
     /**
      * Renders a region as an ASCII-graphic string.
      * The region is depicted as cells within a rectangular grid,
      * with cells corresponding to locations in the region shown filled.
+     * The origin is in the upper left corner.
      * @param showAffiliation true to show party affiliation; false otherwise
      * @param region the region to be rendered
      * @return the rendering of the given region
@@ -43,34 +46,11 @@ public final class Renderer {
      */
     public static String renderAsASCII(final boolean showAffiliation,
                                        final Region region) {
-        String rendering = "";
+        StringBuilder rendering = new StringBuilder();
         // Return immediately if region is null or has no locations.
         if (region == null || region.size() < 1) {
-            return rendering;
+            return rendering.toString();
         }
-
-        // Determine locations at x-coordinate and y-coordinate boundaries.
-        Collection<Location> locs = region.locations();
-        Location locWithMinimumX = locs
-                .stream()
-                .min((loc1, loc2) -> Integer.compare(loc1.xCoordinate(),
-                                                     loc2.xCoordinate()))
-                .orElse(null);
-        Location locWithMinimumY = locs
-                .stream()
-                .min((loc1, loc2) -> Integer.compare(loc1.yCoordinate(),
-                                                     loc2.yCoordinate()))
-                .orElse(null);
-        Location locWithMaximumX = locs
-                .stream()
-                .max((loc1, loc2) -> Integer.compare(loc1.xCoordinate(),
-                                                     loc2.xCoordinate()))
-                .orElse(null);
-        Location locWithMaximumY = locs
-                .stream()
-                .max((loc1, loc2) -> Integer.compare(loc1.yCoordinate(),
-                                                     loc2.yCoordinate()))
-                .orElse(null);
 
         // Construct location:voter mapping.
         Map<Location, Voter> voterMap = new TreeMap<>();
@@ -78,48 +58,49 @@ public final class Renderer {
             voterMap.put(vot.location(), vot);
         }
 
-        int numRows = 1 + locWithMaximumY.yCoordinate()
-                        - locWithMinimumY.yCoordinate();
-        int numCols = 1 + locWithMaximumX.xCoordinate()
-                        - locWithMinimumX.xCoordinate();
+        int numRows = 1 + maximumYOfLocations(region)
+                        - minimumYOfLocations(region);
+        int numCols = 1 + maximumXOfLocations(region)
+                        - minimumXOfLocations(region);
 
         // Render a row border.
-        String horizontalBorder = CORNER;
+        StringBuilder horizontalBorder = new StringBuilder(CORNER);
         for (int i = 0; i < numCols; i++) {
-            horizontalBorder += CELL_BORDER;
+            horizontalBorder.append(CELL_BORDER);
         }
-        horizontalBorder += "\n";
+        horizontalBorder.append("\n");
 
         // Render the region.
-        rendering = horizontalBorder;
+        Collection<Location> locs = region.locations();
+        rendering = new StringBuilder(horizontalBorder);
         for (int r = 0; r < numRows; r++) {
-            String rowMiddle = EDGE;
+            StringBuilder rowMiddle = new StringBuilder(EDGE);
             for (int c = 0; c < numCols; c++) {
                 Location currentLoc = new Location(c, r);
                 if (locs.contains(currentLoc)) {
                     if (showAffiliation) {
                         if (voterMap.keySet().contains(currentLoc)) {
-                            rowMiddle += CELL_ANY_MIDDLE
-                                         .replace('*',
-                                                  voterMap
-                                                  .get(currentLoc)
-                                                  .affiliation()
-                                                  .id());
+                            rowMiddle.append(CELL_ANY_MIDDLE
+                                             .replace('*',
+                                                      voterMap
+                                                      .get(currentLoc)
+                                                      .affiliation()
+                                                      .id()));
                         } else {
-                            rowMiddle += CELL_ANY_MIDDLE;
+                            rowMiddle.append(CELL_ANY_MIDDLE);
                         }
                     } else {
-                        rowMiddle += CELL_ANY_MIDDLE;
+                        rowMiddle.append(CELL_ANY_MIDDLE);
                     }
                 } else {
-                    rowMiddle += CELL_EMPTY_MIDDLE;
+                    rowMiddle.append(CELL_EMPTY_MIDDLE);
                 }
             }
-            rowMiddle += "\n";
-            rendering += rowMiddle + horizontalBorder;
+            rowMiddle.append("\n");
+            (rendering.append(rowMiddle)).append(horizontalBorder);
         }
 
-        return rendering;
+        return rendering.toString();
     }
 
     /**
@@ -131,5 +112,126 @@ public final class Renderer {
      */
     public static String renderAsASCII(final Region region) {
         return renderAsASCII(false, region);
+    }
+
+    /**
+     * Renders a region and its districts as an ASCII-graphic string.
+     * The origin is in the upper left corner.
+     * @param showAffiliation true to show party affiliation; false otherwise
+     * @param region the region to be rendered
+     * @param districts the districts within the region
+     * @return the rendering of the given region showing districts
+     */
+    public static String renderAsASCII(final boolean showAffiliation,
+                                       final Region region,
+                                       final Set<District> districts) {
+        String renderedRegion = renderAsASCII(showAffiliation, region);
+        char[] arrayRender = renderedRegion.toCharArray();
+
+        int rowLength = renderedRegion.indexOf('\n') + 1;
+        int colWidth = CELL_BORDER.length();
+
+        // Remove borders between contiguous locations in a district.
+        for (District d : districts) {
+            for (Location l : d.locations()) {
+                Set<Location> others = new TreeSet<Location>(d.locations());
+                others.remove(l);
+                for (Location o : others) {
+                    if (l.isAdjacentTo(o)) {
+                        Location lesser = l.compareTo(o) < 0 ? l : o;
+                        if (l.yCoordinate() == o.yCoordinate()) {
+                            // Remove border in same row.
+                            int col = lesser.xCoordinate();
+                            int row = lesser.yCoordinate();
+                            int modX = ((1 + col) * colWidth);
+                            int modY = (row * 2) + 1;
+                            int offsetToRow = modY * rowLength;
+                            arrayRender[offsetToRow + modX] = ' ';
+                        } else if (l.xCoordinate() == o.xCoordinate()) {
+                            // Remove border in same column.
+                            int col = lesser.xCoordinate();
+                            int row = lesser.yCoordinate();
+                            int modX = (col * colWidth) + 1;
+                            int modY = (row * 2) + 2;
+                            int offsetToRow = modY * rowLength;
+                            for (int i = 0; i < colWidth - 1; i++) {
+                                arrayRender[offsetToRow + modX + i] = ' ';
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return new String(arrayRender);
+    }
+
+    /**
+     * Renders a region and its districts as an ASCII-graphic string.
+     * Convenience method equivalent to
+     * <code>renderAsASCII(false, region, districts)</code>.
+     * @param region the region to be rendered
+     * @param districts the districts within the region
+     * @return the rendering of the given region showing districts
+     */
+    public static String renderAsASCII(final Region region,
+                                       final Set<District> districts) {
+        return renderAsASCII(false, region, districts);
+    }
+
+
+    /**
+     * Determines the minimum x-coordinate value of a region's locations.
+     * @param region the region to be interrogated
+     * @return the minimum x-coordinate value
+     */
+    private static int minimumXOfLocations(final Region region) {
+        Location locWithMinimumX = region.locations()
+                .stream()
+                .min((loc1, loc2) -> Integer.compare(loc1.xCoordinate(),
+                                                     loc2.xCoordinate()))
+                .orElse(null);
+        return locWithMinimumX.xCoordinate();
+    }
+
+    /**
+     * Determines the minimum y-coordinate value of a region's locations.
+     * @param region the region to be interrogated
+     * @return the minimum y-coordinate value
+     */
+    private static int minimumYOfLocations(final Region region) {
+        Location locWithMinimumY = region.locations()
+                .stream()
+                .min((loc1, loc2) -> Integer.compare(loc1.yCoordinate(),
+                                                     loc2.yCoordinate()))
+                .orElse(null);
+        return locWithMinimumY.yCoordinate();
+    }
+
+    /**
+     * Determines the maximum x-coordinate value of a region's locations.
+     * @param region the region to be interrogated
+     * @return the maximum x-coordinate value
+     */
+    private static int maximumXOfLocations(final Region region) {
+        Location locWithMaximumX = region.locations()
+                .stream()
+                .max((loc1, loc2) -> Integer.compare(loc1.xCoordinate(),
+                                                     loc2.xCoordinate()))
+                .orElse(null);
+        return locWithMaximumX.xCoordinate();
+    }
+
+    /**
+     * Determines the maximum y-coordinate value of a region's locations.
+     * @param region the region to be interrogated
+     * @return the maximum y-coordinate value
+     */
+    private static int maximumYOfLocations(final Region region) {
+        Location locWithMaximumY = region.locations()
+                .stream()
+                .max((loc1, loc2) -> Integer.compare(loc1.yCoordinate(),
+                                                     loc2.yCoordinate()))
+                .orElse(null);
+        return locWithMaximumY.yCoordinate();
     }
 }
