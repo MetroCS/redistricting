@@ -32,8 +32,8 @@ public final class Renderer {
     /**
      * Hide the constructor of this utility class.
      */
-
     private Renderer() { }
+
     /**
      * Renders a region as an ASCII-graphic string.
      * The region is depicted as cells within a rectangular grid,
@@ -113,6 +113,7 @@ public final class Renderer {
     public static String renderAsASCII(final Region region) {
         return renderAsASCII(false, region);
     }
+
 
     /**
      * Renders a region and its districts as an ASCII-graphic string.
