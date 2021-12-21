@@ -17,7 +17,7 @@ import java.util.Set;
 import java.util.Scanner;
 /**
  * Demonstration of redistricting package utilities from MetroCS/redistricting.
- * @version 20211203.2
+ * @version 20211221.0
  */
 public class Example1 {
 
@@ -63,38 +63,50 @@ public class Example1 {
         // Redistrict the region.
         Set<District> districts
                 = Redistrictor.generateDistricts(demoRegion, numDistricts);
-        System.out.println("Created set of districts " + districts);
+        System.out.println("Created " + districts.size() + " districts.");
+        System.out.print(Renderer.renderAsASCII(true, demoRegion, districts));
     }
 }
 ```
-### Sample Run (Transcript)
-
+### Sample Run
+The `Redistricting.jar` product was created using the build command
+```
+ant clean jar
+```
+#### Transcript
 <pre><code>
-% <b>javac Example1.java</b>
-% <b>java Example1</b>
-Enter the number of rows: <b>7</b>
-Enter the number of columns: <b>7</b>
+% <b>javac -classpath Redistricting.jar:. Example1.java</b>
+% <b>java -cp Redistricting.jar:. Example1</b>
+Enter the number of rows: <b>5</b>
+Enter the number of columns: <b>5</b>
 Enter the number of districts: <b>3</b>
-Rendering voter-identified region with 49 locations.
-+---+---+---+---+---+---+---+
-| T | 0 | T | 0 | ? | 0 | 0 |
-+---+---+---+---+---+---+---+
-| 1 | U | T | ? | U | U | U |
-+---+---+---+---+---+---+---+
-| T | 0 | 1 | T | 0 | 0 | U |
-+---+---+---+---+---+---+---+
-| U | U | T | U | U | 1 | U |
-+---+---+---+---+---+---+---+
-| U | 0 | 1 | U | 0 | T | ? |
-+---+---+---+---+---+---+---+
-| 0 | T | T | 0 | ? | ? | 0 |
-+---+---+---+---+---+---+---+
-| ? | U | ? | 0 | 0 | 1 | ? |
-+---+---+---+---+---+---+---+
+Rendering voter-identified region with 25 locations.
++---+---+---+---+---+
+| ? | U | 1 | ? | U |
++---+---+---+---+---+
+| U | 0 | 0 | U | ? |
++---+---+---+---+---+
+| U | U | 0 | 1 | T |
++---+---+---+---+---+
+| U | 0 | 0 | 0 | T |
++---+---+---+---+---+
+| T | 1 | 0 | U | T |
++---+---+---+---+---+
 Key: ?=NONE  U=UNAFFILIATED  0=PARTY0  1=PARTY1  T=THIRDPARTY  
-Created set of districts [[District@731395981; size: 17], [District@1196765369; size: 16], [District@486898233; size: 16]]
+Created 3 districts.
++---+---+---+---+---+
+| ? | U   1 | ?   U |
++   +---+   +   +   +
+| U   0 | 0 | U   ? |
++   +   +   +   +   +
+| U   U | 0 | 1   T |
++   +   +   +---+   +
+| U   0 | 0   0 | T |
++   +   +   +   +   +
+| T   1 | 0   U | T |
++---+---+---+---+---+
 </code></pre>
 
-_Example - Create and Display a Region_ (v1.0)
+_Example - Create and Display a Region_ (v1.1)
 
 MetroCS/redistricting: [Website](https://metrocs.github.io/redistricting/) ｜ [Repository](https://github.com/MetroCS/redistricting)
