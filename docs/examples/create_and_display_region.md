@@ -10,14 +10,14 @@ A default redistricting algorithm is used to create the specified number of dist
 ### Source Code
 ```java
 // Example use of redistricting package utilities.
-import swdmt.redistricting.*;
+import metrocs.redistricting.*;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 import java.util.Scanner;
 /**
  * Demonstration of redistricting package utilities from MetroCS/redistricting.
- * @version 20211221.0
+ * @version 20211221.1
  */
 public class Example1 {
 
@@ -107,6 +107,6 @@ Created 3 districts.
 +---+---+---+---+---+
 </code></pre>
 
-_Example - Create and Display a Region_ (v1.1)
+_Example - Create and Display a Region_ (v1.2)
 
 MetroCS/redistricting: [Website](https://metrocs.github.io/redistricting/) ｜ [Repository](https://github.com/MetroCS/redistricting)
