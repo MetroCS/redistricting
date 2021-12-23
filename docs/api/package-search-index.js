@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"metrocs.redistricting"}]
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"metrocs.redistricting"}]
