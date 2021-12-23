@@ -1,9 +1,9 @@
-package swdmt.redistricting;
+package metrocs.redistricting;
 /**
  * A voter has a party association and a location.
  *
  * @author Dr. Jody Paul
- * @version 20191006
+ * @version 20191006.1
  */
 public class Voter implements java.io.Serializable {
     /** Serialization version requirement. */

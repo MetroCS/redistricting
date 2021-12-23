@@ -1,4 +1,4 @@
-package swdmt.redistricting;
+package metrocs.redistricting;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
  * Tests of Party enum.
  *
  * @author  Dr. Jody Paul
- * @version 20191129
+ * @version 20191129.1
  */
 public class PartyTest {
     /**

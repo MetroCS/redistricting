@@ -1,4 +1,4 @@
-package swdmt.redistricting;
+package metrocs.redistricting;
 
 import java.util.Comparator;
 
@@ -12,7 +12,7 @@ import java.util.Comparator;
  * @author Mike Walker
  * @author Zach Morlan
  * @author Fred Buker
- * @version 20191201
+ * @version 20191201.1
  */
 public class SnakingLocationComparer implements Comparator<Location> {
   /**

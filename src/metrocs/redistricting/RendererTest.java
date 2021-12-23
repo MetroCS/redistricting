@@ -1,4 +1,4 @@
-package swdmt.redistricting;
+package metrocs.redistricting;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.HashSet;
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
  * The test class for Renderer.
  *
  * @author  Dr. Jody Paul
- * @version 20191221.1
+ * @version 20191221.2
  */
 public class RendererTest {
     /** Render of an arbitrary location. */

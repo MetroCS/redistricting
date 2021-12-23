@@ -1,4 +1,4 @@
-package swdmt.redistricting;
+package metrocs.redistricting;
 import java.util.Collection;
 import java.util.Set;
 import java.util.TreeSet;
@@ -6,7 +6,7 @@ import java.util.TreeSet;
  * A district is a contiguous group of locations.
  *
  * @author Dr. Jody Paul
- * @version 20191006
+ * @version 20191006.1
  */
 public class District implements java.io.Serializable {
     /** Serialization version requirement. */
@@ -66,12 +66,12 @@ public class District implements java.io.Serializable {
                    contiguous = false;
                    while (conLocSize < thisLocSize && filLocSet) {
                        contiguousLocations.forEach(current ->
-                                   this.locations
-                                       .stream()
-                                       .filter(current::isAdjacentTo)
-                                       .filter(loc1 ->
-                                               !contiguousLocations.contains(loc1))
-                                               .forEach(filterdLoc::add));
+                               this.locations
+                                   .stream()
+                                   .filter(current::isAdjacentTo)
+                                   .filter(loc1 ->
+                                           !contiguousLocations.contains(loc1))
+                                           .forEach(filterdLoc::add));
                        if (filterdLoc.isEmpty()) {
                            filLocSet = false;
                        }

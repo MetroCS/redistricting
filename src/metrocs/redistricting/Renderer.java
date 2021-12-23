@@ -1,4 +1,4 @@
-package swdmt.redistricting;
+package metrocs.redistricting;
 import java.util.Collection;
 import java.util.Map;
 import java.util.TreeMap;
@@ -13,7 +13,7 @@ import java.util.TreeSet;
  * is shown using '*'.</p>
  *
  * @author Dr. Jody Paul
- * @version 20211221
+ * @version 20211223.0
  */
 public final class Renderer {
     /** Render of unknown cell content. */

@@ -1,4 +1,4 @@
-package swdmt.redistricting;
+package metrocs.redistricting;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
@@ -18,7 +18,8 @@ import java.util.Iterator;
  * Most functionality is available via utility methods.
  *
  * @author Dr. Jody Paul
- * @version 20191201
+ * @author CS3250 Participants
+ * @version 20211223.2
  */
 public final class Redistrictor implements java.io.Serializable {
     /** Serialization version requirement. */
@@ -82,8 +83,7 @@ public final class Redistrictor implements java.io.Serializable {
 
         // Create covering districts with the proper
         // number of locations.
-        // TODO: Contiguity for non rectangluar districts
-        // are NOT yet considered.
+        // TODO: Contiguity of non-rectangluar districts NOT yet considered.
         for (int i = 0; i < numberOfDistricts; i++) {
             List<Location> locList = new ArrayList<Location>();
             for (int vi = 0; vi < minimumNumberOfVotersPerDistrict; vi++) {
@@ -107,7 +107,7 @@ public final class Redistrictor implements java.io.Serializable {
      * specified size from a given region.
      * If the region is smaller than the specified size,
      * then a single district is returned.
-     * Otherwise, a set is created that contains all 
+     * Otherwise, a set is created that contains all
      * districts of the specified size.
      * @param theRegion the region
      * @param districtSize the size of the districts

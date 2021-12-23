@@ -1,4 +1,4 @@
-package swdmt.redistricting;
+package metrocs.redistricting;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.api.Test;
@@ -9,7 +9,7 @@ import java.util.HashSet;
  * Tests for District objects.
  *
  * @author  Dr. Jody Paul
- * @version 20191006
+ * @version 20191006.1
  */
 public class DistrictTest {
     @Test

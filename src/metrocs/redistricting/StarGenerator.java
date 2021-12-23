@@ -1,26 +1,25 @@
-package swdmt.redistricting;
-
+package metrocs.redistricting;
 
 import java.util.ArrayList;
 
 /**
- * Generates a list of possible districts originating from an
- * origin point of size N.
- *
- *
+ * Generates a list of possible districts of a specified size
+ * originating from an given origin point.
  *
  * @author Jessica
- * @version 1.0
+ * @author CS3250 Participants
+ * @version 20211223.1
  */
 public final class StarGenerator {
   /**
-  * Returns all patterns of length n that originate from an origin point.
-  * @param n length of patterns
-  * @return generated pattern
-  */
+   * Returns all collections of Locations of a specified length
+   * that originate from the origin Location(0,0).
+   * @param n length of patterns
+   * @return generated pattern
+   */
   public static ArrayList<ArrayList<Location>> generatePattern(final int n) {
     ArrayList<ArrayList<Location>> builtPatterns =
-      new ArrayList<ArrayList<Location>>();
+        new ArrayList<ArrayList<Location>>();
     ArrayList<Location> visited = new ArrayList<Location>();
     Location currentCoord = new Location(0, 0);
 
@@ -70,7 +69,6 @@ public final class StarGenerator {
       traverse(newChain, eastCoordinate, remainingMoves, builtPatterns);
     }
 
-
     Location westCoordinate = new Location(current.xCoordinate() - 1,
                                            current.yCoordinate());
     if (!contains(visited, westCoordinate)) {
@@ -101,4 +99,3 @@ public final class StarGenerator {
   private StarGenerator() {
   }
 }
-

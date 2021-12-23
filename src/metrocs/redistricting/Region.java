@@ -1,4 +1,4 @@
-package swdmt.redistricting;
+package metrocs.redistricting;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
@@ -14,7 +14,7 @@ import java.util.Collection;
  * Zero or more voters may be associated with each location.
  *
  * @author Dr. Jody Paul
- * @version 20191128
+ * @version 20191128.1
  */
 public class Region implements java.io.Serializable {
     /** Serialization version requirement. */

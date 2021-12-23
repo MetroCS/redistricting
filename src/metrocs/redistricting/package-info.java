@@ -1,9 +1,9 @@
 /**
  * Provides classes that support the
  * redistricting investigation project.
- * <p>
+ * <p>Release 1.0</p>
  * @author Dr. Jody Paul
  * @author CS 3250 Participants
- * @version 20211211
+ * @version 20211223.1
  */
-package swdmt.redistricting;
+package metrocs.redistricting;

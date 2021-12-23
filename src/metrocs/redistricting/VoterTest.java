@@ -1,4 +1,4 @@
-package swdmt.redistricting;
+package metrocs.redistricting;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
  * Tests for Voter objects.
  *
  * @author  Dr. Jody Paul
- * @version 20211120
+ * @version 20211223.0
  */
 public class VoterTest {
     /**

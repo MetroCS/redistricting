@@ -1,4 +1,4 @@
-package swdmt.redistricting;
+package metrocs.redistricting;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.number.OrderingComparison.greaterThan;
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
  * Tests for objects of type Location.
  *
  * @author  Dr. Jody Paul
- * @version 20191006
+ * @version 20191006.1
  */
 public class LocationTest {
     /**

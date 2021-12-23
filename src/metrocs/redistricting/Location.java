@@ -1,9 +1,9 @@
-package swdmt.redistricting;
+package metrocs.redistricting;
 /**
  * A distinguished location.
  *
  * @author Dr. Jody Paul
- * @version 20191006.1
+ * @version 20191006.2
  */
 public class Location implements Comparable<Object>, java.io.Serializable {
     /** Serialization version requirement. */

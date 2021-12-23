@@ -1,4 +1,4 @@
-package swdmt.redistricting;
+package metrocs.redistricting;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.AnyOf.anyOf;
@@ -12,7 +12,8 @@ import java.util.Set;
  * Tests for redistrictor.
  *
  * @author  Dr. Jody Paul
- * @version 20191006
+ * @author  CS3250 Participants
+ * @version 20211223.1
  */
 public class RedistrictorTest {
     /**

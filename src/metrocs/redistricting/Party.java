@@ -1,11 +1,11 @@
-package swdmt.redistricting;
+package metrocs.redistricting;
 /**
  * Enumeration class Party
  * specifies constants for all known parties
  * as well as for unaffiliated and none (unknown).
  *
  * @author Dr. Jody Paul
- * @version 20191129.0.1
+ * @version 20191129.1
  */
 public enum Party implements java.io.Serializable {
     /** Unrecognized party. */

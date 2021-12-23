@@ -1,4 +1,4 @@
-package swdmt.redistricting;
+package metrocs.redistricting;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -15,36 +15,19 @@ import java.util.Collection;
  * Tests for class Region.
  *
  * @author  Dr. Jody Paul
- * @version 20211130
+ * @author  CS3250 Participants
+ * @version 20211223.2
  */
 public class RegionTest {
     /** The maximum size region to test. */
-    private static final int MAX_REGION_SIZE = 400; // 160000;
+    private static final int MAX_REGION_SIZE = 400;
     /** The maximum time (milliseconds) to wait for a test to complete. */
-    private static final long MAX_TIMEOUT = 1000L; // 20000L;
+    private static final long MAX_TIMEOUT = 1000L;
 
     /**
      * Default constructor for test class RegionTest.
      */
     public RegionTest() {
-    }
-
-    /**
-     * Sets up the test fixture.
-     *
-     * Called before every test case method.
-     */
-    @BeforeEach
-    public void setUp() {
-    }
-
-    /**
-     * Tears down the test fixture.
-     *
-     * Called after every test case method.
-     */
-    @AfterEach
-    public void tearDown() {
     }
 
     /**
@@ -153,14 +136,15 @@ public class RegionTest {
 
     /**
     * Test case for number of voters in a square region.
-    * Should complete before 1000 milliseconds have passed.
+    * Should complete before MAX_TIMEOUT expires.
     */
     @Test
     public void squareRegionNumberOfVotersTest() {
         assertTimeout(ofMillis(MAX_TIMEOUT), () -> {
             int maxRegionSide = (int) Math.sqrt(MAX_REGION_SIZE);
             for (int i = 0; i < maxRegionSide; i++) {
-                assertThat("Square region number of voters failed at size " + i * i,
+                assertThat("Square region number of voters failed at size "
+                           + i * i,
                            (new Region(i * i)).numberOfVoters(), is(i * i));
             }
         });
@@ -168,7 +152,7 @@ public class RegionTest {
 
     /**
     * Test case for voters in location set.
-    * Should complete before 1000 milliseconds have passed.
+    * Should complete before MAX_TIMEOUT expires.
     */
     @Test
     public void regionWithAllVotersInLocationSetTest() {
@@ -187,14 +171,20 @@ public class RegionTest {
             voterSet.add(voter2);
 
             Region region = new Region(locationSet, voterSet);
-            assertThat("Region with all voters in location set test failed; Location and Voter sets of size 2 produced Region with wrong size.", region.size(), is(2));
-            assertThat("Region with all voters in location set test failed; Location and Voter sets of size 2 produced Region with wrong number of voters.", region.numberOfVoters(), is(2));
+            assertThat("Region with all voters in location set test failed; "
+                           + "Location and Voter sets of size 2 produced Region "
+                           + "with wrong size.",
+                       region.size(), is(2));
+            assertThat("Region with all voters in location set test failed; "
+                           + "Location and Voter sets of size 2 produced Region "
+                           + "with wrong number of voters.",
+                       region.numberOfVoters(), is(2));
         });
     }
 
     /**
     * Test case for voters not in the location set.
-    * Should complete before 1000 milliseconds have passed.
+    * Should complete before MAX_TIMEOUT expires.
     */
     @Test
     public void regionWithVoterNotInLocationSetTest() {
@@ -209,8 +199,14 @@ public class RegionTest {
             voterSet.add(voter3);
 
             Region region = new Region(locationSet, voterSet);
-            assertThat("Region with no voters in the location set test failed; given Location set size 1 and Voter set size 1 produced Region with wrong size.", region.size(), is(1));
-            assertThat("Region with no voters in the location set test failed; given Location set size 1 and Voter set size 1 produced wrong number of voters in the region.", region.numberOfVoters(), is(0));
+            assertThat("Region with no voters in the location set test failed; "
+                           + "given Location set size 1 and Voter set size 1 produced "
+                           + "Region with wrong size.",
+                       region.size(), is(1));
+            assertThat("Region with no voters in the location set test failed; "
+                           + "given Location set size 1 and Voter set size 1 produced "
+                           + "wrong number of voters in the region.",
+                       region.numberOfVoters(), is(0));
         });
     }
 }

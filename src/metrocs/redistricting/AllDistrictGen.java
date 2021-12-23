@@ -1,15 +1,14 @@
-package swdmt.redistricting;
+package metrocs.redistricting;
 
 import java.util.ArrayList;
 
 /**
  *
- * AllDistrictGen will generate all possible districts within a
- *    region.
- *
+ * Generator of all possible districts within a region.
  *
  * @author Jessica Trujillo
- * @version 1.0
+ * @author CS3250 Participants
+ * @version 20211223.1
  */
 public final class AllDistrictGen {
   /**
