@@ -70,6 +70,10 @@ i specifies a column index 0 ≤ i < 5.
 
 Preference to Party B (5 of 5 districts)
  
+### References
+- Congressional Research Service. (2021) _Congressional Redistricting Criteria and Considerations (Updated November 15, 2021)._ https://crsreports.congress.gov/product/pdf/IN/IN11618 (accessed 20 December 2021)
+- National Conference of State Legislatures. (2021) _Redistricting Systems: A 50-State Overview._ https://www.ncsl.org/research/redistricting/redistricting-systems-a-50-state-overview.aspx (accessed 20 December 2021)
+- Levitt, J. and Spencer, D. (2020) _All About Redistricting._ Loyola Law School. https://redistricting.lls.edu (accessed 20 December 2021)
 
 ### License
 ![CC-SA-4](https://licensebuttons.net/l/by-sa/4.0/88x31.png) _Redistricting a Geographic Region_ by Dr. Jody Paul is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). 
