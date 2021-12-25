@@ -22,12 +22,19 @@ An example of a fully-populated region is given here.
 In this example the region is a 5x5 grid of locations. There is exactly one voter associated with each location. Each voter is affiliated with either Party A or Party B. Voters associated with Party A occupy grid locations (0, 0), (0, 1), (1, 1), (1, 2), (1, 4), (2, 0), (3, 2), (3, 3), and (4, 4). All other locations are occupied by voters associated with Party B.
  
 ## Districts
-A region may be split into a _specified number of districts_. Each district must contain the _same number of voters_ as all other districts within practical constraints (e.g., allows off-by-one where the number of voters is not evenly divisible by the number of districts).
+A region may be split into a _specified number of districts_.
+
+Each district must contain the _same number of people_ as all other districts, within practical constraints.[^3][^4]
+[^3]: https://redistricting.lls.edu/redistricting-101/where-are-the-lines-drawn/#equal+population
+[^4]: The initial versions of the product consider only the voter population and allow only off-by-one where the number of voters is not evenly divisible by the number of districts.
 
 A district can be represented as a set of locations.  For example { (0,0, (0,1), (1,0), (1,1) } could represent a district comprised of the four locations in the upper-left part of the example region.
 
-Districts must be _non-overlapping_ and _contiguous_. That is, each location within the same district must share an edge with at least one other location in that district.
-
+Districts must be _non-overlapping_ and _contiguous_[^1][^2].
+That is, each location within the same district must share an edge with at least one other location in that district.
+[^1]: https://redistricting.lls.edu/redistricting-101/where-are-the-lines-drawn/#contiguity
+[^2]:https://ballotpedia.org/Contiguity
+ 
 For example, if the number of districts specified for the example region is 5, one such outcome would simply divide the grid into rows.  In this case, each district is made up of the set of locations    { (i, 0), (i, 1), (i, 2), (i, 3), (i, 4) }, where i specifies a row index 0 ≤ i < 5. 
  
 ![Example Region with Districts by Row](/images/NewfigureB.png)
@@ -69,7 +76,8 @@ i specifies a column index 0 ≤ i < 5.
 ![Gerrymandered Grid for Run 2 - Preference to Party B (5 of 5 districts)](images/NewfigureD.png) 
 
 Preference to Party B (5 of 5 districts)
- 
+
+
 ### References
 - Congressional Research Service. (2021) _Congressional Redistricting Criteria and Considerations (Updated November 15, 2021)._ https://crsreports.congress.gov/product/pdf/IN/IN11618 (accessed 20 December 2021)
 - National Conference of State Legislatures. (2021) _Redistricting Systems: A 50-State Overview._ https://www.ncsl.org/research/redistricting/redistricting-systems-a-50-state-overview.aspx (accessed 20 December 2021)
