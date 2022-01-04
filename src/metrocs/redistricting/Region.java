@@ -14,7 +14,7 @@ import java.util.Collection;
  * Zero or more voters may be associated with each location.
  *
  * @author Dr. Jody Paul
- * @version 20191128.1
+ * @version 20191128.2
  */
 public class Region implements java.io.Serializable {
     /** Serialization version requirement. */
@@ -137,7 +137,7 @@ public class Region implements java.io.Serializable {
      * Accesses the voters in this region.
      * @return the voters
      */
-    public Set<Voter> voters() {
-        return this.voters;
+    public TreeSet<Voter> voters() {
+        return new TreeSet<Voter>(this.voters);
     }
 }
