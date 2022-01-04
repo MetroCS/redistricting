@@ -13,14 +13,68 @@ import java.util.HashSet;
  * @author  Dr. Jody Paul
  * @author  Nicholas Matthews
  * @author  CS3250 Participants
- * @version 20220103.0
+ * @version 20220103.1
  */
 public class RedistrictorTest {
     @Test
     public void invalidRegionParameterConstructorShouldRaiseAnException() {
         assertThrows(IllegalArgumentException.class, () -> {
-            Redistrictor r = new Redistrictor(null);
+            new Redistrictor(null);
         });
+    }
+
+    /**
+     * Checks snake-based generation of districts for a square region,
+     * verifying only the contiguity of locations in each district.
+     */
+    @Test
+    public void generateDistrictsUsingSnakeTest() {
+        Region region;
+        Set<District> districtSet;
+        region = new Region();
+        districtSet = Redistrictor.generateDistrictsUsingSnake(region, 1);
+        for (District d : districtSet) {
+            assertTrue(d.contiguityValid(),
+                       "Contiguity error of snaked district " + d);
+        }
+        region = new Region(1);
+        districtSet = Redistrictor.generateDistrictsUsingSnake(region, 1);
+        for (District d : districtSet) {
+            assertTrue(d.contiguityValid(),
+                       "Contiguity error of snaked district " + d);
+        }
+        region = new Region(4);
+        districtSet = Redistrictor.generateDistrictsUsingSnake(region, 2);
+        for (District d : districtSet) {
+            assertTrue(d.contiguityValid(),
+                       "Contiguity error of snaked district " + d);
+        }
+        region = new Region(9);
+        districtSet = Redistrictor.generateDistrictsUsingSnake(region, 1);
+        for (District d : districtSet) {
+            assertTrue(d.contiguityValid(),
+                       "Contiguity error of snaked district " + d);
+        }
+        districtSet = Redistrictor.generateDistrictsUsingSnake(region, 2);
+        for (District d : districtSet) {
+            assertTrue(d.contiguityValid(),
+                       "Contiguity error of snaked district " + d);
+        }
+        districtSet = Redistrictor.generateDistrictsUsingSnake(region, 3);
+        for (District d : districtSet) {
+            assertTrue(d.contiguityValid(),
+                       "Contiguity error of snaked district " + d);
+        }
+        districtSet = Redistrictor.generateDistrictsUsingSnake(region, 4);
+        for (District d : districtSet) {
+            assertTrue(d.contiguityValid(),
+                       "Contiguity error of snaked district " + d);
+        }
+        districtSet = Redistrictor.generateDistrictsUsingSnake(region, 5);
+        for (District d : districtSet) {
+            assertTrue(d.contiguityValid(),
+                       "Contiguity error of snaked district " + d);
+        }
     }
 
     @Test
@@ -158,7 +212,6 @@ public class RedistrictorTest {
     @Test
     public void allDistrictsOfSpecificSizeSingleDistrictTest() {
         Region region;
-        Set<District> districtSet;
         region = new Region();
         assertThat(Redistrictor.allDistrictsOfSpecificSize(region, 1).size(), is(0));
         region = new Region(1);
@@ -173,7 +226,6 @@ public class RedistrictorTest {
     @Test
     public void allDistrictsOfSpecificSizeTest() {
         Region region;
-        Set<District> districtSet;
         region = new Region(4);
         assertThat(Redistrictor.allDistrictsOfSpecificSize(region, 2).size(), is(4));
         assertThat(Redistrictor.allDistrictsOfSpecificSize(region, 3).size(), is(4));
@@ -242,7 +294,7 @@ public class RedistrictorTest {
             assertTrue(d.contiguityValid(), "Contiguity error for district " + d);
         }
     }
-    
+
     /**
      * Checks to see that the generateDistricts produces
      * a valid set of districts for a region which should
@@ -251,25 +303,25 @@ public class RedistrictorTest {
      */
     @Test
     public void generateDistrictsNonContiguousRegionTest() {
-    	Region region;
-    	Set<District> districtSet;
-    	Set<Voter> voterSet = new HashSet<Voter>();
-    	Location locationA = new Location(0,0);
-    	Location locationB = new Location(1,0);
-    	Location locationC = new Location(0,1);
-    	Location locationD = new Location(4,0);
-    	Location locationE = new Location(5,0);
-    	Location locationF = new Location(4,1);
-    	voterSet.add(new Voter(null, locationA));
-    	voterSet.add(new Voter(null, locationB));
-    	voterSet.add(new Voter(null, locationC));
-    	voterSet.add(new Voter(null, locationD));
-    	voterSet.add(new Voter(null, locationE));
-    	voterSet.add(new Voter(null, locationF));
-    	region = new Region(voterSet);
-    	districtSet = Redistrictor.generateDistricts(region, 2);
-    	for (District d : districtSet) {
-    		assertTrue(d.contiguityValid(), "Contiguity error for district " + d);
-    	}
+        Region region;
+        Set<District> districtSet;
+        Set<Voter> voterSet = new HashSet<Voter>();
+        Location locationA = new Location(0, 0);
+        Location locationB = new Location(1, 0);
+        Location locationC = new Location(0, 1);
+        Location locationD = new Location(4, 0);
+        Location locationE = new Location(5, 0);
+        Location locationF = new Location(4, 1);
+        voterSet.add(new Voter(null, locationA));
+        voterSet.add(new Voter(null, locationB));
+        voterSet.add(new Voter(null, locationC));
+        voterSet.add(new Voter(null, locationD));
+        voterSet.add(new Voter(null, locationE));
+        voterSet.add(new Voter(null, locationF));
+        region = new Region(voterSet);
+        districtSet = Redistrictor.generateDistricts(region, 2);
+        for (District d : districtSet) {
+            assertTrue(d.contiguityValid(), "Contiguity error for district " + d);
+        }
     }
 }
