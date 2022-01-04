@@ -3,9 +3,9 @@ package metrocs.redistricting;
  * A voter has a party association and a location.
  *
  * @author Dr. Jody Paul
- * @version 20191006.1
+ * @version 20220102.0
  */
-public class Voter implements java.io.Serializable {
+public class Voter implements Comparable<Voter>, java.io.Serializable {
     /** Serialization version requirement. */
     private static final long serialVersionUID = 3L;
 
@@ -47,5 +47,38 @@ public class Voter implements java.io.Serializable {
      */
     public Location location() {
         return this.myLocation;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (o == null) {
+            return false;
+        }
+        if (!(o instanceof Voter)) {
+            return false;
+        }
+        Voter v = (Voter) o;
+        return (this.partyAffiliation.equals(v.partyAffiliation)
+                && this.myLocation.equals(v.myLocation));
+    }
+
+    @Override
+    public int hashCode() {
+        return this.partyAffiliation.hashCode() + this.myLocation.hashCode();
+    }
+
+    @Override
+    public int compareTo(final Voter v) {
+        if (v == null) {
+            throw new NullPointerException(
+                          "Attempt to compare Voter with null");
+        }
+        if (this.equals(v)) {
+            return 0;
+        }
+        if (!this.myLocation.equals(v.myLocation)) {
+            return this.myLocation.compareTo(v.myLocation);
+        }
+        return this.partyAffiliation.compareTo(v.partyAffiliation);
     }
 }

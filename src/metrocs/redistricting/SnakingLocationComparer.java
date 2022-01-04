@@ -12,9 +12,13 @@ import java.util.Comparator;
  * @author Mike Walker
  * @author Zach Morlan
  * @author Fred Buker
- * @version 20191201.1
+ * @version 20220103.0
  */
-public class SnakingLocationComparer implements Comparator<Location> {
+public class SnakingLocationComparer implements Comparator<Location>,
+                                                java.io.Serializable {
+  /** Serialization version requirement. */
+  private static final long serialVersionUID = 4L;
+
   /**
   * comparing each location to one another to ensure contiguity.
   *
