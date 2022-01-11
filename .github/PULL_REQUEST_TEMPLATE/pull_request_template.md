@@ -1,8 +1,6 @@
-## Pull Request for Redistricting Project
-
 Resolves # .  
- 
-Other Related Issue(s)
+
+#### Other Related Issue(s)
 - 
 -
 
@@ -15,9 +13,13 @@ Other Related Issue(s)
 
 
 ---
-### Verification / Testing  
-(Outcomes, Transcripts)
-
+### Verification / Testing (Outcomes, Transcripts)
+Description  
+Outcome
+```
+transcript
+```
+&vellip;
 
 ---
 ### Co-Authors
