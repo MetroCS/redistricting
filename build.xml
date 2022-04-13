@@ -6,7 +6,7 @@
   <description>
       Build file for Redistricting project investigation
   </description>
-  <property name="version" value="20191216_1"/>
+  <property name="version" value="20220412_0"/>
   <property name="author" value="Jody Paul"/>
   <property name="copyright" value="Copyright (c) 2018,2019 by Dr. Jody Paul"/>
   <property name="license"
@@ -87,8 +87,8 @@
 
 
   <target name="all"
-          depends="clean, doc-private, checkstyle, coverage, pmd, cpd, format"
-          description="clean, generate documentation, analyze source code, run unit tests, check test coverage"/>
+          depends="clean, doc-private, checkstyle, test, pmd, cpd, format"
+          description="clean, generate documentation, analyze source code, run unit tests"/>
 
   <target name="clean"
           description="clean up dynamically-created files and directories"
