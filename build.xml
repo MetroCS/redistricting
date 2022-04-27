@@ -3,21 +3,19 @@
      This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
      http://creativecommons.org/licenses/by-sa/4.0/ -->
 <project xmlns:jacoco="antlib:org.jacoco.ant" name="Generic Build" default="all" basedir="." >
-
-
-
+  <description>
+      Build file for Redistricting project investigation
+  </description>
+  
+    <!--This sets up the build.properties file. Displays ant verison, site name, release verison, and name of the release-->
   <property file="build.properties"/> 
     <target name="info">
        <echo>Apache Ant version: ${ant.version}</echo>
        <echo>Website Name:  ${sitename}</echo>
        <echo>Release Version: ${releaseversion}</echo>
        <echo>Name of Release: ${nameofrelease}</echo>
-    </target><!--this is a TEST for our properties DELETE IF WORK-->
+    </target>
 
-
-  <description>
-      Build file for Redistricting project investigation
-  </description>
   <property name="version" value="20191216_1"/>
   <property name="author" value="Jody Paul"/>
   <property name="copyright" value="Copyright (c) 2018,2019 by Dr. Jody Paul"/>
