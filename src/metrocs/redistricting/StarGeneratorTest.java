@@ -16,15 +16,15 @@ import java.util.ArrayList;
 public class StarGeneratorTest {
     @Test
     public void generatePatternTest() {
-        ArrayList<ArrayList<Location>> firstLocation = new ArrayList<ArrayList<Location>>();
-        ArrayList<ArrayList<Location>> secondLocation = new ArrayList<ArrayList<Location>>();
+        ArrayList<ArrayList<Location>> firstPattern = new ArrayList<ArrayList<Location>>();
+        ArrayList<ArrayList<Location>> secondPattern = new ArrayList<ArrayList<Location>>();
         //check if method returns null
         assertNotNull(StarGenerator.generatePattern(1));
         assertNotNull(StarGenerator.generatePattern(4));
         //assign same parameter, test if same result
-        firstLocation = StarGenerator.generatePattern(4);
-        secondLocation = StarGenerator.generatePattern(4);
-        assertEquals(firstLocation,secondLocation);
+        firstPattern = StarGenerator.generatePattern(4);
+        secondPattern = StarGenerator.generatePattern(4);
+        assertEquals(firstPattern,secondPattern);
         //assign different parameter, test if different result
 
     }
