@@ -3,6 +3,18 @@
      This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
      http://creativecommons.org/licenses/by-sa/4.0/ -->
 <project xmlns:jacoco="antlib:org.jacoco.ant" name="Generic Build" default="all" basedir="." >
+
+
+
+  <property file="build.properties"/> 
+    <target name="info">
+       <echo>Apache Ant version: ${ant.version}</echo>
+       <echo>Website Name:  ${sitename}</echo>
+       <echo>Release Version: ${releaseversion}</echo>
+       <echo>Name of Release: ${nameofrelease}</echo>
+    </target><!--this is a TEST for our properties DELETE IF WORK-->
+
+
   <description>
       Build file for Redistricting project investigation
   </description>
