@@ -33,7 +33,7 @@ This project uses [Discussions](https://github.com/MetroCS/redistricting/discuss
    $ ant test
 
 ```
-**  However, Version 1.10.12 does allow the test to run.
+*  However, Version 1.10.12 does allow the test to run.
 * [Apache Ant](https://ant.apache.org/bindownload.cgi)
 
 #### Using Ant at the command line 
@@ -67,7 +67,7 @@ This project uses [Discussions](https://github.com/MetroCS/redistricting/discuss
 ### Java2HTML: Version 5.0
 * [Java2HTML](http://www.java2html.com/)
 
-###The following are used by tools in the build:
+### The following are used by tools in the build:
 
 #### Gson: Version 2.8.5
 * [GSon](https://github.com/google/gson)
