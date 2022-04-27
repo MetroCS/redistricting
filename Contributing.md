@@ -28,6 +28,12 @@ This project uses [Discussions](https://github.com/MetroCS/redistricting/discuss
 * [GitHub Tutorial](https://guides.github.com/activities/hello-world/) - "Hello World" starter guide for those new to GitHub
 
 ### Apache Ant: Version 1.10.7
+* Note: Version 1.10.7 does not allow the user to execute
+```
+   $ ant test
+
+```
+**  However, Version 1.10.12 does allow the test to run.
 * [Apache Ant](https://ant.apache.org/bindownload.cgi)
 
 #### Using Ant at the command line 
