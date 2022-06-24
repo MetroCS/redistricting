@@ -43,12 +43,14 @@
   </condition>
     <!-- API version match with Java version -->
   <condition property="api.url"
-             value="https://docs.oracle.com/javase/8/docs/api/"
-	     else="https://docs.oracle.com/javase/17/docs/api/">
+             value="https://docs.oracle.com/javase/17/docs/api/"
+	     else="https://docs.oracle.com/javase/8/docs/api/">
+    <not>
       <or>
         <equals arg1="${ant.java.version}" arg2="1.7"/>
         <equals arg1="${ant.java.version}" arg2="1.8"/>
       </or>
+    </not>
   </condition>
 
     <!-- Identify product name -->
