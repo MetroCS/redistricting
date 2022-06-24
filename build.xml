@@ -6,7 +6,7 @@
   <description>
       Build file for Redistricting project investigation
   </description>
-  <property name="version" value="20220412_0"/>
+  <property name="version" value="20220623_0"/>
   <property name="author" value="Jody Paul"/>
   <property name="copyright" value="Copyright (c) 2018,2019 by Dr. Jody Paul"/>
   <property name="license"
@@ -32,8 +32,19 @@
   <property name="testreports" location="${allreports}/test"/>
   <property name="formattedsrc" location="formattedsrc"/>
   <property name="lib" location="lib"/>
-    <!-- HTML version -->
+    <!-- HTML version match with Java version -->
   <condition property="html.version" value="-html5" else="">
+    <not>
+      <or>
+        <equals arg1="${ant.java.version}" arg2="1.7"/>
+        <equals arg1="${ant.java.version}" arg2="1.8"/>
+      </or>
+    </not>
+  </condition>
+    <!-- API version match with Java version -->
+  <condition property="api.url"
+             value="https://docs.oracle.com/javase/17/docs/api/"
+	     else="https://docs.oracle.com/javase/8/docs/api/">
     <not>
       <or>
         <equals arg1="${ant.java.version}" arg2="1.7"/>
@@ -190,7 +201,7 @@
         <filename name="**/*.java"/>
         <exclude name="**/*Test.java"/>
       </fileset>
-      <link href="https://docs.oracle.com/javase/8/docs/api/" />
+      <link href="${api.url}" />
       <bottom>
         <![CDATA[<a rel="license"
                  href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License"
@@ -218,7 +229,7 @@
       <fileset dir="${src.dir}" casesensitive="yes" defaultexcludes="yes">
         <filename name="**/*.java"/>
       </fileset>
-      <link href="https://docs.oracle.com/javase/8/docs/api/" />
+      <link href="${api.url}" />
     </javadoc>
   </target>
 
