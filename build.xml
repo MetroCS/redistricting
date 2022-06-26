@@ -234,7 +234,7 @@
       </fileset>
       <link href="${api.url}" />
       <footer>
-        <![CDATA[<h2>Build Version: ${build.version}</h2>]]>
+        <![CDATA[<h2>Version: ${release.version}</h2>]]>
       </footer>
       <bottom>
         <![CDATA[<a rel="license"
@@ -265,7 +265,7 @@
       </fileset>
       <link href="${api.url}" />
       <footer>
-        <![CDATA[<h2>Build Version: ${build.version}</h2>]]>
+        <![CDATA[<h2>Version: ${release.version}</h2>]]>
       </footer>
     </javadoc>
   </target>
