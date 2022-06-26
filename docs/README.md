@@ -6,6 +6,8 @@ An MSU Denver Computer Sciences project
 A Java utility library designed to support investigations of splitting a geographic region into election districts.
 
 ___
+Latest Release: [Redistricting.jar](https://github.com/MetroCS/redistricting/releases/download/v1.0.1/Redistricting.jar)
+
 Library Documentation: [redistricting API](api/index.html)
 
 Usage Example: [Create and Display Region](examples/create_and_display_region)
