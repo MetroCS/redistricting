@@ -8,7 +8,7 @@
   </description>
   <property name="version" value="20220623_0"/>
   <property name="author" value="Jody Paul"/>
-  <property name="copyright" value="Copyright (c) 2018,2019 by Dr. Jody Paul"/>
+  <property name="copyright" value="Copyright (c) Dr. Jody Paul"/>
   <property name="license"
             value="This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License."/>
 
@@ -19,6 +19,9 @@
   <propertyhelper>
     <colorpropertyevaluator />
   </propertyhelper>
+
+  <!-- Import build properties, including version identification -->
+  <property file="build.properties"/>
 
   <!-- Global properties -->
   <property name="src.dir" location="src"/>
@@ -116,6 +119,12 @@
     </delete>
   </target>
 
+  <target name="info"
+          description="show build/release information">
+    <echo>"Release version: ${release.version}"</echo>
+    <echo>"Java version: ${ant.java.version}"</echo>
+    <echo>"Ant library directory: ${ant.library.dir}"</echo>
+  </target>
 
   <target name="init">
     <!-- Create the time stamp -->
@@ -144,11 +153,33 @@
   <target name="jar" depends="compile" 
           description="Creates a jar file for the product">
     <mkdir dir="${jar.dir}"/>
-    <jar destfile="${jar.dir}/${productname}.jar"
+    <tstamp/>
+    <jar destfile="${jar.dir}/${productname}_${DSTAMP}_${TSTAMP}.jar"
          basedir="${classes.dir}"
          excludes="**/*Test.class">
+      <manifest>
+        <attribute name="Built-By" value="${user.name}"/>
+        <attribute name="Implementation-Version" value="${release.version}-${DSTAMP}-${TSTAMP}"/>
+        <attribute name="Build-Date" value="${TODAY}"/>
+      </manifest>
     </jar>
-    <echo message="Jar file has been created, and can be found at: ${jar.dir}/${productname}.jar" />
+    <echo message="Jar file has been created, and can be found at: ${jar.dir}/${productname}_${DSTAMP}_${TSTAMP}.jar" />
+  </target>
+
+  <target name="release" depends="compile" 
+          description="Creates a jar file for the product release">
+    <mkdir dir="${jar.dir}"/>
+    <jar destfile="${jar.dir}/${productname}_${release.version}.jar"
+         basedir="${classes.dir}"
+         excludes="**/*Test.class">
+      <manifest>
+        <attribute name="Implementation-Version" value="${release.version}"/>
+        <attribute name="Implementation-Title" value="Redistricting"/>
+        <attribute name="Implementation-Vendor" value="MetroCS"/>
+        <attribute name="Build-Date" value="${DSTAMP}_${TSTAMP}"/>
+      </manifest>
+    </jar>
+    <echo message="Jar file has been created, and can be found at: ${jar.dir}/${productname}_${release.version}.jar" />
   </target>
 
   <target name="unitTest" depends="test.junit.launcher, test.console.launcher" />
@@ -202,6 +233,9 @@
         <exclude name="**/*Test.java"/>
       </fileset>
       <link href="${api.url}" />
+      <footer>
+        <![CDATA[<h2>Build Version: ${build.version}</h2>]]>
+      </footer>
       <bottom>
         <![CDATA[<a rel="license"
                  href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License"
@@ -230,6 +264,9 @@
         <filename name="**/*.java"/>
       </fileset>
       <link href="${api.url}" />
+      <footer>
+        <![CDATA[<h2>Build Version: ${build.version}</h2>]]>
+      </footer>
     </javadoc>
   </target>
 
