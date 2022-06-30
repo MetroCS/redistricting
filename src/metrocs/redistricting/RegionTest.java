@@ -14,7 +14,7 @@ import java.util.Collection;
  *
  * @author  Dr. Jody Paul
  * @author  CS3250 Participants
- * @version 20211223.2
+ * @version 20220629.0
  */
 public class RegionTest {
     /** The maximum size region to test. */
@@ -47,26 +47,28 @@ public class RegionTest {
         }
     }
 
-    /**
+   /**
     * Test case for empty region sizes.
-    * Should return 0 with various empty or 0 inputs.
+    * Should return 0 with various empty or 0 or 0,0 parameters.
     */
     @Test
     public void emptyRegionSizeTest() {
         assertThat((new Region()).size(), is(0));
         assertThat((new Region(0)).size(), is(0));
         assertThat((new Region(-0)).size(), is(0));
+        assertThat((new Region(0, 0)).size(), is(0));
     }
 
     /**
     * Test case for empty number of voters in a region.
-    * Should return 0 with various empty or 0 inputs.
+    * Should return 0 with various empty or 0 or 0,0 parameters.
     */
     @Test
     public void emptyRegionNumberOfVotersTest() {
         assertThat((new Region()).numberOfVoters(), is(0));
         assertThat((new Region(0)).numberOfVoters(), is(0));
         assertThat((new Region(-0)).numberOfVoters(), is(0));
+        assertThat((new Region(0, 0)).numberOfVoters(), is(0));
     }
 
     /**
@@ -82,10 +84,28 @@ public class RegionTest {
     }
 
     /**
-    * Test case for non-square regions.
-    * When a new region is made with a non-square number,
-    * throws IllegalArgumentException
+    * Test case for negative rectangular regions.
+    * When a negative parameter for a region number of rows or columns is passed,
+    * throws IllegalArgumentException.
     */
+    @Test
+    public void rectangularRegionNegativeSizeTest() throws IllegalArgumentException {
+        assertThrows(IllegalArgumentException.class, () -> {
+            Region r = new Region(-4, 3);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            Region r = new Region(5, -6);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            Region r = new Region(-7, -8);
+        });
+    }
+
+    /**
+     * Test case for non-square regions using square constructor.
+     * When a new region is requested with a non-square number,
+     * throws IllegalArgumentException
+     */
     @Test
     public void squareRegionNonSquareSizeTest() throws IllegalArgumentException {
         assertThrows(IllegalArgumentException.class, () -> {
@@ -94,7 +114,8 @@ public class RegionTest {
     }
 
     /**
-    * Test case for non-square regions, specifically with 3.
+    * Test case for non-square regions using square constructor,
+    * specifically with parameter of 3.
     * When a new region is made with the number 3,
     * throws IllegalArgumentException.
     */
@@ -117,8 +138,35 @@ public class RegionTest {
         });
     }
 
+
     /**
-    * Test case for valid region size.
+    * Test case for valid rectangular region size.
+    * Should complete before 1000 milliseconds have passed.
+    */
+    @Test
+    public void rectangularRegionValidSizeTest() {
+        assertTimeout(ofMillis(MAX_TIMEOUT), () -> {
+            int maxRegionSide = (int) Math.sqrt(MAX_REGION_SIZE);
+            // Test an arbitrary case.
+            assertThat("Rectangular region 5 x 4 wrong size",
+                       ((new Region(5, 4)).size()), is(5 * 4));
+            // Test regions with same length sides.
+            for (int i = 0; i < maxRegionSide; i++) {
+                assertThat("Rectangular region test failed for ("
+                           + i + "," + i + ")",
+                           i * i, is((new Region(i, i)).size()));
+            }
+            // Test regions with differing length sides.
+            for (int r = 0; r < maxRegionSide / 2; r++) {
+                assertThat("Rectangular region test failed for ("
+                           + r + "," + (r * 2) + ")",
+                           r * r * 2, is((new Region(r, r * 2)).size()));
+            }
+        });
+    }
+
+    /**
+    * Test case for valid square region size.
     * Should complete before 1000 milliseconds have passed.
     */
     @Test
@@ -128,6 +176,32 @@ public class RegionTest {
             for (int i = 0; i < maxRegionSide; i++) {
                 assertThat("Square region test failed at size " + i * i,
                            i * i, is((new Region(i * i)).size()));
+            }
+        });
+    }
+
+    /**
+     * Test case for number of voters in a rectangular region.
+     * Should complete before MAX_TIMEOUT expires.
+     */
+    @Test
+    public void rectangularRegionNumberOfVotersTest() {
+        assertTimeout(ofMillis(MAX_TIMEOUT), () -> {
+            int maxRegionSide = (int) Math.sqrt(MAX_REGION_SIZE);
+            // Test an arbitrary case.
+            assertThat("Rectangular region 5 x 4 wrong number of voters",
+                       ((new Region(5, 4)).numberOfVoters()), is(5 * 4));
+            // Test regions with same length sides.
+            for (int i = 0; i < maxRegionSide; i++) {
+                assertThat("Rectangular region number of voters failed for ("
+                           + i + "," + i + ")",
+                           i * i, is((new Region(i, i)).numberOfVoters()));
+            }
+            // Test regions with differing length sides.
+            for (int r = 0; r < maxRegionSide / 2; r++) {
+                assertThat("Rectangular region number of voters failed for ("
+                           + r + "," + (r * 2) + ")",
+                           r * r * 2, is((new Region(r, r * 2)).numberOfVoters()));
             }
         });
     }
