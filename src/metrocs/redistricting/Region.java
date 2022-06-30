@@ -14,7 +14,7 @@ import java.util.Collection;
  * Zero or more voters may be associated with each location.
  *
  * @author Dr. Jody Paul
- * @version 20191128.2
+ * @version 20220629.0
  */
 public class Region implements java.io.Serializable {
     /** Serialization version requirement. */
@@ -30,7 +30,8 @@ public class Region implements java.io.Serializable {
     private Map<Location, Voter> voterMap = new HashMap<>();
 
     /**
-     * Computes a default length of the side of the grid containing this region.
+     * Computes a default length of the side of the grid containing this region
+     * assuming the region is a square.
      * @return the length of a side
      */
     public int sideSize() {
@@ -46,6 +47,32 @@ public class Region implements java.io.Serializable {
         this.locations = new TreeSet<>();
         this.voters = new HashSet<>();
         this.voterMap = new HashMap<>();
+    }
+
+    /**
+     * Creates a rectangular region of contiguous locations,
+     * using the specified number of rows and columns,
+     * with a location at each row-column intersection,
+     * and exactly one voter at each location.
+     * Location indices start at (0, 0) and increment monotonically
+     * in row major order.
+     * @param numberOfRows the desired number of rows
+     * @param numberOfColumns the desired number of columns
+     * @throws IllegalArgumentException if any parameter is negative
+     */
+    public Region(final int numberOfRows, final int numberOfColumns) {
+        if ((numberOfRows < 0) || (numberOfColumns < 0)) {
+            throw new IllegalArgumentException(
+                "Invalid attempt to create rectangular region of size "
+                + numberOfRows + " rows by " + numberOfColumns + " columns");
+        }
+        for (int r = 0; r < numberOfRows; r++) {
+            for (int c = 0; c < numberOfColumns; c++) {
+                Location loc = new Location(r, c);
+                this.locations.add(loc);
+                this.voters.add(new Voter(Party.NONE, loc));
+            }
+        }
     }
 
     /**
