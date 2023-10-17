@@ -12,14 +12,14 @@ import org.junit.jupiter.api.Test;
 
 class StarGeneratorTest{
 
-    /* Verifies that locations inside pattern generated are not empty */
+    /** Verifies that locations inside pattern generated are not empty */
     @Test
     public void StarGeneratorEmptyTest(){
         ArrayList<ArrayList<Location>> sp = StarGenerator.generatePattern(3);
         assertFalse(sp.isEmpty());
     }
 
-    /* Verifies that the Star Generator method is not randomly generating a pattern */
+    /** Verifies that the Star Generator method is not randomly generating a pattern */
     @Test
     public void StarGeneratorEqualTest(){
         ArrayList<ArrayList<Location>> sp = StarGenerator.generatePattern(3);
@@ -27,12 +27,19 @@ class StarGeneratorTest{
         assertEquals(sp, sp2);
     }
     
-    /* Verifies that the intial location start point for the pattern is 0,0 */
+    /** Verifies that the intial location start point for the pattern is 0,0 */
     @Test
     public void StarGeneratorLocationStartTest(){
         ArrayList<ArrayList<Location>> sp = StarGenerator.generatePattern(3);
         Location l = new Location(0, 0);   
-        assertEquals(sp.get(0).toString(), l.xCoordinate(), l.yCoordinate());    
+        // assertEquals(sp.get(0).toString(), l.xCoordinate, l.yCoordinate);
+        assertEquals(sp.get(0).get(0).xCoordinate(), l.xCoordinate());   
+        assertEquals(sp.get(0).get(0).yCoordinate(), l.yCoordinate()); 
     }
 
+    /** Verifies the StarGenerator utilites limit with Java's max integer value */
+    //@Test
+    public void StarGeneratorMaxN(){
+
+    }
 }
