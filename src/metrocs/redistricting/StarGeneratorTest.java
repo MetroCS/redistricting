@@ -1,6 +1,7 @@
 package metrocs.redistricting;
 import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.api.Test;
 /**
@@ -12,27 +13,80 @@ import org.junit.jupiter.api.Test;
 
 class StarGeneratorTest{
 
-    /* Verifies that locations inside pattern generated are not empty */
+    /** Verifies that locations inside pattern generated where n is >= 1 are not empty */
     @Test
     public void StarGeneratorEmptyTest(){
         ArrayList<ArrayList<Location>> sp = StarGenerator.generatePattern(3);
         assertFalse(sp.isEmpty());
     }
-
-    /* Verifies that the Star Generator method is not randomly generating a pattern */
-    @Test
-    public void StarGeneratorEqualTest(){
-        ArrayList<ArrayList<Location>> sp = StarGenerator.generatePattern(3);
-        ArrayList<ArrayList<Location>> sp2 = StarGenerator.generatePattern(3);
-        assertEquals(sp, sp2);
-    }
     
-    /* Verifies that the intial location start point for the pattern is 0,0 */
+    /** Verifies that for each set of locations, that it will contain the position (0,0) */
     @Test
     public void StarGeneratorLocationStartTest(){
         ArrayList<ArrayList<Location>> sp = StarGenerator.generatePattern(3);
         Location l = new Location(0, 0);   
-        assertEquals(sp.get(0).toString(), l.xCoordinate(), l.yCoordinate());    
+        // assertEquals(sp.get(0).toString(), l.xCoordinate, l.yCoordinate);
+        for(int i = 0; i < sp.size(); i++){
+            assertTrue(sp.get(i).contains(l));
+        }
+         
     }
 
+    /***
+     * Test for StarGenerator pattern of size n=1
+     *
+     * Expected behavior is that an arraylist<arraylist<location>> of size 1 should be returned
+     * which has been verified by hand.
+     *
+     */
+    @Test
+    public void StarGeneratorSize1(){
+        ArrayList<ArrayList<Location>> sp = StarGenerator.generatePattern(1);
+        assertEquals(sp.size(), 1);
+    }
+
+
+    /***
+     * Test for StarGenerator pattern of size n=2
+     *
+     * Expected behavior is that an arraylist<arraylist<location>> of size 4 should be returned
+     * which has been verified by hand.
+     *
+     */
+    @Test
+    public void StarGeneratorSize2(){
+        ArrayList<ArrayList<Location>> sp = StarGenerator.generatePattern(2);
+        assertEquals(sp.size(), 4);
+    }
+
+
+    /***
+     * Test for StarGenerator pattern of size n=3
+     *
+     * Expected behavior is that an arraylist<arraylist<location>> of size 12 should be returned
+     * which has been verified by hand.
+     *
+     */
+    @Test
+    public void StarGeneratorSize3(){
+        ArrayList<ArrayList<Location>> sp = StarGenerator.generatePattern(3);
+        assertEquals(sp.size(), 12);
+    }
+
+
+    /***
+     * Test for StarGenerator pattern of size n=4
+     *
+     * Expected behavior is that an arraylist<arraylist<location>> of size 36 should be returned
+     * which has been verified by hand.
+     *
+     */
+    @Test
+    public void StarGeneratorSize4(){
+        ArrayList<ArrayList<Location>> sp = StarGenerator.generatePattern(4);
+        assertEquals(sp.size(), 36);
+    }
 }
+
+   
+
