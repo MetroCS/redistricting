@@ -19,15 +19,24 @@ class StarGeneratorTest {
         ArrayList<ArrayList<Location>> sp = StarGenerator.generatePattern(3);
         assertFalse(sp.isEmpty());
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 8202322c1e67cafc4930107bf704296ca761d56e
     /** Verifies that for each set of locations where n = 3, that it will contain the position (0,0) */
     @Test
     public void StarGeneratorLocationStartTest() {
         ArrayList<ArrayList<Location>> sp = StarGenerator.generatePattern(3);
         Location l = new Location(0, 0);
         // assertEquals(sp.get(0).toString(), l.xCoordinate, l.yCoordinate);
+<<<<<<< HEAD
         for (ArrayList<Location> location : sp) {
             assertTrue(location.contains(l));
+=======
+        for(location : sp){
+            assertTrue(sp.get(i).contains(l));
+>>>>>>> 8202322c1e67cafc4930107bf704296ca761d56e
         }
 
     }
