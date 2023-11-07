@@ -13,20 +13,20 @@ import org.junit.jupiter.api.Test;
 
 class StarGeneratorTest{
 
-    /** Verifies that locations inside pattern generated where n is >= 1 are not empty */
+    /** Verifies that locations inside pattern generated where n is = 3 are not empty */
     @Test
     public void StarGeneratorEmptyTest(){
         ArrayList<ArrayList<Location>> sp = StarGenerator.generatePattern(3);
         assertFalse(sp.isEmpty());
     }
     
-    /** Verifies that for each set of locations, that it will contain the position (0,0) */
+    /** Verifies that for each set of locations where n = 3, that it will contain the position (0,0) */
     @Test
     public void StarGeneratorLocationStartTest(){
         ArrayList<ArrayList<Location>> sp = StarGenerator.generatePattern(3);
         Location l = new Location(0, 0);   
         // assertEquals(sp.get(0).toString(), l.xCoordinate, l.yCoordinate);
-        for(int i = 0; i < sp.size(); i++){
+        for(location : sp){
             assertTrue(sp.get(i).contains(l));
         }
          
