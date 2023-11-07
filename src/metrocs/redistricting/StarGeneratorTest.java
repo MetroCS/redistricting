@@ -11,25 +11,34 @@ import org.junit.jupiter.api.Test;
  * @version 20231012.1
  */
 
-class StarGeneratorTest{
+class StarGeneratorTest {
 
     /** Verifies that locations inside pattern generated where n is = 3 are not empty */
     @Test
-    public void StarGeneratorEmptyTest(){
+    public void StarGeneratorEmptyTest() {
         ArrayList<ArrayList<Location>> sp = StarGenerator.generatePattern(3);
         assertFalse(sp.isEmpty());
     }
+<<<<<<< HEAD
+
+=======
     
+>>>>>>> 8202322c1e67cafc4930107bf704296ca761d56e
     /** Verifies that for each set of locations where n = 3, that it will contain the position (0,0) */
     @Test
-    public void StarGeneratorLocationStartTest(){
+    public void StarGeneratorLocationStartTest() {
         ArrayList<ArrayList<Location>> sp = StarGenerator.generatePattern(3);
-        Location l = new Location(0, 0);   
+        Location l = new Location(0, 0);
         // assertEquals(sp.get(0).toString(), l.xCoordinate, l.yCoordinate);
+<<<<<<< HEAD
+        for (ArrayList<Location> location : sp) {
+            assertTrue(location.contains(l));
+=======
         for(location : sp){
             assertTrue(sp.get(i).contains(l));
+>>>>>>> 8202322c1e67cafc4930107bf704296ca761d56e
         }
-         
+
     }
 
     /***
@@ -40,7 +49,7 @@ class StarGeneratorTest{
      *
      */
     @Test
-    public void StarGeneratorSize1(){
+    public void StarGeneratorSize1() {
         ArrayList<ArrayList<Location>> sp = StarGenerator.generatePattern(1);
         assertEquals(sp.size(), 1);
     }
@@ -54,7 +63,7 @@ class StarGeneratorTest{
      *
      */
     @Test
-    public void StarGeneratorSize2(){
+    public void StarGeneratorSize2() {
         ArrayList<ArrayList<Location>> sp = StarGenerator.generatePattern(2);
         assertEquals(sp.size(), 4);
     }
@@ -68,7 +77,7 @@ class StarGeneratorTest{
      *
      */
     @Test
-    public void StarGeneratorSize3(){
+    public void StarGeneratorSize3() {
         ArrayList<ArrayList<Location>> sp = StarGenerator.generatePattern(3);
         assertEquals(sp.size(), 12);
     }
@@ -82,11 +91,8 @@ class StarGeneratorTest{
      *
      */
     @Test
-    public void StarGeneratorSize4(){
+    public void StarGeneratorSize4() {
         ArrayList<ArrayList<Location>> sp = StarGenerator.generatePattern(4);
         assertEquals(sp.size(), 36);
     }
 }
-
-   
-
