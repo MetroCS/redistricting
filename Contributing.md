@@ -35,3 +35,8 @@ This project uses [Discussions](https://github.com/MetroCS/redistricting/discuss
    $ ant all 
    $ cd build
 ```
+#### Ubuntu (22.04) & Bash
+If when building you're missing the jar files and junit tests aren't running, then you should 
+download ant through snapd using the following commands(once youve installed [snapd](https://snapcraft.io/docs/installing-snap-on-ubuntu)).
+#### MAC OS 
+If java tests are failing to complie, try downloading ant through [homebrew](https://brew.sh/)
