@@ -20,6 +20,9 @@ public final class StarGenerator {
   public static ArrayList<ArrayList<Location>> generatePattern(final int n) {
     ArrayList<ArrayList<Location>> builtPatterns =
         new ArrayList<ArrayList<Location>>();
+    if (n == 0) {
+    	return builtPatterns;
+    }
     ArrayList<Location> visited = new ArrayList<Location>();
     Location currentCoord = new Location(0, 0);
 
