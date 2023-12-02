@@ -35,14 +35,14 @@ This project uses [Discussions](https://github.com/MetroCS/redistricting/discuss
    $ ant all 
    $ cd build
 ```
-#### Bulding on Linux 
-Junit requires junit.test.launcher, which may not be in your calsspath by default.  
+#### Junit.test.launcher
+Junit requires junit.test.launcher, which may not be in your classpath by default.  
 "junit.test.launcher not in classpath"
-This error can happen because of some fo the following reasons:
-* JUnit is not installed on your system.
-* JUnit is installed, but it is not on the classpath for the project you are trying to run tests
+This error can happen because of some of the following reasons:
+* Junit is not installed on your system.
+* Junit is installed, but it is not on the classpath for the project you are trying to run tests
  for.
 * You are using a version of JUnit that is not compatible with the version of Java
  you are using.
-Additionally, you can use a packae manager like snapd, to install ant, and avoid this classpath problem.
+Additionally, you can use a package manager like snapd, to install ant, and avoid this classpath problem.
 You can install here: [snapd](https://snapcraft.io/docs/installing-snap-on-ubuntu)
