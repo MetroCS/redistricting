@@ -89,4 +89,26 @@ public class RedistrictingGUITest {
         assertEquals('1', ((Character) symbolMethod.invoke(panel, Party.PARTY1)).charValue());
         assertEquals('T', ((Character) symbolMethod.invoke(panel, Party.THIRDPARTY)).charValue());
     }
+
+    /**
+     * Ensures that textColorForParty chooses contrasting colors.
+     * @throws Exception if reflection fails
+     */
+    @Test
+    public void textColorForPartyContrasts() throws Exception {
+        Class<?> clazz = Class.forName("metrocs.redistricting.RedistrictingGUI$RegionPanel");
+        Constructor<?> ctor = clazz.getDeclaredConstructor();
+        ctor.setAccessible(true);
+        Object panel = ctor.newInstance();
+
+        Method textColorMethod = clazz.getDeclaredMethod("textColorForParty", Party.class);
+        textColorMethod.setAccessible(true);
+
+        assertEquals(Color.WHITE,
+                     textColorMethod.invoke(panel, Party.PARTY0));
+        assertEquals(Color.WHITE,
+                     textColorMethod.invoke(panel, Party.PARTY1));
+        assertEquals(Color.BLACK,
+                     textColorMethod.invoke(panel, Party.THIRDPARTY));
+    }
 }

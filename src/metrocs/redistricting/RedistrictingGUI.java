@@ -4,8 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Graphics;
+import java.awt.BasicStroke;
 import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Stroke;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -136,24 +139,21 @@ public final class RedistrictingGUI {
             int rows = maxY + 1;
             int size = Math.min(getWidth() / Math.max(cols, 1),
                                  getHeight() / Math.max(rows, 1));
-            // Draw voters.
+            Graphics2D g2 = (Graphics2D) g.create();
+            // Draw voter backgrounds.
             for (Location l : region.locations()) {
                 int x = l.xCoordinate();
                 int y = l.yCoordinate();
                 Voter v = voterMap.get(l);
-                g.setColor(colorForParty(v.affiliation()));
-                g.fillRect(x * size, y * size, size, size);
-                g.setColor(Color.BLACK);
-                g.drawRect(x * size, y * size, size, size);
-                g.setColor(Color.WHITE);
-                String sym = String.valueOf(symbolForParty(v.affiliation()));
-                FontMetrics fm = g.getFontMetrics();
-                int textX = x * size + (size - fm.stringWidth(sym)) / 2;
-                int textY = y * size + ((size - fm.getHeight()) / 2) + fm.getAscent();
-                g.drawString(sym, textX, textY);
+                g2.setColor(colorForParty(v.affiliation()));
+                g2.fillRect(x * size, y * size, size, size);
             }
+
+            // Draw district boundaries with a thicker stroke.
             if (districts != null) {
-                g.setColor(Color.BLACK);
+                Stroke oldStroke = g2.getStroke();
+                g2.setColor(Color.BLACK);
+                g2.setStroke(new BasicStroke(3f));
                 for (District dist : districts) {
                     Set<Location> locset = new HashSet<>(dist.locations());
                     for (Location l : locset) {
@@ -161,23 +161,38 @@ public final class RedistrictingGUI {
                         int y = l.yCoordinate() * size;
                         if (!locset.contains(new Location(l.xCoordinate() - 1,
                                                          l.yCoordinate()))) {
-                            g.drawLine(x, y, x, y + size);
+                            g2.drawLine(x, y, x, y + size);
                         }
                         if (!locset.contains(new Location(l.xCoordinate() + 1,
                                                          l.yCoordinate()))) {
-                            g.drawLine(x + size, y, x + size, y + size);
+                            g2.drawLine(x + size, y, x + size, y + size);
                         }
                         if (!locset.contains(new Location(l.xCoordinate(),
                                                          l.yCoordinate() - 1))) {
-                            g.drawLine(x, y, x + size, y);
+                            g2.drawLine(x, y, x + size, y);
                         }
                         if (!locset.contains(new Location(l.xCoordinate(),
                                                          l.yCoordinate() + 1))) {
-                            g.drawLine(x, y + size, x + size, y + size);
+                            g2.drawLine(x, y + size, x + size, y + size);
                         }
                     }
                 }
+                g2.setStroke(oldStroke);
             }
+
+            // Draw voter symbols after boundaries so they are visible.
+            for (Location l : region.locations()) {
+                int x = l.xCoordinate();
+                int y = l.yCoordinate();
+                Voter v = voterMap.get(l);
+                g2.setColor(textColorForParty(v.affiliation()));
+                String sym = String.valueOf(symbolForParty(v.affiliation()));
+                FontMetrics fm = g2.getFontMetrics();
+                int textX = x * size + (size - fm.stringWidth(sym)) / 2;
+                int textY = y * size + ((size - fm.getHeight()) / 2) + fm.getAscent();
+                g2.drawString(sym, textX, textY);
+            }
+            g2.dispose();
         }
 
         /**
@@ -196,6 +211,20 @@ public final class RedistrictingGUI {
                 default:
                     return Color.LIGHT_GRAY;
             }
+        }
+
+        /**
+         * Selects a contrasting text color for a party cell.
+         * @param p the party
+         * @return color for text display
+         */
+        private Color textColorForParty(final Party p) {
+            Color base = colorForParty(p);
+            int brightness = (int) Math.sqrt(
+                base.getRed() * base.getRed() * 0.241
+                + base.getGreen() * base.getGreen() * 0.691
+                + base.getBlue() * base.getBlue() * 0.068);
+            return brightness < 130 ? Color.WHITE : Color.BLACK;
         }
 
         /**
