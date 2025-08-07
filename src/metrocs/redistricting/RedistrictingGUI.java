@@ -38,6 +38,8 @@ public final class RedistrictingGUI {
     private final JTextField districtsField = new JTextField("5", 3);
     /** Panel that renders the region and districts. */
     private final RegionPanel regionPanel = new RegionPanel();
+    /** Label for displaying party preference statistics. */
+    private final JLabel statsLabel = new JLabel();
 
     /**
      * Constructs the GUI and displays the initial frame.
@@ -59,6 +61,7 @@ public final class RedistrictingGUI {
         frame.add(input, BorderLayout.NORTH);
 
         frame.add(regionPanel, BorderLayout.CENTER);
+	frame.add(statsLabel, BorderLayout.SOUTH);
         generateButton.addActionListener(e -> generate());
         frame.pack();
         frame.setVisible(true);
@@ -84,6 +87,7 @@ public final class RedistrictingGUI {
         Region region = new Region(locs, voters);
         Set<District> dists = Redistrictor.generateDistricts(region, districts);
         regionPanel.update(region, dists);
+	statsLabel.setText(RedistrictingStatistics.formatPartyPreferences(region));
     }
 
     /**
