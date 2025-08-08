@@ -102,7 +102,8 @@ public final class RedistrictingStatistics implements java.io.Serializable {
      * @return map associating each party with the number of voters affiliated
      *         with that party
      */
-    public static Map<Party, Integer> countPartyPreferences(final Region region) {
+    public static Map<Party, Integer>
+      countPartyPreferences(final Region region) {
         Map<Party, Integer> counts = new EnumMap<>(Party.class);
         for (Party p : Party.values()) {
             counts.put(p, 0);
@@ -117,6 +118,8 @@ public final class RedistrictingStatistics implements java.io.Serializable {
     }
 
 
+    /** Base for percentages. */
+    private static final double BASE = 100.0;
     /**
      * Produces a human-readable summary of party preference statistics for the
      * given region. The summary lists the number and percentage of voters for
@@ -137,7 +140,7 @@ public final class RedistrictingStatistics implements java.io.Serializable {
                 sb.append(" | ");
             }
             if (total > 0) {
-                double pct = (double) c * 100.0 / total;
+                double pct = (double) c * BASE / total;
                 sb.append(p.name()).append(": ").append(c)
                   .append(String.format(" (%.1f%%)", pct));
             } else {

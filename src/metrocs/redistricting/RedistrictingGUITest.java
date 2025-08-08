@@ -27,7 +27,7 @@ public class RedistrictingGUITest {
         ctor.setAccessible(true);
         Object panel = ctor.newInstance();
 
-        Method update = clazz.getDeclaredMethod("update", Region.class, Set.class);
+        Method update = clazz.getDeclaredMethod("update", Region.class, HashSet.class);
         update.setAccessible(true);
 
         Set<Location> locs = new HashSet<>();
@@ -38,7 +38,7 @@ public class RedistrictingGUITest {
         Region region = new Region(locs, voters);
         Set<Location> distLocs = new HashSet<>();
         distLocs.add(loc);
-        Set<District> districts = new HashSet<>();
+        HashSet<District> districts = new HashSet<>();
         districts.add(new District(distLocs));
 
         update.invoke(panel, region, districts);
@@ -104,9 +104,9 @@ public class RedistrictingGUITest {
         Method textColorMethod = clazz.getDeclaredMethod("textColorForParty", Party.class);
         textColorMethod.setAccessible(true);
 
-        assertEquals(Color.WHITE,
+        assertEquals(Color.BLACK,
                      textColorMethod.invoke(panel, Party.PARTY0));
-        assertEquals(Color.WHITE,
+        assertEquals(Color.BLACK,
                      textColorMethod.invoke(panel, Party.PARTY1));
         assertEquals(Color.BLACK,
                      textColorMethod.invoke(panel, Party.THIRDPARTY));

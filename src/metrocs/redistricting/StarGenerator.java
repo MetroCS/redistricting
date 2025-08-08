@@ -21,7 +21,7 @@ public final class StarGenerator {
     ArrayList<ArrayList<Location>> builtPatterns =
         new ArrayList<ArrayList<Location>>();
     if (n == 0) {
-    	return builtPatterns;
+        return builtPatterns;
     }
     ArrayList<Location> visited = new ArrayList<Location>();
     Location currentCoord = new Location(0, 0);

@@ -1,9 +1,8 @@
 /**
- * Provides classes that support the
- * redistricting investigation project.
- * <p>Release 1.0.1</p>
+ * Support for redistricting investigation projects.
+ * <p>Release 1.1.0</p>
  * @author Dr. Jody Paul
- * @author CS 3250 Participants
- * @version 20220625.0
+ * @author MSU Denver CS Students
+ * @version 20250808.0
  */
 package metrocs.redistricting;

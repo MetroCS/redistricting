@@ -5,7 +5,7 @@ package metrocs.redistricting;
  * as well as for unaffiliated and none (unknown).
  *
  * @author Dr. Jody Paul
- * @version 20191129.1
+ * @version 20240807.0
  */
 public enum Party implements java.io.Serializable {
     /** Unrecognized party. */
@@ -18,9 +18,6 @@ public enum Party implements java.io.Serializable {
     PARTY1('1'),
     /** Any non-major party. */
     THIRDPARTY('T');
-
-    /** Serialization version requirement. */
-    private static final long serialVersionUID = 4L;
 
     /** The single-character party affiliation identification. */
     private final char id;

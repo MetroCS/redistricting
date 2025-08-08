@@ -20,9 +20,8 @@ import java.util.NoSuchElementException;
  * Most functionality is available via utility methods.
  *
  * @author Dr. Jody Paul
- * @author CS3250 Participants
- * @author Nicholas Matthews
- * @version 20220103.3
+ * @author MSU Denver CS Students
+ * @version 20250808.0
  */
 public final class Redistrictor implements java.io.Serializable {
     /** Serialization version requirement. */
@@ -35,7 +34,7 @@ public final class Redistrictor implements java.io.Serializable {
      * Establishes a specific region as associated with
      * the redistrictor.
      * @param theRegion region associated with this redistrictor
-     * @throws illegalArgumentException if the region is null
+     * @throws IllegalArgumentException if the region is null
      */
     public Redistrictor(final Region theRegion) {
         if (null == theRegion) {
@@ -63,9 +62,9 @@ public final class Redistrictor implements java.io.Serializable {
      * @return a set of districts matching the parameters, if feasible;
      *         an empty set if no feasible solution is found.
      */
-    public static Set<District> generateDistricts(final Region theRegion,
-                                                  final int numDistricts) {
-        Set<District> districts = new HashSet<District>();
+    public static HashSet<District> generateDistricts(final Region theRegion,
+                                                      final int numDistricts) {
+        HashSet<District> districts = new HashSet<District>();
         HashMap<Location, HashSet<Location>> graph
             = generateGraphFromRegion(theRegion);
         HashSet<Location> graphMembers = new HashSet<Location>();

@@ -6,7 +6,7 @@
   <description>
       Build file for Redistricting project investigation
   </description>
-  <property name="version" value="20220623_0"/>
+  <property name="version" value="20250807_0"/>
   <property name="author" value="Jody Paul"/>
   <property name="copyright" value="Copyright (c) Dr. Jody Paul"/>
   <property name="license"
@@ -29,7 +29,7 @@
   <property name="build.dir" location="build"/>
   <property name="classes.dir" location="${build.dir}/classes"/>
   <property name="jar.dir" location="${build.dir}/jar"/>
-  <property name="dist" location="dist"/>
+  <property name="dist.dir" location="dist"/>
   <property name="allreports" location="reports"/>
   <property name="stylecheck" location="${allreports}"/>
   <property name="testreports" location="${allreports}/test"/>
@@ -46,7 +46,7 @@
   </condition>
     <!-- API version match with Java version -->
   <condition property="api.url"
-             value="https://docs.oracle.com/javase/17/docs/api/"
+             value="https://docs.oracle.com/en/java/javase/17/docs/api/"
 	     else="https://docs.oracle.com/javase/8/docs/api/">
     <not>
       <or>
@@ -107,9 +107,9 @@
   <target name="clean"
           description="clean up dynamically-created files and directories"
 	  depends="pmdClean, jacocoClean, testClean">
-    <!-- Delete the ${build.dir} ${dist} ${doc} ${formattedsrc} and ${stylecheck} directory trees -->
+    <!-- Delete the ${build.dir} ${dist.dir} ${doc} ${formattedsrc} and ${stylecheck} directory trees -->
     <delete dir="${build.dir}"/>
-    <delete dir="${dist}"/>
+    <delete dir="${dist.dir}"/>
     <delete dir="${doc}"/>
     <delete dir="${formattedsrc}"/>
     <delete dir="${stylecheck}"/>
@@ -161,6 +161,7 @@
         <attribute name="Built-By" value="${user.name}"/>
         <attribute name="Implementation-Version" value="${release.version}-${DSTAMP}-${TSTAMP}"/>
         <attribute name="Build-Date" value="${TODAY}"/>
+	<attribute name="Main-Class" value="metrocs.redistricting.RedistrictingGUI"/>
       </manifest>
     </jar>
     <echo message="Jar file has been created, and can be found at: ${jar.dir}/${productname}_${DSTAMP}_${TSTAMP}.jar" />
@@ -177,9 +178,35 @@
         <attribute name="Implementation-Title" value="Redistricting"/>
         <attribute name="Implementation-Vendor" value="MetroCS"/>
         <attribute name="Build-Date" value="${DSTAMP}_${TSTAMP}"/>
+	<attribute name="Main-Class" value="metrocs.redistricting.RedistrictingGUI"/>
       </manifest>
     </jar>
     <echo message="Jar file has been created, and can be found at: ${jar.dir}/${productname}_${release.version}.jar" />
+  </target>
+
+  <target name="package4macOS" depends="release"
+	  description="Create a .dmg file containing a macOS .app">
+    <exec executable="jpackage">
+      <arg value="--input"/>
+      <arg value="${jar.dir}"/>
+      <arg value="--name"/>
+      <arg value="Redistricting"/>
+      <arg value="--app-version"/>
+      <arg value="${release.version}"/>
+      <arg value="--main-jar"/>
+      <arg value="${productname}_${release.version}.jar"/>
+      <arg value="--main-class"/>
+      <arg value="metrocs.redistricting.RedistrictingGUI"/>
+      <arg value="--icon"/>
+      <arg value="R_icon.icns"/>
+      <arg value="--type"/>
+      <arg value="dmg"/>
+      <arg value="--dest"/>
+      <arg value="${dist.dir}"/>
+      <arg value="--copyright"/>
+      <arg value="${copyright.text}"/>
+    </exec>
+    <echo message="MacOS file has been created, and can be found at: ${dist.dir}/${productname}_${release.version}.dmg" />
   </target>
 
   <target name="unitTest" depends="test.junit.launcher, test.console.launcher" />
@@ -541,13 +568,13 @@
            classpath="lib/proguard/proguard.jar" />
   <!-- dist and ProGuard definitions -->
   <target name="dist"
-          depends="proguard"
+          depends="release, proguard"
           description="Use ProGuard to create distribution jar"/>
   <target name="proguard"
-          depends="jar">
+          depends="release">
     <proguard>
       <libraryjar name="${java.home}/jmods/java.base.jmod"/>
-      -injars       ${jar.dir}/${productname}.jar
+      -injars       ${jar.dir}/${productname}_${release.version}.jar
       -outjars      ${dist}/${productname}.jar
       -keepclasseswithmembers public class * {
           public static void main(java.lang.String[]);
