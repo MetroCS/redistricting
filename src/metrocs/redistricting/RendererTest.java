@@ -6,10 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 /**
- * The test class for Renderer.
+ * Tests for {@link Renderer}.
  *
- * @author  Dr. Jody Paul
- * @version 20191221.2
+ * @version 20191221.3
  */
 public class RendererTest {
     /** Render of an arbitrary location. */

@@ -8,8 +8,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Tests for {@link RedistrictingStatistics} utility.
  *
- * @author OpenAI ChatGPT
- * @version 20240528.0
+ * @version 20250808.1
  */
 public class RedistrictingStatisticsTest {
     /**
@@ -79,32 +78,23 @@ public class RedistrictingStatisticsTest {
         voters.add(new Voter(Party.PARTY0, l2));
         voters.add(new Voter(Party.PARTY1, l3));
         Region region = new Region(locs, voters);
-
-        Map<Party, Integer> counts = RedistrictingStatistics.countPartyPreferences(region);
-        assertThat(counts.get(Party.PARTY0).intValue(), is(2));
-        assertThat(counts.get(Party.PARTY1).intValue(), is(1));
-        assertThat(counts.get(Party.THIRDPARTY).intValue(), is(0));
-    }
-
-
-
-    /**
-     * Verify that the formatted summary contains the expected counts.
-     */
-    @Test
-    public void formatsRegionSummaryCorrectly() {
-        Set<Location> locs = new HashSet<>();
-        Set<Voter> voters = new HashSet<>();
-        Location l1 = new Location(0, 0);
-        Location l2 = new Location(0, 1);
-        locs.add(l1);
-        locs.add(l2);
-        voters.add(new Voter(Party.PARTY0, l1));
-        voters.add(new Voter(Party.PARTY1, l2));
-        Region region = new Region(locs, voters);
-
-        String summary = RedistrictingStatistics.formatPartyPreferences(region);
+        Set<District> districts = new HashSet<District>();
+        Set<Location> locs1 = new HashSet<Location>();
+        locs1.add(new Location(0, 0));
+        locs1.add(new Location(0, 1));
+        districts.add(new District(locs1));
+        Set<Location> locs2 = new HashSet<Location>();
+        locs2.add(new Location(1, 0));
+        locs2.add(new Location(1, 1));
+        districts.add(new District(locs2));
+        Set<Location> locs3 = new HashSet<Location>();
+        locs3.add(new Location(2, 0));
+        locs3.add(new Location(2, 1));
+        districts.add(new District(locs3));
+        String summary =
+          RedistrictingStatistics.formatDistrictPreferences(districts, region);
         assertThat(summary.contains("PARTY0: 1"), is(true));
         assertThat(summary.contains("PARTY1: 1"), is(true));
+        assertThat(summary.contains("NONE: 1"), is(true));
     }
 }

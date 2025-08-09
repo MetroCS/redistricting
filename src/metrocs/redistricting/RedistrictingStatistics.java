@@ -10,12 +10,13 @@ import java.util.EnumMap;
  * district, that district is considered to have no preference and is counted
  * under {@code Party.NONE}.</p>
  *
+ * @author Dr. Jody Paul
  * @author OpenAI ChatGPT
- * @version 20240528.0
+ * @version 20250808.0
  */
 public final class RedistrictingStatistics implements java.io.Serializable {
     /** Serialization version requirement. */
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 4L;
 
     /**
      * Private constructor to prevent instantiation.
@@ -121,7 +122,7 @@ public final class RedistrictingStatistics implements java.io.Serializable {
     /** Base for percentages. */
     private static final double BASE = 100.0;
     /**
-     * Produces a human-readable summary of party preference statistics for the
+     * Produce a human-readable summary of party preference statistics for the
      * given region. The summary lists the number and percentage of voters for
      * each party.
      *
@@ -131,6 +132,46 @@ public final class RedistrictingStatistics implements java.io.Serializable {
     public static String formatPartyPreferences(final Region region) {
         Map<Party, Integer> counts = countPartyPreferences(region);
         int total = (region == null) ? 0 : region.numberOfVoters();
+        StringBuilder sb = new StringBuilder();
+        Party[] order = {Party.PARTY0, Party.PARTY1, Party.THIRDPARTY,
+                         Party.UNAFFILIATED, Party.NONE};
+        for (Party p : order) {
+            int c = counts.get(p);
+            if (sb.length() > 0) {
+                sb.append(" | ");
+            }
+            if (total > 0) {
+                double pct = (double) c * BASE / total;
+                sb.append(p.name()).append(": ").append(c)
+                  .append(String.format(" (%.1f%%)", pct));
+            } else {
+                sb.append(p.name()).append(": ").append(c);
+            }
+        }
+        return sb.toString();
+    }
+
+    /**
+     * Produce a human-readable summary of party preferences for a
+     * collection of districts.
+     * The summary lists the number and percentage of districts preferring
+     * each party.
+     *
+     * @param districts the districts to analyze; may be {@code null}
+     * @param region the region containing the voters; may be {@code null}
+     * @return summary string describing district party preferences
+     */
+    public static String formatDistrictPreferences(
+            final Set<District> districts, final Region region) {
+        Map<Party, Integer> counts = new EnumMap<>(Party.class);
+        for (Party p : Party.values()) {
+            counts.put(p, 0);
+        }
+        int total = 0;
+        if (districts != null && region != null) {
+            counts = computePartyPreferences(districts, region);
+            total = districts.size();
+        }
         StringBuilder sb = new StringBuilder();
         Party[] order = {Party.PARTY0, Party.PARTY1, Party.THIRDPARTY,
                          Party.UNAFFILIATED, Party.NONE};

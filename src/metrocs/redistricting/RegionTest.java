@@ -10,11 +10,9 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.Collection;
 /**
- * Tests for class Region.
+ * Tests for {@link Region} objects.
  *
- * @author  Dr. Jody Paul
- * @author  CS3250 Participants
- * @version 20220629.0
+ * @version 20220629.1
  */
 public class RegionTest {
     /** The maximum size region to test. */
@@ -29,8 +27,8 @@ public class RegionTest {
     }
 
     /**
-    * Test case for Region(Collection<Voter>)
-    */
+     * Test case for Region(Collection<Voter>)
+     */
     @Test
     public void voterRegionInputConstructorTest() {
         Voter voterA = new Voter(Party.PARTY0, new Location(0, 0));
@@ -60,9 +58,9 @@ public class RegionTest {
     }
 
     /**
-    * Test case for empty number of voters in a region.
-    * Should return 0 with various empty or 0 or 0,0 parameters.
-    */
+     * Test case for empty number of voters in a region.
+     * Should return 0 with various empty or 0 or 0,0 parameters.
+     */
     @Test
     public void emptyRegionNumberOfVotersTest() {
         assertThat((new Region()).numberOfVoters(), is(0));
@@ -72,10 +70,10 @@ public class RegionTest {
     }
 
     /**
-    * Test case for negative square regions.
-    * When a negative square region is created,
-    * throws IllegalArgumentException.
-    */
+     * Test case for negative square regions.
+     * When a negative square region is created,
+     * throws IllegalArgumentException.
+     */
     @Test
     public void squareRegionNegativeSizeTest() throws IllegalArgumentException {
         assertThrows(IllegalArgumentException.class, () -> {
@@ -84,10 +82,10 @@ public class RegionTest {
     }
 
     /**
-    * Test case for negative rectangular regions.
-    * When a negative parameter for a region number of rows or columns is passed,
-    * throws IllegalArgumentException.
-    */
+     * Test case for negative rectangular regions.
+     * When a negative parameter for a region number of rows or columns is passed,
+     * throws IllegalArgumentException.
+     */
     @Test
     public void rectangularRegionNegativeSizeTest() throws IllegalArgumentException {
         assertThrows(IllegalArgumentException.class, () -> {
@@ -114,11 +112,11 @@ public class RegionTest {
     }
 
     /**
-    * Test case for non-square regions using square constructor,
-    * specifically with parameter of 3.
-    * When a new region is made with the number 3,
-    * throws IllegalArgumentException.
-    */
+     * Test case for non-square regions using square constructor,
+     * specifically with parameter of 3.
+     * When a new region is made with the number 3,
+     * throws IllegalArgumentException.
+     */
     @Test
     public void squareRegionNonSquareSizeTestNum3() throws IllegalArgumentException {
         assertThrows(IllegalArgumentException.class, () -> {
@@ -127,10 +125,10 @@ public class RegionTest {
     }
 
     /**
-    * Test case for extreme region sizing.
-    * When a region is created of the max value,
-    * throws IllegalArgumentException.
-    */
+     * Test case for extreme region sizing.
+     * When a region is created of the max value,
+     * throws IllegalArgumentException.
+     */
     @Test
     public void squareRegionExtremeSizeTest() throws IllegalArgumentException {
         assertThrows(IllegalArgumentException.class, () -> {
@@ -140,9 +138,9 @@ public class RegionTest {
 
 
     /**
-    * Test case for valid rectangular region size.
-    * Should complete before 1000 milliseconds have passed.
-    */
+     * Test case for valid rectangular region size.
+     * Should complete before 1000 milliseconds have passed.
+     */
     @Test
     public void rectangularRegionValidSizeTest() {
         assertTimeout(ofMillis(MAX_TIMEOUT), () -> {
@@ -166,9 +164,9 @@ public class RegionTest {
     }
 
     /**
-    * Test case for valid square region size.
-    * Should complete before 1000 milliseconds have passed.
-    */
+     * Test case for valid square region size.
+     * Should complete before 1000 milliseconds have passed.
+     */
     @Test
     public void squareRegionValidSizeTest() {
         assertTimeout(ofMillis(MAX_TIMEOUT), () -> {
@@ -207,9 +205,9 @@ public class RegionTest {
     }
 
     /**
-    * Test case for number of voters in a square region.
-    * Should complete before MAX_TIMEOUT expires.
-    */
+     * Test case for number of voters in a square region.
+     * Should complete before MAX_TIMEOUT expires.
+     */
     @Test
     public void squareRegionNumberOfVotersTest() {
         assertTimeout(ofMillis(MAX_TIMEOUT), () -> {
@@ -223,9 +221,9 @@ public class RegionTest {
     }
 
     /**
-    * Test case for voters in location set.
-    * Should complete before MAX_TIMEOUT expires.
-    */
+     * Test case for voters in location set.
+     * Should complete before MAX_TIMEOUT expires.
+     */
     @Test
     public void regionWithAllVotersInLocationSetTest() {
         assertTimeout(ofMillis(MAX_TIMEOUT), () -> {
@@ -255,9 +253,9 @@ public class RegionTest {
     }
 
     /**
-    * Test case for voters not in the location set.
-    * Should complete before MAX_TIMEOUT expires.
-    */
+     * Test case for voters not in the location set.
+     * Should complete before MAX_TIMEOUT expires.
+     */
     @Test
     public void regionWithVoterNotInLocationSetTest() {
         assertTimeout(ofMillis(MAX_TIMEOUT), () -> {

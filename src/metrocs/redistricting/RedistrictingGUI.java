@@ -14,7 +14,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
-import java.util.TreeSet;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -23,7 +22,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 /**
- * Simple graphical interface for experimenting with the redistricting model.
+ * Graphical interface for interacting  with the redistricting model.
  *
  * <p>The interface allows non-programmers to specify basic parameters such as
  * the number of rows and columns in a region and the number of districts to
@@ -74,14 +73,13 @@ public final class RedistrictingGUI {
     }
 
     /**
-     * Generates a new random region and computes districts based on user input.
+     * Generates a new random region and creates districts based on user input.
      */
     private void generate() {
         int rows = Integer.parseInt(rowsField.getText());
         int cols = Integer.parseInt(colsField.getText());
         int districts = Integer.parseInt(districtsField.getText());
 
-        // Start with a rectangular region.
         Region initial = new Region(rows, cols);
         Set<Location> locs = new HashSet<>(initial.locations());
         Set<Voter> voters = new HashSet<>();
@@ -94,8 +92,12 @@ public final class RedistrictingGUI {
         HashSet<District> dists
             = Redistrictor.generateDistricts(region, districts);
         regionPanel.update(region, dists);
-        statsLabel.setText(
-                     RedistrictingStatistics.formatPartyPreferences(region));
+        String regionStats
+            = RedistrictingStatistics.formatPartyPreferences(region);
+        String districtStats
+            = RedistrictingStatistics.formatDistrictPreferences(dists, region);
+        statsLabel.setText("<html>Region: " + regionStats
+            + "<br/>Districts: " + districtStats + "</html>");
     }
 
     /**
@@ -220,7 +222,7 @@ public final class RedistrictingGUI {
         private Color colorForParty(final Party p) {
             switch (p) {
                 case PARTY0:
-                    return Color.BLUE;
+                    return Color.CYAN;
                 case PARTY1:
                     return Color.RED;
                 case THIRDPARTY:
@@ -230,29 +232,24 @@ public final class RedistrictingGUI {
             }
         }
 
-        /** Perceptual color constant for red. */
-        private static final double RED_PERCEPTUAL_CONST = 0.299;
-        /** Perceptual color constant for green. */
-        private static final double GREEN_PERCEPTUAL_CONST = 0.587;
-        /** Perceptual color constant for blue. */
-        private static final double BLUE_PERCEPTUAL_CONST = 0.114;
-        /** Perceptual constant for luminance. */
-        private static final double LUMINANCE_CONST = 0.114;
         /**
          * Selects a contrasting text color for a party cell.
-         * Uses constants from luminance perception models used in computer
-         * graphics and color science to use white or black text color for
-         * contrast and readability. (See: https://poynton.ca/PDFs/ColorFAQ.pdf)
          * @param p the party
          * @return color for text display
          */
         private Color textColorForParty(final Party p) {
             Color base = colorForParty(p);
-            int luminance = (int) Math.sqrt(
-                base.getRed() * base.getRed() * RED_PERCEPTUAL_CONST
-                + base.getGreen() * base.getGreen() * GREEN_PERCEPTUAL_CONST
-                + base.getBlue() * base.getBlue() * BLUE_PERCEPTUAL_CONST);
-            return luminance < LUMINANCE_CONST ? Color.WHITE : Color.BLACK;
+            if (base == Color.CYAN
+                || base == Color.LIGHT_GRAY
+                || base == Color.WHITE) {
+                return Color.BLACK;
+            }
+            if (base == Color.RED
+                || base == Color.BLUE
+                || base == Color.DARK_GRAY) {
+                return Color.WHITE;
+            }
+            return Color.BLACK;
         }
 
         /**

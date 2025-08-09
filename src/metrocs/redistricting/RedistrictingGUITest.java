@@ -2,6 +2,7 @@ package metrocs.redistricting;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.awt.Color;
 import java.lang.reflect.Constructor;
@@ -10,14 +11,17 @@ import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
 import org.junit.jupiter.api.Test;
 
 /**
- * Tests for {@link RedistrictingGUI}'s internal components.
+ * Tests for {@link RedistrictingGUI} internal components.
  */
 public class RedistrictingGUITest {
     /**
-     * Verifies that RegionPanel.update stores the provided region and districts.
+     * Verify that RegionPanel.update stores the provided region and districts.
      * @throws Exception if reflection fails
      */
     @Test
@@ -66,7 +70,7 @@ public class RedistrictingGUITest {
         Method colorMethod = clazz.getDeclaredMethod("colorForParty", Party.class);
         colorMethod.setAccessible(true);
 
-        assertEquals(Color.BLUE, colorMethod.invoke(panel, Party.PARTY0));
+        assertEquals(Color.CYAN, colorMethod.invoke(panel, Party.PARTY0));
         assertEquals(Color.RED, colorMethod.invoke(panel, Party.PARTY1));
         assertEquals(Color.GREEN, colorMethod.invoke(panel, Party.THIRDPARTY));
     }
@@ -106,9 +110,61 @@ public class RedistrictingGUITest {
 
         assertEquals(Color.BLACK,
                      textColorMethod.invoke(panel, Party.PARTY0));
-        assertEquals(Color.BLACK,
+        assertEquals(Color.WHITE,
                      textColorMethod.invoke(panel, Party.PARTY1));
         assertEquals(Color.BLACK,
                      textColorMethod.invoke(panel, Party.THIRDPARTY));
+    }
+
+    /**
+     * Verify that the GUI footer displays both region and district statistics.
+     * @throws Exception if reflection fails
+     */
+    @Test
+    public void generateShowsRegionAndDistrictStats() throws Exception {
+        Class<?> clazz
+            = Class.forName("metrocs.redistricting.RedistrictingGUI");
+        Class<?> unsafeClass = Class.forName("sun.misc.Unsafe");
+        Field unsafeField = unsafeClass.getDeclaredField("theUnsafe");
+        unsafeField.setAccessible(true);
+        Object unsafe = unsafeField.get(null);
+        Method allocate
+            = unsafeClass.getMethod("allocateInstance", Class.class);
+        Object gui = allocate.invoke(unsafe, clazz);
+
+        Field rowsField = clazz.getDeclaredField("rowsField");
+        rowsField.setAccessible(true);
+        rowsField.set(gui, new JTextField("1", 3));
+
+        Field colsField = clazz.getDeclaredField("colsField");
+        colsField.setAccessible(true);
+        colsField.set(gui, new JTextField("1", 3));
+
+        Field districtsField = clazz.getDeclaredField("districtsField");
+        districtsField.setAccessible(true);
+        districtsField.set(gui, new JTextField("1", 3));
+
+        Class<?> panelClass
+          = Class.forName("metrocs.redistricting.RedistrictingGUI$RegionPanel");
+        Constructor<?> panelCtor = panelClass.getDeclaredConstructor();
+        panelCtor.setAccessible(true);
+        Object panel = panelCtor.newInstance();
+        Field panelField = clazz.getDeclaredField("regionPanel");
+        panelField.setAccessible(true);
+        panelField.set(gui, panel);
+
+        Field statsField = clazz.getDeclaredField("statsLabel");
+        statsField.setAccessible(true);
+        statsField.set(gui, new JLabel());
+
+        Method generate = clazz.getDeclaredMethod("generate");
+        generate.setAccessible(true);
+        generate.invoke(gui);
+
+        JLabel label = (JLabel) statsField.get(gui);
+        String text = label.getText();
+
+        assertTrue(text.contains("Region:"));
+        assertTrue(text.contains("Districts:"));
     }
 }

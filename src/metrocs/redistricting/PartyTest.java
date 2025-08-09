@@ -4,10 +4,10 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
 import org.junit.jupiter.api.Test;
 /**
- * Tests of Party enum.
+ * Tests of {@link Party} enum.
  *
  * @author  Dr. Jody Paul
- * @version 20191129.1
+ * @version 20191129.2
  */
 public class PartyTest {
     /**

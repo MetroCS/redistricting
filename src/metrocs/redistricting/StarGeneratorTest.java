@@ -5,10 +5,10 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.api.Test;
 /**
- * Tests for objects of type Location in Star Generator.
+ * Tests for {@link StarGenerator}.
  *
  * @author  Colin K, Jesus AE, Thomas M, Robert B
- * @version 20231012.2
+ * @version 20231012.3
  */
 
 class StarGeneratorTest {
