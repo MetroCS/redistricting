@@ -5,19 +5,19 @@ package metrocs.redistricting;
  * as well as for unaffiliated and none (unknown).
  *
  * @author Dr. Jody Paul
- * @version 20240807.0
+ * @version 20240807.1
  */
 public enum Party implements java.io.Serializable {
-    /** Unrecognized party. */
-    NONE('?'),
-    /** Unaffiliated voter. */
-    UNAFFILIATED('U'),
     /** Major Party 0. */
     PARTY0('0'),
     /** Major Party 1. */
     PARTY1('1'),
+    /** Unaffiliated voter. */
+    UNAFFILIATED('U'),
     /** Any non-major party. */
-    THIRDPARTY('T');
+    THIRDPARTY('T'),
+    /** Unrecognized party. */
+    NONE('?');
 
     /** The single-character party affiliation identification. */
     private final char id;

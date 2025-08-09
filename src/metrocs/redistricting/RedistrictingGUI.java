@@ -72,6 +72,10 @@ public final class RedistrictingGUI {
         frame.setVisible(true);
     }
 
+    /** Base for percentage. */
+    private static final int BASE = 100;
+    /** Percentage outside of the major two parties. */
+    private static final int OUTSIDE = 15;
     /**
      * Generates a new random region and creates districts based on user input.
      */
@@ -83,9 +87,13 @@ public final class RedistrictingGUI {
         Region initial = new Region(rows, cols);
         Set<Location> locs = new HashSet<>(initial.locations());
         Set<Voter> voters = new HashSet<>();
-        Random rand = new Random();
+        Random rng = new Random();
+        int numberOfParties = Party.values().length;
         for (Location loc : locs) {
-            Party p = rand.nextBoolean() ? Party.PARTY0 : Party.PARTY1;
+            Party p = rng.nextBoolean() ? Party.PARTY0 : Party.PARTY1;
+            if (rng.nextInt(BASE) < OUTSIDE) { // Address outside 2-party
+                p = Party.UNAFFILIATED;
+            }
             voters.add(new Voter(p, loc));
         }
         Region region = new Region(locs, voters);
