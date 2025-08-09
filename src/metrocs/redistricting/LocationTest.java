@@ -8,10 +8,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.api.Test;
 
 /**
- * Tests for objects of type Location.
+ * Tests for {@link Location} objects.
  *
  * @author  Dr. Jody Paul
- * @version 20191006.1
+ * @version 20191006.2
  */
 public class LocationTest {
     /**

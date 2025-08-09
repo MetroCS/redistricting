@@ -8,12 +8,9 @@ import org.junit.jupiter.api.Test;
 import java.util.Set;
 import java.util.HashSet;
 /**
- * Tests for redistrictor.
+ * Tests for {@link Redistrictor}.
  *
- * @author  Dr. Jody Paul
- * @author  Nicholas Matthews
- * @author  CS3250 Participants
- * @version 20220103.1
+ * @version 20220103.2
  */
 public class RedistrictorTest {
     @Test

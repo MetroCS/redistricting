@@ -1,5 +1,4 @@
 package metrocs.redistricting;
-import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.HashSet;
@@ -14,20 +13,20 @@ import java.util.Collection;
  * Zero or more voters may be associated with each location.
  *
  * @author Dr. Jody Paul
- * @version 20220629.0
+ * @version 20240807.0
  */
 public class Region implements java.io.Serializable {
     /** Serialization version requirement. */
     private static final long serialVersionUID = 4L;
 
     /** The locations comprising this region. */
-    private Set<Location> locations = new TreeSet<>();
+    private TreeSet<Location> locations = new TreeSet<>();
 
     /** The voters comprising this region. */
-    private Set<Voter> voters = new HashSet<>();
+    private HashSet<Voter> voters = new HashSet<>();
 
     /** The association of locations with voters. */
-    private Map<Location, Voter> voterMap = new HashMap<>();
+    private HashMap<Location, Voter> voterMap = new HashMap<>();
 
     /**
      * Computes a default length of the side of the grid containing this region

@@ -6,10 +6,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import java.util.HashSet;
 /**
- * Tests for District objects.
+ * Tests for {@link District} objects.
  *
  * @author  Dr. Jody Paul
- * @version 20191006.1
+ * @version 20191006.2
  */
 public class DistrictTest {
     @Test

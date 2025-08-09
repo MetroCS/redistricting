@@ -6,14 +6,14 @@ import java.util.TreeSet;
  * A district is a contiguous group of locations.
  *
  * @author Dr. Jody Paul
- * @version 20191006.1
+ * @version 20240807.0
  */
 public class District implements java.io.Serializable {
     /** Serialization version requirement. */
-    private static final long serialVersionUID = 3L;
+    private static final long serialVersionUID = 4L;
 
     /** The locations in this district. */
-    private Set<Location> locations = new TreeSet<>();
+    private TreeSet<Location> locations = new TreeSet<>();
 
     /**
      * Creates a district with no locations.

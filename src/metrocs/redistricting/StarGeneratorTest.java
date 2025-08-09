@@ -5,10 +5,10 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.api.Test;
 /**
- * Tests for objects of type Location in Star Generator.
+ * Tests for {@link StarGenerator}.
  *
- * @authors  Colin K, Jesus AE, Thomas M, Robert B
- * @version 20231012.1
+ * @author  Colin K, Jesus AE, Thomas M, Robert B
+ * @version 20231012.3
  */
 
 class StarGeneratorTest {
@@ -36,7 +36,7 @@ class StarGeneratorTest {
     /***
      * Test for StarGenerator pattern of size n=1
      *
-     * Expected behavior is that an arraylist<arraylist<location>> of size 1 should be returned
+     * Expected behavior is that an arraylist&lt;arraylist&lt;location&gt;&gt; of size 1 should be returned
      * which has been verified by hand.
      *
      */
@@ -50,7 +50,7 @@ class StarGeneratorTest {
     /***
      * Test for StarGenerator pattern of size n=2
      *
-     * Expected behavior is that an arraylist<arraylist<location>> of size 4 should be returned
+     * Expected behavior is that an arraylist&lt;arraylist&lt;location&gt;&gt; of size 4 should be returned
      * which has been verified by hand.
      *
      */
@@ -64,7 +64,7 @@ class StarGeneratorTest {
     /***
      * Test for StarGenerator pattern of size n=3
      *
-     * Expected behavior is that an arraylist<arraylist<location>> of size 12 should be returned
+     * Expected behavior is that an arraylist&lt;arraylist&lt;location&gt;&gt; of size 12 should be returned
      * which has been verified by hand.
      *
      */
@@ -78,7 +78,7 @@ class StarGeneratorTest {
     /***
      * Test for StarGenerator pattern of size n=4
      *
-     * Expected behavior is that an arraylist<arraylist<location>> of size 36 should be returned
+     * Expected behavior is that an arraylist&lt;arraylist&lt;location&gt;&gt; of size 36 should be returned
      * which has been verified by hand.
      *
      */
