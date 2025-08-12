@@ -563,22 +563,24 @@
   </target>
 
 
-  <!-- Define ProGuard task -->
-  <taskdef resource="proguard/ant/task.properties"
-           classpath="lib/proguard/proguard.jar" />
+  <!-- ProGuard -->
+  <taskdef resource="proguard/ant/task.properties">
+    <classpath>
+      <fileset dir="${lib}/proguard" includes="proguard-ant.jar"/>
+    </classpath>
+  </taskdef>
+
   <!-- dist and ProGuard definitions -->
   <target name="dist"
           depends="release, proguard"
           description="Use ProGuard to create distribution jar"/>
-  <target name="proguard"
-          depends="release">
+  <target name="proguard" depends="release">
+    <mkdir dir="${dist.dir}"/>
     <proguard>
-      <libraryjar name="${java.home}/jmods/java.base.jmod"/>
-      -injars       ${jar.dir}/${productname}_${release.version}.jar
-      -outjars      ${dist}/${productname}.jar
-      -keepclasseswithmembers public class * {
-          public static void main(java.lang.String[]);
-    }
+      <libraryjar dir="${java.home}/jmods" filter="!**.zip,!**.jar"/>
+      <injar file="${jar.dir}/${productname}_${release.version}.jar" />
+      <outjar file="${dist.dir}/${productname}.jar" />
+      <configuration file="${lib}/proguard.pro"/>
     </proguard>
   </target>
 
