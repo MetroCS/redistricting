@@ -22,8 +22,9 @@ Goal: A Java utility package that supports the development of applications to in
       Voters are distinguished by both color and party symbols and districts
       are outlined in bold for easy viewing.
 - ### Build macOS app and package
+    - Must be built on a macOS system
     - Execute `ant package4macOS`
-    - Download and open resulting .dmg file on macOS system
+    - Open resulting .dmg file to reveal Redistricting app
 
 - ## [Contributing](Contributing.md)
 
