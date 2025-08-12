@@ -563,19 +563,42 @@
   </target>
 
 
-  <!-- Define ProGuard task -->
-  <taskdef resource="proguard/ant/task.properties"
-           classpath="lib/proguard/proguard.jar" />
+  <!-- ProGuard -->
+  <taskdef resource="proguard/ant/task.properties">
+    <classpath>
+      <fileset dir="lib/proguard" includes="proguard-ant.jar,proguard.jar"/>
+    </classpath>
+  </taskdef>
+
   <!-- dist and ProGuard definitions -->
   <target name="dist"
           depends="release, proguard"
           description="Use ProGuard to create distribution jar"/>
   <target name="proguard"
           depends="release">
+    <mkdir dir="${dist.dir}"/>
     <proguard>
-      <libraryjar name="${java.home}/jmods/java.base.jmod"/>
+      <libraryjar dir="${java.home}/jmods" filter="!**.zip,!**.jar"/>
+      <libraryjar>
+	<fileset dir="${lib}/proguard">
+	  <include name="proguard.jar"/>
+	  <exclude name="${productname}_${release.version}.jar"/>
+	  <exclude name="junit5/**/*.jar"/>
+	  <exclude name="proguard/*.jar"/>
+	  <exclude name="ant-colorizor.jar"/>
+	  <exclude name="checkstyle.jar"/>
+	  <exclude name="pmd/*.jar"/>
+	  <exclude name="jacoco/*.jar"/>
+	  <exclude name="spotbugs/*.jar"/>
+	  <exclude name="java2html.jar"/>
+	  <exclude name="j2h.jar"/>
+	  <exclude name="spring-core-*.jar"/>
+	  <exclude name="commons-logging-*.jar"/>
+	  <exclude name="log4j-*.jar"/>
+	</fileset>
+      </libraryjar>
       -injars       ${jar.dir}/${productname}_${release.version}.jar
-      -outjars      ${dist}/${productname}.jar
+      -outjars      ${dist.dir}/${productname}.jar
       -keepclasseswithmembers public class * {
           public static void main(java.lang.String[]);
     }
