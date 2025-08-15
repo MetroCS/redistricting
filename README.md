@@ -15,7 +15,7 @@ Goal: A Java utility package that supports the development of applications to in
     - Execute `ant release`
 - ### Run an Example
     - [Create and Display a Region](docs/examples/create_and_display_region.md)
-- ### Launch Graphic Interface
+- ### Launch Graphical Interface
     - Execute `java metrocs.redistricting.RedistrictingGUI`
 
 
